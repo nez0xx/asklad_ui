@@ -1,0 +1,22 @@
+.employeesCont {
+	display: grid;
+	gap: 10px;
+    width: max-content;
+	margin-top: 10px;
+}
+
+.Employees hr {
+	margin-bottom: 20px;
+}
+
+.Employees h2 {
+	margin-bottom: 10px;
+}
+
+.addButton {
+    border: 2px solid var(--dark-text);
+    border-radius: 5px;
+    padding: 7px;
+    display: grid;
+    place-content: center;
+}

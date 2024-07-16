@@ -1,0 +1,24 @@
+.deleteBtn {
+	background: var(--main-button-color);
+	color: white;
+}
+
+.modalBody {
+	padding: 10px;
+}
+
+.modalBodyInfo {
+	display: grid;
+	gap: 5px;
+	margin: 10px 0;
+}
+
+.table {
+	border-collapse: collapse;
+}
+
+.table td,
+.table th {
+	border: 1px solid black;
+	padding: 5px 10px;
+}

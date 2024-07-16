@@ -1,0 +1,51 @@
+.table {
+	border-spacing: 0;
+	border-collapse: collapse;
+	margin-top: 10px;
+}
+
+.table thead {
+	background: var(--secondary-color);
+	color: white;
+}
+
+.table th,
+.table td {
+	padding: 5px;
+	border: 2px solid #000464;
+}
+
+.table th {
+	padding: 10px;
+}
+
+.table td {
+	color: var(--dark-text);
+	font-weight: 600;
+	font-size: 14px;
+}
+
+.table td.center,
+.table th.center {
+	text-align: center;
+}
+
+.table tbody tr:hover td:not(.deleteTd) {
+	background: #0085ff4f;
+	cursor: pointer;
+}
+
+.table .deleteTd {
+	border: none;
+	width: 50px;
+}
+
+.dleteButton {
+	background: red;
+	color: white;
+	padding: 0;
+	width: 40px;
+	height: 40px;
+	display: grid;
+	place-content: center;
+}

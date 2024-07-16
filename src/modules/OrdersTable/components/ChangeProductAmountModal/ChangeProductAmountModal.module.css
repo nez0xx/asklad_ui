@@ -1,0 +1,5 @@
+.modalBody {
+	padding-top: 20px;
+	display: grid;
+	gap: 8px;
+}

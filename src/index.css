@@ -1,0 +1,79 @@
+@import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900);
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Inter', sans-serif;
+}
+
+.wrapper {
+	width: min(1100px, 100% - 60px);
+	margin: 0 auto;
+}
+
+body {
+	font-size: 18px;
+}
+
+:root {
+	--main-color: #0085ff;
+	--secondary-color: #0062bc;
+	--main-button-color: #0232ae;
+	--secondary-button-color: #5fb2ff;
+	--dark-text: #020057;
+}
+
+button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: inherit;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+ul {
+	list-style-type: none;
+}
+
+.mx-auto {
+	margin: 0 auto;
+}
+
+.banner {
+	padding: 10px;
+	border-radius: 99px;
+	width: max-content;
+}
+
+.banner.delivered {
+	background: #24ff35;
+	color: white;
+}
+
+.banner.onTheWay {
+	background: #bdbdbd;
+	color: white;
+}
+
+.banner.giveOut {
+	background: #5398FF;
+	color: white;
+}
+
+#root:has(dialog[open]) {
+	display: grid;
+}
+
+body:has(dialog[open]){
+	overflow-y: hidden;
+}
+
+dialog[open] {
+	justify-self: center;
+	align-self: center;
+}

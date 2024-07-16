@@ -1,0 +1,35 @@
+.table {
+	border-spacing: 0;
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+
+.table thead {
+	background: var(--secondary-color);
+	color: white;
+}
+
+.table th,
+.table td {
+	padding: 5px;
+	border: 2px solid var(--secondary-color);
+}
+
+.table th {
+	padding: 10px;
+}
+
+.table td {
+	color: var(--dark-text);
+	font-weight: 600;
+	font-size: 14px;
+}
+
+.table td.center,
+.table th.center {
+	text-align: center;
+}
+
+.table .detailTd {
+	border: none;
+}

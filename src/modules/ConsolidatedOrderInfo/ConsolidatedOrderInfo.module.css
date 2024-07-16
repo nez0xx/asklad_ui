@@ -1,0 +1,25 @@
+.status {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.status div {
+	margin: 0;
+    padding: 5px 10px;
+}
+
+.ConsolidatedOrderInfo {
+    font-size: 16px;
+    padding-bottom: 40px;
+}
+
+.ConsolidatedOrderInfo h1 {
+    margin-bottom: 10px;
+}
+
+.consolidatedOrderInfo {
+    display: grid;
+    gap: 5px;
+    margin-bottom: 20px;
+}

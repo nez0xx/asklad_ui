@@ -1,0 +1,40 @@
+.sectionTitle {
+	margin-bottom: 30px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.editCont {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	margin-bottom: 30px;
+}
+
+.warehouseNameInput {
+	border: 0;
+	border-bottom: 1px solid var(--main-button-color);
+	outline: none;
+	padding: 5px 10px;
+	font-size: 2em;
+	font-weight: bold;
+	min-width: 100px;
+	width: 100%;
+}
+
+.deleteBtn {
+	background: #ff0000;
+	color: #ffffff;
+}
+
+.modalBody {
+	display: grid;
+	gap: 15px;
+    padding-top: 10px;
+}
+
+.modalBtns {
+	display: flex;
+	gap: 8px;
+}

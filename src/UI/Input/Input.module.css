@@ -1,0 +1,11 @@
+.inputCont {
+    display: grid;
+    gap: 10px;
+}
+
+.inputCont input {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    outline: none;
+    padding: 10px;
+}
