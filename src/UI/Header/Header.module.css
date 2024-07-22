@@ -1,0 +1,30 @@
+.header {
+	padding: 20px 0;
+	background: var(--white);
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.headerCont {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	padding: 0px 22px;
+}
+
+.headerCont a {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	color: var(--main-text-color);
+}
+
+.logo {
+	font-size: 25px;
+	color: var(--main-color);
+	cursor: pointer;
+}

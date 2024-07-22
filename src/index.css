@@ -17,11 +17,14 @@ body {
 }
 
 :root {
-	--main-color: #0085ff;
+	/* --main-color: #0085ff; */
+	--main-color: #00b6f0;
 	--secondary-color: #0062bc;
 	--main-button-color: #0232ae;
 	--secondary-button-color: #5fb2ff;
 	--dark-text: #020057;
+	--white: #fff;
+	--main-text-color: #1f1f1f;
 }
 
 button {
@@ -61,7 +64,7 @@ ul {
 }
 
 .banner.giveOut {
-	background: #5398FF;
+	background: #5398ff;
 	color: white;
 }
 
@@ -69,7 +72,7 @@ ul {
 	display: grid;
 }
 
-body:has(dialog[open]){
+body:has(dialog[open]) {
 	overflow-y: hidden;
 }
 
