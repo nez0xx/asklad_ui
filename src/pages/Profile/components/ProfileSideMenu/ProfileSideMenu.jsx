@@ -1,7 +1,6 @@
-import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
-
-import cls from './ProfileSideMenu.module.css';
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+import cls from './ProfileSideMenu.module.css'
 
 const ProfileSideMenu = () => {
 	return (
@@ -11,44 +10,48 @@ const ProfileSideMenu = () => {
 					<li>
 						<NavLink
 							className={({ isActive }) => (isActive ? cls.active : '')}
-							to={'orders'}>
+							to={'orders'}
+						>
 							Заказы
 						</NavLink>
 					</li>
 					<li>
 						<NavLink
 							className={({ isActive }) => (isActive ? cls.active : '')}
-							to={'warehouse'}>
+							to={'warehouse'}
+						>
 							Склад
 						</NavLink>
 					</li>
 					<li>
 						<NavLink
 							className={({ isActive }) => (isActive ? cls.active : '')}
-							to={'new_order'}>
+							to={'new_order'}
+						>
 							Добавить заказ
 						</NavLink>
 					</li>
 					<li>
 						<NavLink
 							className={({ isActive }) => (isActive ? cls.active : '')}
-							to={'finance'}>
+							to={'finance'}
+						>
 							Финансы
 						</NavLink>
 					</li>
 					<li>
 						<NavLink
 							className={({ isActive }) => (isActive ? cls.active : '')}
-							to={'subscribes'}>
+							to={'subscribes'}
+						>
 							Подписки
 						</NavLink>
 					</li>
-				</ul>
-				<ul className={cls.navListLogout}>
 					<li>
 						<NavLink
 							className={({ isActive }) => (isActive ? cls.active : '')}
-							to={'help'}>
+							to={'help'}
+						>
 							Помощь
 						</NavLink>
 					</li>
@@ -58,7 +61,7 @@ const ProfileSideMenu = () => {
 				</ul>
 			</nav>
 		</aside>
-	);
-};
+	)
+}
 
-export default ProfileSideMenu;
+export default ProfileSideMenu

@@ -17,14 +17,14 @@ body {
 }
 
 :root {
-	/* --main-color: #0085ff; */
 	--main-color: #00b6f0;
-	--secondary-color: #0062bc;
+	--secondary-color: #ccf0fd;
 	--main-button-color: #0232ae;
 	--secondary-button-color: #5fb2ff;
 	--dark-text: #020057;
 	--white: #fff;
 	--main-text-color: #1f1f1f;
+	--secondary-text-color: #868686;
 	--main-title-color: #000464;
 }
 

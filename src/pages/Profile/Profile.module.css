@@ -1,37 +1,8 @@
 .profile {
-	display: grid;
-	grid-template-columns: 300px 1fr;
-}
-
-.header {
-	padding: 20px 0;
-	background: var(--main-button-color);
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 10;
-	box-shadow: 0px 0px 15px 0px;
-}
-
-.header {
-	display: grid;
-	grid-template-columns: 300px 1fr;
-}
-
-.headerCont {
 	display: flex;
-	justify-content: end;
-}
-
-.headerCont a {
-	display: flex;
-	align-items: center;
-	gap: 8px;
-	color: white;
-	font-weight: 500;
+	column-gap: 50px;
 }
 
 .profile > section {
-	padding-top: 85px;
+	padding-top: 100px;
 }

@@ -2,29 +2,49 @@
 	position: sticky;
 	top: 0;
 	left: 0;
-	max-width: 300px;
+	max-width: 250px;
 	width: 100%;
 	height: calc(100vh - 1px);
 	height: calc(100svh - 1px);
-	background: var(--main-color);
-	color: white;
-	padding: 10px;
-	padding-top: 85px;
+	color: var(--main-text-color);
+	padding: 0 6px;
+	padding-top: 100px;
+	padding-bottom: 60px;
 }
 
 .navigation {
-    display: grid;
-    align-content: space-between;
-    height: 100%;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.navList {
+	display: flex;
+	flex-direction: column;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	flex: 1;
+}
+
+.navList li {
+	margin-bottom: 13px;
+}
+
+.navList li:last-child {
+	margin-top: auto;
+	color: var(--secondary-text-color);
 }
 
 .navigation a {
 	width: 100%;
-	padding: 10px 15px;
+	padding: 15px;
 	display: block;
+	text-decoration: none;
+	color: inherit;
 }
 
 .navigation a.active {
-	background: var(--main-button-color);
-	border-radius: 10px;
+	background: var(--secondary-color);
+	border-radius: 15px;
 }
