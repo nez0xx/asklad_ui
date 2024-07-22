@@ -1,13 +1,49 @@
 .form {
-	border: 1px solid lightgray;
-	padding: 10px;
-	border-radius: 10px;
-	display: grid;
-	gap: 20px;
 	max-width: 500px;
 	width: 100%;
 }
 
-.form h2 {
+.inputs {
+	padding: 24px 0px;
+	display: grid;
+	gap: 17px;
+}
+
+.form .title {
+	color: var(--main-title-color);
+	font-weight: 400;
+	display: flex;
+	justify-content: center;
+}
+
+.form .title > div {
+	display: flex;
+	align-items: center;
 	text-align: center;
+	column-gap: 10px;
+}
+
+.form .title > div h2 {
+	font-size: 35px;
+}
+
+.form .title > div a {
+	transform: translateY(4px);
+}
+
+.form .alreadySignedUpBlock {
+	display: flex;
+	justify-content: center;
+}
+
+.form .alreadySignedUpBlock > div {
+	display: flex;
+	column-gap: 10px;
+}
+
+.form .alreadySignedUpBlock > div > a {
+	color: var(--main-color);
+}
+.form .alreadySignedUpBlock > div > a:hover {
+	text-decoration: underline;
 }
