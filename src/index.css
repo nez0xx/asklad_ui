@@ -1,10 +1,9 @@
-@import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900);
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,200,300,regular,500,600,700,800,900);
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: 'Inter', sans-serif;
 }
 
 .wrapper {
@@ -14,6 +13,7 @@
 
 body {
 	font-size: 18px;
+	font-family: 'Poppins', sans-serif;
 }
 
 :root {
@@ -25,6 +25,7 @@ body {
 	--dark-text: #020057;
 	--white: #fff;
 	--main-text-color: #1f1f1f;
+	--main-title-color: #000464;
 }
 
 button {
