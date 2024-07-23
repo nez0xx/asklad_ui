@@ -50,23 +50,22 @@ ul {
 
 .banner {
 	padding: 10px;
-	border-radius: 99px;
+	border-radius: 9px;
 	width: max-content;
+	color: var(--main-text-color);
 }
 
 .banner.delivered {
-	background: #24ff35;
-	color: white;
+	background: #bfe6fa;
 }
 
 .banner.onTheWay {
-	background: #bdbdbd;
-	color: white;
+	background: #f5f5f5;
 }
 
 .banner.giveOut {
-	background: #5398ff;
-	color: white;
+	background: var(--white);
+	border: 1px solid var(--main-color);
 }
 
 #root:has(dialog[open]) {
