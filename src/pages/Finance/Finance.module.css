@@ -1,0 +1,48 @@
+.section {
+	padding: 0 20px;
+	padding-bottom: 40px;
+	width: 70%;
+	margin: 0px auto;
+}
+
+.title {
+	color: var(--main-title-color);
+	font-weight: 300;
+	font-size: 35px;
+	padding: 24px 0;
+	border-bottom: 2px solid #e1e1e1;
+	margin-bottom: 36px;
+}
+
+.totalTurnover {
+	color: var(--main-text-color);
+	font-size: 23px;
+	font-weight: 300;
+	margin-bottom: 17px;
+}
+
+.dates {
+	margin-bottom: 30px;
+	display: inline-flex;
+	align-items: center;
+	border: 1px solid #d0d0d0;
+	border-radius: 10px;
+	height: 100%;
+	column-gap: 8px;
+}
+
+.dates .date {
+	height: 100%;
+	padding: 4px 10px;
+	border-radius: 10px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.dates .date.active {
+	border: 2px solid var(--main-color);
+}
+
+.dates .icon {
+	transform: translateY(2px);
+}

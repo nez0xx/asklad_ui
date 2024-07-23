@@ -1,11 +1,11 @@
 import React from 'react'
-import cls from './ConsolidatedOrdersTable.module.css'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../../UI/Button/Button'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import { useMutation, useQueryClient } from 'react-query'
 import { deleteConsolidatedOrder } from '../api/deleteConsolidatedOrder'
 import { toast, ToastContainer } from 'react-toastify'
+import cls from './ConsolidatedOrdersTable.module.css'
 
 const containerId = 'consolidated-orders-table-toast-container'
 const toastId = 'consolidated-orders-table-toast'

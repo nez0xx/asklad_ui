@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import cls from './AddOrderForm.module.css'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import Button from '../../UI/Button/Button'
 import { useMutation } from 'react-query'
 import { uploadOrder } from './api/uploadOrder'
 import { toast, ToastContainer } from 'react-toastify'
+import cls from './AddOrderForm.module.css'
 
 const containerId = 'add-order-toast-container'
 const toastId = 'add-order-toast'

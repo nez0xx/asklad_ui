@@ -48,14 +48,6 @@ const ProfileSideMenu = () => {
 						</NavLink>
 					</li>
 					<li>
-						<NavLink
-							className={({ isActive }) => (isActive ? cls.active : '')}
-							to={'help'}
-						>
-							Помощь
-						</NavLink>
-					</li>
-					<li>
 						<NavLink to={'/login'}>Выйти</NavLink>
 					</li>
 				</ul>
