@@ -1,13 +1,13 @@
 .employee {
-	border: 2px solid var(--dark-text);
+	border: 2px solid #e4e4e4;
 	display: flex;
 	align-items: center;
 	gap: 10px;
-    border-radius: 5px 0px 0px 5px;
-    padding: 5px;
-    padding-right: 30px;
-    width: 100%;
-    position: relative;
+	border-radius: 30px 0px 0px 30px;
+	padding: 5px;
+	padding-right: 30px;
+	width: 100%;
+	position: relative;
 }
 
 .employee .employeePhoto {
@@ -17,14 +17,18 @@
 	background: #d9d9d9;
 }
 
+.employee p {
+	color: var(--main-text-color);
+}
+
 .deleteButton {
-    width: 50px;
-    border: 2px solid var(--dark-text);
-    border-left: 0;
-    border-radius: 0 5px 5px 0;
+	width: 50px;
+	border: 2px solid #e4e4e4;
+	border-left: 0;
+	border-radius: 0 30px 30px 0;
 }
 
 .employeeCont {
-    display: flex;
-    width: 100%;
+	display: flex;
+	width: 100%;
 }

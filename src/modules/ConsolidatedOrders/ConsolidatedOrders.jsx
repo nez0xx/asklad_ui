@@ -1,15 +1,41 @@
-import React from 'react';
-import cls from './ConsolidatedOrders.module.css';
-import ConsolidatedOrdersTable from './components/ConsolidatedOrdersTable';
+import React, { useState } from 'react'
+import ConsolidatedOrdersTable from './components/ConsolidatedOrdersTable'
+import { Icon } from '@iconify/react/dist/iconify.js'
+import cls from './ConsolidatedOrders.module.css'
 
 const ConsolidatedOrders = ({ data }) => {
+	const [isExpanded, setIsExpanded] = useState(true)
+
+	const handleToggle = () => {
+		setIsExpanded(!isExpanded)
+	}
+
 	return (
 		<div className={cls.ConsolidatedOrders}>
-			<h2>Консолидированные заказы</h2>
-			<hr />
-			<ConsolidatedOrdersTable consolidatedOrders={data} />
-		</div>
-	);
-};
+			<h2
+				className={`${cls.secondaryTitle} ${
+					isExpanded ? cls.expandedTitle : ''
+				}`}
+				onClick={handleToggle}
+			>
+				<div>Консолидированные заказы</div>
+				<div
+					className={`${cls.titleIcon} ${!isExpanded ? cls.expandedIcon : ''}`}
+				>
+					<Icon
+						icon='mdi:chevron-down'
+						width='25px'
+						height='25px'
+						color='#1f1f1f'
+					/>
+				</div>
+			</h2>
 
-export default ConsolidatedOrders;
+			<div className={`${cls.tableCont} ${isExpanded ? cls.show : cls.hide}`}>
+				<ConsolidatedOrdersTable consolidatedOrders={data} />
+			</div>
+		</div>
+	)
+}
+
+export default ConsolidatedOrders

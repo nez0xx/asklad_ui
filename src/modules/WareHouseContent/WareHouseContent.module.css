@@ -1,24 +1,35 @@
-.sectionTitle {
-	margin-bottom: 30px;
+.titleBlock {
+	margin-bottom: 17px;
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	gap: 10px;
+	padding: 24px 0;
+	border-bottom: 2px solid #e1e1e1;
+}
+
+.title,
+.warehouseNameInput {
+	color: var(--main-title-color);
+	font-weight: 300;
+	font-size: 35px;
+	margin-bottom: 0;
+}
+
+.titleIcon {
+	transform: translateY(3px);
 }
 
 .editCont {
 	display: flex;
-	gap: 8px;
+	gap: 10px;
 	align-items: center;
-	margin-bottom: 30px;
 }
 
 .warehouseNameInput {
+	font-family: inherit;
 	border: 0;
-	border-bottom: 1px solid var(--main-button-color);
+	border-bottom: 1px solid var(--main-title-color);
 	outline: none;
-	padding: 5px 10px;
-	font-size: 2em;
-	font-weight: bold;
 	min-width: 100px;
 	width: 100%;
 }
@@ -31,7 +42,7 @@
 .modalBody {
 	display: grid;
 	gap: 15px;
-    padding-top: 10px;
+	padding-top: 10px;
 }
 
 .modalBtns {

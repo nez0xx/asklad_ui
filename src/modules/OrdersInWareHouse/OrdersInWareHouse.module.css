@@ -1,5 +1,46 @@
 .OrdersInWareHouse {
-    display: grid;
-    gap: 10px;
-    margin: 20px 0;
+	display: grid;
+	gap: 10px;
+	margin: 20px 0;
+}
+
+.secondaryTitle {
+	display: flex;
+	align-items: center;
+	column-gap: 5px;
+	font-size: 30px;
+	color: var(--main-text-color);
+	font-weight: 300;
+	cursor: pointer;
+	transition: margin-bottom 0.5s ease;
+}
+
+.secondaryTitle.expandedTitle {
+	margin-bottom: 17px;
+}
+
+.secondaryTitle .titleIcon {
+	transition: transform 0.3s ease;
+	transform: translateY(4px);
+}
+
+.secondaryTitle .titleIcon.expandedIcon {
+	transform: rotate(180deg);
+}
+
+.ordersCont {
+	display: grid;
+	gap: 17px;
+	transition: max-height 0.5s ease, opacity 0.5s ease;
+	overflow: hidden;
+}
+
+.ordersCont.show {
+	max-height: 1000px;
+	opacity: 1;
+}
+
+.ordersCont.hide {
+	max-height: 0;
+	opacity: 0;
 }

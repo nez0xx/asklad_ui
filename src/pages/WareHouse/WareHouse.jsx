@@ -1,13 +1,13 @@
-import React from 'react';
-import cls from './WareHouse.module.css';
-import WareHouseContent from '../../modules/WareHouseContent/WareHouseContent';
+import React from 'react'
+import cls from './WareHouse.module.css'
+import WareHouseContent from '../../modules/WareHouseContent/WareHouseContent'
 
 const WareHouse = () => {
 	return (
-		<section className={`${cls.WareHouse} wrapper`}>
+		<section className={cls.section}>
 			<WareHouseContent />
 		</section>
-	);
-};
+	)
+}
 
-export default WareHouse;
+export default WareHouse

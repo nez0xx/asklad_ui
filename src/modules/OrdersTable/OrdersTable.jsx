@@ -1,15 +1,15 @@
-import React, { useRef, useState } from 'react';
-import cls from './OrdersTable.module.css';
-import { Icon } from '@iconify/react/dist/iconify.js';
-import OrderDetailModal from './components/OrderDetailModal/OrderDetailModal';
+import React, { useRef, useState } from 'react'
+import cls from './OrdersTable.module.css'
+import { Icon } from '@iconify/react/dist/iconify.js'
+import OrderDetailModal from './components/OrderDetailModal/OrderDetailModal'
 
 const OrdersTable = ({ orders, delivered }) => {
-	const orderDetailModal = useRef(null);
-	const [orderDetailId, setOrderDetailId] = useState();
+	const orderDetailModal = useRef(null)
+	const [orderDetailId, setOrderDetailId] = useState()
 
 	function handleSetDeail(id) {
-		orderDetailModal.current.showModal();
-		setOrderDetailId(id);
+		orderDetailModal.current.showModal()
+		setOrderDetailId(id)
 	}
 
 	return (
@@ -39,7 +39,8 @@ const OrdersTable = ({ orders, delivered }) => {
 												: delivered
 												? 'banner delivered mx-auto'
 												: 'banner onTheWay mx-auto'
-										}>
+										}
+									>
 										{order.is_given_out
 											? 'Выдан'
 											: delivered
@@ -52,7 +53,8 @@ const OrdersTable = ({ orders, delivered }) => {
 								<td className={cls.center}>{order.customer_name}</td>
 								<td
 									className={cls.detailTd}
-									onClick={() => handleSetDeail(order.id)}>
+									onClick={() => handleSetDeail(order.id)}
+								>
 									<button>
 										<Icon
 											icon='material-symbols:info-outline'
@@ -72,7 +74,7 @@ const OrdersTable = ({ orders, delivered }) => {
 				setId={setOrderDetailId}
 			/>
 		</>
-	);
-};
+	)
+}
 
-export default OrdersTable;
+export default OrdersTable
