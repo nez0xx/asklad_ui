@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import cls from './AddOrderForm.module.css';
-import { Icon } from '@iconify/react/dist/iconify.js';
-import Button from '../../UI/Button/Button';
-import { useMutation } from 'react-query';
-import { uploadOrder } from './api/uploadOrder';
-import { toast, ToastContainer } from 'react-toastify';
+import React, { useState } from 'react'
+import cls from './AddOrderForm.module.css'
+import { Icon } from '@iconify/react/dist/iconify.js'
+import Button from '../../UI/Button/Button'
+import { useMutation } from 'react-query'
+import { uploadOrder } from './api/uploadOrder'
+import { toast, ToastContainer } from 'react-toastify'
 
-const containerId = 'add-order-toast-container';
-const toastId = 'add-order-toast';
+const containerId = 'add-order-toast-container'
+const toastId = 'add-order-toast'
 const AddOrderForm = () => {
-	const [filename, setFilename] = useState('');
+	const [filename, setFilename] = useState('')
 
 	const { mutate, isLoading } = useMutation({
 		mutationFn: uploadOrder,
@@ -20,36 +20,36 @@ const AddOrderForm = () => {
 				render: error.response.data.detail,
 				type: 'error',
 				isLoading: false,
-			});
+			})
 		},
 		onSuccess: (data) => {
-			console.log(data);
+			console.log(data)
 			toast.update(toastId, {
 				containerId,
 				autoClose: 1000,
 				render: 'Order added successfully',
 				type: 'success',
 				isLoading: false,
-			});
+			})
 		},
-	});
+	})
 
 	if (isLoading) {
 		toast('Uploading...', {
 			toastId,
 			containerId,
 			isLoading: true,
-		});
+		})
 	}
 
 	function handleAddNewOrder(e) {
-		e.preventDefault();
-		const formData = new FormData(e.target);
-		mutate(formData);
+		e.preventDefault()
+		const formData = new FormData(e.target)
+		mutate(formData)
 	}
 
 	function handleAddFile(e) {
-		setFilename(e.target.files[0].name);
+		setFilename(e.target.files[0].name)
 	}
 
 	return (
@@ -64,7 +64,7 @@ const AddOrderForm = () => {
 					<option value='third'>Third</option>
 				</select>
 			</div> */}
-			<div>
+			<div className={cls.field}>
 				<label className={cls.label}>Загрузите Excel-файл:</label>
 				<label htmlFor='file' className={cls.fileUploadCont}>
 					<div className={cls.uploadCont}>
@@ -86,10 +86,11 @@ const AddOrderForm = () => {
 					/>
 				</label>
 			</div>
+
 			<Button>Добавить</Button>
 			<ToastContainer containerId={containerId} />
 		</form>
-	);
-};
+	)
+}
 
-export default AddOrderForm;
+export default AddOrderForm
