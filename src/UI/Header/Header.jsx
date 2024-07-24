@@ -1,7 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Icon } from '@iconify/react/dist/iconify.js'
-import cls from './Header.module.css'
 import { useStore } from '../../store/index'
+import cls from './Header.module.css'
 
 export const Header = () => {
 	const { user, isAuth } = useStore()
@@ -19,11 +20,11 @@ export const Header = () => {
 						/>
 						Поддержка
 					</a>
-					{isAuth && (
-						<div className={cls.userName}>
+					{!isAuth && (
+						<Link to='/profile/account' className={cls.userName}>
 							<div className={cls.text}>User Name</div>
 							<div className={cls.image}></div>
-						</div>
+						</Link>
 					)}
 				</div>
 			</div>

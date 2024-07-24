@@ -1,6 +1,6 @@
 import { RouterProvider, createHashRouter } from 'react-router-dom'
-import Login from './pages/Login/Login'
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import Profile from './pages/Profile/Profile'
 import Orders from './pages/Orders/Orders'
@@ -8,8 +8,9 @@ import WareHouse from './pages/WareHouse/WareHouse'
 import AddOrder from './pages/AddOrder/AddOrder'
 import { Finance } from './pages/Finance/Finance'
 import OrdersOfConsolidatedOrder from './pages/OrdersOfConsolidatedOrder/OrdersOfConsolidatedOrder'
-import 'react-toastify/dist/ReactToastify.css'
 import { Issuance } from './pages/Issuance/Issuance'
+import 'react-toastify/dist/ReactToastify.css'
+import Account from './pages/Account/Account'
 
 const router = createHashRouter([
 	{ path: '/', element: <Login /> },
@@ -24,6 +25,7 @@ const router = createHashRouter([
 			{ path: 'order/:id', element: <OrdersOfConsolidatedOrder /> },
 			{ path: 'finance', element: <Finance /> },
 			{ path: 'issuance', element: <Issuance /> },
+			{ path: 'account', element: <Account /> },
 		],
 	},
 ])
