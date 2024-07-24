@@ -6,8 +6,8 @@
 
 .input {
 	border: 1px solid #c9c9c9;
-	padding: 18px;
-	border-radius: 15px;
+	padding: 18px 30px;
+	border-radius: 30px;
 	outline: none;
 	width: 100%;
 	box-sizing: border-box;
@@ -17,7 +17,7 @@
 .label {
 	position: absolute;
 	top: 50%;
-	left: 10px;
+	left: 25px;
 	transform: translateY(-50%);
 	background-color: white;
 	padding: 0 5px;

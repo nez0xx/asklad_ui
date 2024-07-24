@@ -1,5 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Poppins:100,200,300,regular,500,600,700,800,900);
-
+@import url(https://fonts.googleapis.com/css?family=Wix+Madefor+Display:regular,500,600,700);
 * {
 	margin: 0;
 	padding: 0;
@@ -13,7 +12,8 @@
 
 body {
 	font-size: 18px;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Wix Madefor Display', sans-serif;
+	color: var(--main-text-color);
 }
 
 :root {
@@ -52,7 +52,6 @@ ul {
 	padding: 10px;
 	border-radius: 9px;
 	width: max-content;
-	color: var(--main-text-color);
 }
 
 .banner.delivered {

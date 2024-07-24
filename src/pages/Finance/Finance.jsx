@@ -1,5 +1,5 @@
 import React from 'react'
-import { FinanceTable } from './components/FinanceTable'
+import { FinanceTable } from '../../modules/FinanceTable/FinanceTable'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import cls from './Finance.module.css'
 

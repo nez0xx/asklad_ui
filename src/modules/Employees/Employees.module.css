@@ -9,8 +9,7 @@
 	align-items: center;
 	column-gap: 5px;
 	font-size: 30px;
-	color: var(--main-text-color);
-	font-weight: 300;
+	font-weight: 400;
 	cursor: pointer;
 	transition: margin-bottom 0.5s ease;
 }

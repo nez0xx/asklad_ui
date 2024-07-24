@@ -62,12 +62,12 @@ const RegisterForm = () => {
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 				/>
-				{/* <Input
+				<Input
 					id='Password'
 					label='Подтверждение пароля'
 					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-				/> */}
+					// onChange={(e) => setPassword(e.target.value)}
+				/>
 				<Button>Register</Button>
 			</div>
 

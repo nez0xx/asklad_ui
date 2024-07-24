@@ -19,7 +19,7 @@
 }
 
 .table thead th {
-	font-weight: 300;
+	font-weight: 400;
 	font-size: 22px;
 }
 
@@ -50,6 +50,5 @@
 }
 
 .table td {
-	color: var(--main-text-color);
 	font-size: 14px;
 }

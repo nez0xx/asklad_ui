@@ -7,7 +7,7 @@
 
 .title {
 	color: var(--main-title-color);
-	font-weight: 300;
+	font-weight: 400;
 	font-size: 35px;
 	padding: 24px 0;
 	border-bottom: 2px solid #e1e1e1;
@@ -15,9 +15,8 @@
 }
 
 .totalTurnover {
-	color: var(--main-text-color);
 	font-size: 23px;
-	font-weight: 300;
+	font-weight: 400;
 	margin-bottom: 17px;
 }
 
