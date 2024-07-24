@@ -24,6 +24,7 @@
 .form .title > div h2 {
 	color: var(--main-title-color);
 	font-size: 35px;
+	font-weight: 400;
 }
 
 .form .title > div a {

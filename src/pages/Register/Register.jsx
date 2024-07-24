@@ -1,7 +1,7 @@
 import React from 'react'
 import RegisterForm from '../../modules/Register/components/RegisterForm/RegisterForm'
 import cls from './Register.module.css'
-import { Header } from '../../UI/Header/Header'
+import Header from '../../modules/Header/Header'
 
 const Register = () => {
 	return (

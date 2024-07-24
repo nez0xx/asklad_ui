@@ -1,7 +1,7 @@
 import React from 'react'
 import ProfileSideMenu from './components/ProfileSideMenu/ProfileSideMenu'
 import { Outlet } from 'react-router-dom'
-import { Header } from '../../UI/Header/Header'
+import Header from '../../modules/Header/Header'
 
 import cls from './Profile.module.css'
 import { checkAuth } from './api/checkAuth'

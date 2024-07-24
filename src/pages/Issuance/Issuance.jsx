@@ -3,7 +3,7 @@ import { IssuanceTable } from '../../modules/IssuanceTable/IssuanceTable'
 import Button from '../../UI/Button/Button'
 import cls from './Issuance.module.css'
 
-export const Issuance = () => {
+const Issuance = () => {
 	return (
 		<section className={cls.section}>
 			<h1 className={cls.title}>Выдача</h1>
@@ -14,3 +14,5 @@ export const Issuance = () => {
 		</section>
 	)
 }
+
+export default Issuance

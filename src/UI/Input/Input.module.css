@@ -6,12 +6,16 @@
 
 .input {
 	border: 1px solid #c9c9c9;
+	outline: 2px solid transparent;
 	padding: 18px 30px;
 	border-radius: 30px;
-	outline: none;
 	width: 100%;
 	box-sizing: border-box;
 	font-size: 16px;
+}
+.input:focus {
+	border-color: transparent;
+	outline-color: var(--main-color);
 }
 
 .label {
@@ -31,6 +35,6 @@
 	top: 0;
 	left: 10px;
 	font-size: 12px;
-	color: #c9c9c9;
+	color: var(--main-color);
 	transform: translateY(-50%);
 }

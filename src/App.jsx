@@ -6,11 +6,11 @@ import Profile from './pages/Profile/Profile'
 import Orders from './pages/Orders/Orders'
 import WareHouse from './pages/WareHouse/WareHouse'
 import AddOrder from './pages/AddOrder/AddOrder'
-import { Finance } from './pages/Finance/Finance'
+import Finance from './pages/Finance/Finance'
 import OrdersOfConsolidatedOrder from './pages/OrdersOfConsolidatedOrder/OrdersOfConsolidatedOrder'
-import { Issuance } from './pages/Issuance/Issuance'
-import 'react-toastify/dist/ReactToastify.css'
+import Issuance from './pages/Issuance/Issuance'
 import Account from './pages/Account/Account'
+import 'react-toastify/dist/ReactToastify.css'
 
 const router = createHashRouter([
 	{ path: '/', element: <Login /> },

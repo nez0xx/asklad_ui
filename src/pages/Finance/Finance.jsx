@@ -3,7 +3,7 @@ import { FinanceTable } from '../../modules/FinanceTable/FinanceTable'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import cls from './Finance.module.css'
 
-export const Finance = () => {
+const Finance = () => {
 	return (
 		<section className={cls.section}>
 			<h1 className={cls.title}>Оборот</h1>
@@ -28,3 +28,5 @@ export const Finance = () => {
 		</section>
 	)
 }
+
+export default Finance

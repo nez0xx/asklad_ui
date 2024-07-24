@@ -1,5 +1,5 @@
 import LoginForm from '../../modules/Login/components/LoginForm/LoginForm'
-import { Header } from '../../UI/Header/Header'
+import Header from '../../modules/Header/Header'
 import cls from './Login.module.css'
 
 const Login = () => {

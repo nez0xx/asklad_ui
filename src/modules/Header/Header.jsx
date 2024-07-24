@@ -4,7 +4,7 @@ import { Icon } from '@iconify/react/dist/iconify.js'
 import { useStore } from '../../store/index'
 import cls from './Header.module.css'
 
-export const Header = () => {
+const Header = () => {
 	const { user, isAuth } = useStore()
 
 	return (
@@ -31,3 +31,5 @@ export const Header = () => {
 		</header>
 	)
 }
+
+export default Header
