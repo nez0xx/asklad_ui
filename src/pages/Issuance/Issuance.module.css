@@ -1,0 +1,14 @@
+.section {
+	padding: 0 20px;
+	padding-bottom: 40px;
+	width: 100%;
+}
+
+.title {
+	color: var(--main-title-color);
+	font-weight: 300;
+	font-size: 35px;
+	padding: 24px 0;
+	border-bottom: 2px solid #e1e1e1;
+	margin-bottom: 36px;
+}

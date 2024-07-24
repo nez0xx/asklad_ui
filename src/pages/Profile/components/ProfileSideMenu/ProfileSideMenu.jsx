@@ -42,9 +42,9 @@ const ProfileSideMenu = () => {
 					<li>
 						<NavLink
 							className={({ isActive }) => (isActive ? cls.active : '')}
-							to={'subscribes'}
+							to={'issuance'}
 						>
-							Подписки
+							Выдача
 						</NavLink>
 					</li>
 					<li>

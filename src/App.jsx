@@ -9,6 +9,7 @@ import AddOrder from './pages/AddOrder/AddOrder'
 import { Finance } from './pages/Finance/Finance'
 import OrdersOfConsolidatedOrder from './pages/OrdersOfConsolidatedOrder/OrdersOfConsolidatedOrder'
 import 'react-toastify/dist/ReactToastify.css'
+import { Issuance } from './pages/Issuance/Issuance'
 
 const router = createHashRouter([
 	{ path: '/', element: <Login /> },
@@ -22,7 +23,7 @@ const router = createHashRouter([
 			{ path: 'new_order', element: <AddOrder /> },
 			{ path: 'order/:id', element: <OrdersOfConsolidatedOrder /> },
 			{ path: 'finance', element: <Finance /> },
-			{ path: 'subscribes', element: <h1>Подписки</h1> },
+			{ path: 'issuance', element: <Issuance /> },
 		],
 	},
 ])
