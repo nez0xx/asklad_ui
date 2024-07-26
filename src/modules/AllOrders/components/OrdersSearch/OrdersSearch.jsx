@@ -1,9 +1,9 @@
 import React, { useRef } from 'react'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import icon from './icon.svg'
-import cls from './Search.module.css'
+import cls from './OrdersSearch.module.css'
 
-export const Search = () => {
+const OrdersSearch = ({ value, setValue }) => {
 	const inputRef = useRef(null)
 
 	const handleIconClick = () => {
@@ -13,7 +13,13 @@ export const Search = () => {
 	return (
 		<div className={cls.searchBlock}>
 			<div className={cls.input}>
-				<input ref={inputRef} placeholder='Поиск по ID' type='text' />
+				<input
+					ref={inputRef}
+					value={value}
+					onChange={(e) => setValue(e.target.value)}
+					placeholder='Поиск по ID'
+					type='text'
+				/>
 				<div onClick={handleIconClick}>
 					<Icon
 						icon='material-symbols:search'
@@ -30,3 +36,5 @@ export const Search = () => {
 		</div>
 	)
 }
+
+export default OrdersSearch

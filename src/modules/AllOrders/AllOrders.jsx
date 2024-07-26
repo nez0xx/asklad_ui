@@ -1,27 +1,33 @@
 import React, { useRef, useState } from 'react'
-// import AllOrdersDetail from './components/AllOrdersDetail/AllOrdersDetail'
+import AllOrdersDetail from './components/AllOrdersDetail/AllOrdersDetail'
+import OrdersSearch from './components/OrdersSearch/OrdersSearch'
 import { useQuery } from 'react-query'
 import { getAllOrders } from './api/getAllOrders'
 
 import cls from './AllOrders.module.css'
-// import { Icon } from '@iconify/react/dist/iconify.js'
 
 const AllOrders = () => {
-	// const allOrderDetailModal = useRef(null)
-	// const [orderDetailId, setOrderDetailId] = useState()
+	const allOrderDetailModal = useRef(null)
+	const [orderDetailId, setOrderDetailId] = useState()
+	const [searchValue, setSearchValue] = React.useState('')
 
-	// function handleSetDeail(id) {
-	// 	allOrderDetailModal.current.showModal()
-	// 	setOrderDetailId(id)
-	// }
+	function handleSetDeail(id) {
+		allOrderDetailModal.current.showModal()
+		setOrderDetailId(id)
+	}
 
-	const { data } = useQuery({
-		queryKey: ['all-orders'],
-		queryFn: getAllOrders,
-	})
+	const { data } = useQuery(
+		['all-orders', searchValue],
+		() => getAllOrders(searchValue),
+		{
+			keepPreviousData: true, // Optional: Keeps the previous data while fetching new data
+		}
+	)
 
 	return (
 		<>
+			<OrdersSearch value={searchValue} setValue={setSearchValue} />
+
 			<table className={cls.table}>
 				<thead>
 					<tr>
@@ -35,46 +41,36 @@ const AllOrders = () => {
 				</thead>
 				<tbody>
 					{data?.map((order, index) => (
-						<>
-							<tr key={order.id}>
-								<td className={cls.center}>{index + 1}</td>
-								<td>{order.id}</td>
-								<td>
-									<div
-										className={
-											order.is_given_out
-												? 'banner delivered mx-auto'
-												: 'banner onTheWay mx-auto'
-										}
-									>
-										{order.is_given_out ? 'Выдан' : 'В пути'}
-									</div>
-								</td>
-								<td>01.01.2024</td>
-								<td>{order.customer_phone}</td>
-								<td>{order.customer_name}</td>
-								{/* <td
-									className={cls.detailTd}
-									onClick={() => handleSetDeail(order.id)}
+						<tr
+							className={cls.row}
+							key={order.id}
+							onClick={() => handleSetDeail(order.id)}
+						>
+							<td className={cls.center}>{index + 1}</td>
+							<td>{order.id}</td>
+							<td>
+								<div
+									className={
+										order.is_given_out
+											? 'banner delivered mx-auto'
+											: 'banner onTheWay mx-auto'
+									}
 								>
-									<button>
-										<Icon
-											icon='material-symbols:info-outline'
-											width='25px'
-											height='25px'
-										/>
-									</button>
-								</td> */}
-							</tr>
-						</>
+									{order.is_given_out ? 'Выдан' : 'В пути'}
+								</div>
+							</td>
+							<td>01.01.2024</td>
+							<td>{order.customer_phone}</td>
+							<td>{order.customer_name}</td>
+						</tr>
 					))}
 				</tbody>
 			</table>
-			{/* <AllOrdersDetail
+			<AllOrdersDetail
 				id={orderDetailId}
 				setId={setOrderDetailId}
 				ref={allOrderDetailModal}
-			/> */}
+			/>
 		</>
 	)
 }

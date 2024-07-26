@@ -67,10 +67,14 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders }) => {
 				</thead>
 				<tbody>
 					{consolidatedOrders?.map((order, index) => (
-						<tr key={order.id}>
-							<td onClick={() => navigateToDetails(order.id)}>{index + 1}</td>
-							<td onClick={() => navigateToDetails(order.id)}>{order.id}</td>
-							<td onClick={() => navigateToDetails(order.id)}>
+						<tr
+							className={cls.row}
+							onClick={() => navigateToDetails(order.id)}
+							key={order.id}
+						>
+							<td>{index + 1}</td>
+							<td>{order.id}</td>
+							<td>
 								<div
 									className={
 										order.delivered
@@ -81,9 +85,7 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders }) => {
 									{order.delivered ? 'Доставлен' : 'В пути'}
 								</div>
 							</td>
-							<td onClick={() => navigateToDetails(order.id)}>
-								{order.delivery_date}
-							</td>
+							<td>{order.delivery_date}</td>
 							<td className={cls.deleteTd}>
 								<Button
 									className={cls.dleteButton}

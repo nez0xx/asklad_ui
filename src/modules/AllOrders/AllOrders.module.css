@@ -60,3 +60,10 @@
 	width: 50px;
 	text-align: center;
 }
+
+.row {
+	cursor: pointer;
+}
+.row:hover {
+	background: var(--secondary-color);
+}
