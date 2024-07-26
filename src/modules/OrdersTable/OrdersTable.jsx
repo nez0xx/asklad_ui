@@ -6,68 +6,78 @@ import OrderDetailModal from './components/OrderDetailModal/OrderDetailModal'
 const OrdersTable = ({ orders, delivered }) => {
 	const orderDetailModal = useRef(null)
 	const [orderDetailId, setOrderDetailId] = useState()
+	const [isExpanded, setIsExpanded] = useState(true)
 
 	function handleSetDeail(id) {
 		orderDetailModal.current.showModal()
 		setOrderDetailId(id)
 	}
 
+	const handleToggle = () => {
+		setIsExpanded(!isExpanded)
+	}
+
 	return (
 		<>
-			<table className={cls.table}>
-				<thead>
-					<tr>
-						<th></th>
-						<th className={cls.center}>ID</th>
-						<th className={cls.center}>Статус</th>
-						<th className={cls.center}>Дата выдачи</th>
-						<th className={cls.center}>Телефон</th>
-						<th className={cls.center}>Клиент</th>
-					</tr>
-				</thead>
-				<tbody>
-					{orders.map((order, index) => (
-						<>
-							<tr key={order.id}>
-								<td className={cls.center}>{index + 1}</td>
-								<td>{order.id}</td>
-								<td>
-									<div
-										className={
-											order.is_given_out
-												? 'banner giveOut mx-auto'
-												: delivered
-												? 'banner delivered mx-auto'
-												: 'banner onTheWay mx-auto'
-										}
-									>
-										{order.is_given_out
-											? 'Выдан'
-											: delivered
-											? 'Доставлен'
-											: 'В пути'}
-									</div>
-								</td>
-								<td className={cls.center}>01.01.2024</td>
-								<td className={cls.center}>{order.customer_phone}</td>
-								<td className={cls.center}>{order.customer_name}</td>
-								<td
-									className={cls.detailTd}
-									onClick={() => handleSetDeail(order.id)}
-								>
-									<button>
-										<Icon
-											icon='material-symbols:info-outline'
-											width='25px'
-											height='25px'
-										/>
-									</button>
-								</td>
+			<div className={cls.orders}>
+				<h2
+					className={`${cls.secondaryTitle} ${
+						isExpanded ? cls.expandedTitle : ''
+					}`}
+					onClick={handleToggle}
+				>
+					<div>Консолидированные заказы</div>
+					<div
+						className={`${cls.titleIcon} ${isExpanded ? '' : cls.expandedIcon}`}
+					>
+						<Icon
+							icon='mdi:chevron-down'
+							width='25px'
+							height='25px'
+							color='#1f1f1f'
+						/>
+					</div>
+				</h2>
+
+				<div
+					className={`${cls.ordersCont} ${isExpanded ? cls.show : cls.hide}`}
+				>
+					<table className={cls.table}>
+						<thead>
+							<tr>
+								<th></th>
+								<th>ID</th>
+								<th>Статус</th>
+								<th>Дата выдачи</th>
+								<th>Телефон</th>
+								<th>Клиент</th>
 							</tr>
-						</>
-					))}
-				</tbody>
-			</table>
+						</thead>
+						<tbody>
+							{[].map((order, index) => (
+								<tr key={order.id}>
+									<td>{index + 1}</td>
+									<td>{order.id}</td>
+									<td>
+										<div
+											className={
+												order.is_given_out
+													? 'banner delivered mx-auto'
+													: 'banner onTheWay mx-auto'
+											}
+										>
+											{order.is_given_out ? 'Выдан' : 'В пути'}
+										</div>
+									</td>
+									<td>01.01.2024</td>
+									<td>{order.customer_phone}</td>
+									<td>{order.customer_name}</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
+			</div>
 			<OrderDetailModal
 				ref={orderDetailModal}
 				id={orderDetailId}

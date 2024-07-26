@@ -1,14 +1,17 @@
-import React from 'react';
-import ConsolidatedOrderInfo from '../../modules/ConsolidatedOrderInfo/ConsolidatedOrderInfo';
+import React from 'react'
+import { useParams } from 'react-router-dom'
+import ConsolidatedOrderInfo from '../../modules/ConsolidatedOrderInfo/ConsolidatedOrderInfo'
+import cls from './OrdersOfConsolidatedOrder.module.css'
 
 const OrdersOfConsolidatedOrder = ({ data }) => {
+	const { id } = useParams()
 	return (
-		<section>
-			<div className='wrapper'>
-				<ConsolidatedOrderInfo />
-			</div>
-		</section>
-	);
-};
+		<section className={cls.section}>
+			<h1 className={cls.title}>Консолидированный заказ - {id}</h1>
 
-export default OrdersOfConsolidatedOrder;
+			<ConsolidatedOrderInfo />
+		</section>
+	)
+}
+
+export default OrdersOfConsolidatedOrder
