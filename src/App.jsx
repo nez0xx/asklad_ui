@@ -10,11 +10,15 @@ import Finance from './pages/Finance/Finance'
 import OrdersOfConsolidatedOrder from './pages/OrdersOfConsolidatedOrder/OrdersOfConsolidatedOrder'
 import Issuance from './pages/Issuance/Issuance'
 import Account from './pages/Account/Account'
+import ResetPassword from './pages/ResetPassword/ResetPassword'
+import { SuccessfulRegistration } from './pages/SuccessfulRegistration/SuccessfulRegistration'
 import 'react-toastify/dist/ReactToastify.css'
 
 const router = createHashRouter([
 	{ path: '/', element: <Login /> },
 	{ path: '/register', element: <Register /> },
+	{ path: '/reset_password', element: <ResetPassword /> },
+	{ path: '/successful_registration', element: <SuccessfulRegistration /> },
 	{
 		path: '/profile',
 		element: <Profile />,

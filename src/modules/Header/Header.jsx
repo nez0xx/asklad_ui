@@ -20,7 +20,7 @@ const Header = () => {
 						/>
 						Поддержка
 					</a>
-					{!isAuth && (
+					{isAuth && (
 						<Link to='/profile/account' className={cls.userName}>
 							<div className={cls.text}>User Name</div>
 							<div className={cls.image}></div>
