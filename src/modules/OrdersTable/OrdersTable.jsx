@@ -17,6 +17,8 @@ const OrdersTable = ({ orders, delivered }) => {
 		setIsExpanded(!isExpanded)
 	}
 
+	console.log(orders)
+
 	return (
 		<>
 			<div className={cls.orders}>
@@ -54,7 +56,7 @@ const OrdersTable = ({ orders, delivered }) => {
 							</tr>
 						</thead>
 						<tbody>
-							{[].map((order, index) => (
+							{orders.map((order, index) => (
 								<tr key={order.id}>
 									<td>{index + 1}</td>
 									<td>{order.id}</td>
