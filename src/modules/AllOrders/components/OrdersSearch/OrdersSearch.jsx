@@ -1,9 +1,16 @@
 import React, { useRef } from 'react'
 import { Icon } from '@iconify/react/dist/iconify.js'
-import icon from './icon.svg'
 import cls from './OrdersSearch.module.css'
+import { Select } from '../../../../UI/Select/Select'
 
-const OrdersSearch = ({ value, setValue, setSortByGivenOut }) => {
+const OrdersSearch = ({
+	value,
+	setValue,
+	selectedValue,
+	setSelectedValue,
+	handleSelectChange,
+	options,
+}) => {
 	const inputRef = useRef(null)
 
 	const handleIconClick = () => {
@@ -30,12 +37,12 @@ const OrdersSearch = ({ value, setValue, setSortByGivenOut }) => {
 				</div>
 			</div>
 
-			<div
-				onClick={() => setSortByGivenOut((prev) => !prev)}
-				className={cls.icon}
-			>
-				<img src={icon} alt='svg' />
-			</div>
+			<Select
+				options={options}
+				selectedValue={selectedValue}
+				onChange={setSelectedValue}
+				handleSelectChange={handleSelectChange}
+			/>
 		</div>
 	)
 }

@@ -3,23 +3,32 @@ import AllOrdersDetail from './components/AllOrdersDetail/AllOrdersDetail'
 import OrdersSearch from './components/OrdersSearch/OrdersSearch'
 import { useQuery } from 'react-query'
 import { getAllOrders } from './api/getAllOrders'
-
 import cls from './AllOrders.module.css'
 
 const AllOrders = () => {
 	const allOrderDetailModal = useRef(null)
 	const [orderDetailId, setOrderDetailId] = useState()
-	const [searchValue, setSearchValue] = React.useState('')
-	const [sortByGivenOut, setSortByGivenOut] = React.useState('')
+	const [searchValue, setSearchValue] = useState('')
+	const [selectedValue, setSelectedValue] = useState('all') // all | givenOut | notGivenOut
 
-	function handleSetDeail(id) {
+	const handleSelectChange = (value) => {
+		setSelectedValue(value)
+	}
+
+	const options = [
+		{ value: 'all', label: 'Все заказы' },
+		{ value: 'givenOut', label: 'Выданные' },
+		{ value: 'notGivenOut', label: 'Не выданные' },
+	]
+
+	const handleSetDetail = (id) => {
 		allOrderDetailModal.current.showModal()
 		setOrderDetailId(id)
 	}
 
 	const { data } = useQuery(
-		['all-orders', searchValue, sortByGivenOut],
-		() => getAllOrders(searchValue, sortByGivenOut),
+		['all-orders', searchValue, selectedValue],
+		() => getAllOrders(searchValue, selectedValue),
 		{
 			keepPreviousData: true,
 		}
@@ -30,7 +39,10 @@ const AllOrders = () => {
 			<OrdersSearch
 				value={searchValue}
 				setValue={setSearchValue}
-				setSortByGivenOut={setSortByGivenOut}
+				selectedValue={selectedValue}
+				setSelectedValue={setSelectedValue}
+				handleSelectChange={handleSelectChange}
+				options={options}
 			/>
 
 			<table className={cls.table}>
@@ -49,7 +61,7 @@ const AllOrders = () => {
 						<tr
 							className={cls.row}
 							key={order.id}
-							onClick={() => handleSetDeail(order.id)}
+							onClick={() => handleSetDetail(order.id)}
 						>
 							<td className={cls.center}>{index + 1}</td>
 							<td>{order.id}</td>

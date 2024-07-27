@@ -1,0 +1,60 @@
+.container {
+	position: relative;
+	display: inline-block;
+	width: 220px; /* Adjusted width */
+}
+
+.header {
+	background-color: var(--white);
+	border: 1px solid var(--secondary-color);
+	padding: 12px 16px;
+	cursor: pointer;
+	border-radius: 6px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: var(--main-text-color); /* Updated text color */
+	font-size: 16px;
+	transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition for background and border color */
+}
+
+.header:hover {
+	background-color: var(--secondary-color); /* Background color on hover */
+	border-color: var(--main-color); /* Border color on hover */
+}
+
+.arrow {
+	transition: transform 0.3s ease, color 0.3s ease; /* Transition effects */
+	color: var(--main-color); /* Arrow color */
+}
+
+.arrow.open {
+	transform: rotate(180deg);
+}
+
+.dropdown {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	background-color: var(--white); /* Dropdown background color */
+	border: 1px solid var(--secondary-color);
+	border-top: none;
+	border-radius: 0 0 6px 6px; /* Rounded corners for dropdown */
+	max-height: 250px;
+	overflow-y: auto;
+	z-index: 10;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.option {
+	padding: 12px 16px;
+	cursor: pointer;
+	color: var(--main-text-color); /* Text color */
+	font-size: 16px;
+	transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.option:hover {
+	background-color: var(--secondary-color); /* Background color on hover */
+}

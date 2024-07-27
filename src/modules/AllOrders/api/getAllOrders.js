@@ -1,10 +1,17 @@
 import OrdersService from '../../../services/OrdersService'
 
-export async function getAllOrders(search_string, is_given_out) {
-	const response = await OrdersService.getAllOrders(
-		`${search_string || is_given_out ? '?' : ''}${
-			search_string ? `search_string=${search_string}` : ''
-		}${is_given_out ? `&is_given_out=${is_given_out}` : ''}`
-	)
+export async function getAllOrders(search_string, givenStatus) {
+	const filterStringQuery = search_string
+		? `search_string=${encodeURIComponent(search_string)}`
+		: ''
+	const filterIsGivenQuery =
+		givenStatus !== 'all' ? `is_given_out=${givenStatus === 'givenOut'}` : ''
+
+	const query = [filterStringQuery, filterIsGivenQuery]
+		.filter(Boolean)
+		.join('&')
+	const url = query ? `?${query}` : ''
+
+	const response = await OrdersService.getAllOrders(url)
 	return response.data
 }
