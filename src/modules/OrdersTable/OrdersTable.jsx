@@ -26,7 +26,7 @@ const OrdersTable = ({ orders, delivered }) => {
 					}`}
 					onClick={handleToggle}
 				>
-					<div>Консолидированные заказы</div>
+					<div>Индивидуальные заказы</div>
 					<div
 						className={`${cls.titleIcon} ${isExpanded ? '' : cls.expandedIcon}`}
 					>

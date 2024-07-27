@@ -18,6 +18,6 @@ export default class OrdersService {
 	}
 
 	static async getAllOrders(query) {
-		return $api.get(`/orders/all/?${query}`)
+		return $api.get(`/orders/all/${query}`)
 	}
 }

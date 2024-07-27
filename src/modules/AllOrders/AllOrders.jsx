@@ -10,6 +10,7 @@ const AllOrders = () => {
 	const allOrderDetailModal = useRef(null)
 	const [orderDetailId, setOrderDetailId] = useState()
 	const [searchValue, setSearchValue] = React.useState('')
+	const [sortByGivenOut, setSortByGivenOut] = React.useState('')
 
 	function handleSetDeail(id) {
 		allOrderDetailModal.current.showModal()
@@ -17,16 +18,20 @@ const AllOrders = () => {
 	}
 
 	const { data } = useQuery(
-		['all-orders', searchValue],
-		() => getAllOrders(searchValue),
+		['all-orders', searchValue, sortByGivenOut],
+		() => getAllOrders(searchValue, sortByGivenOut),
 		{
-			keepPreviousData: true, // Optional: Keeps the previous data while fetching new data
+			keepPreviousData: true,
 		}
 	)
 
 	return (
 		<>
-			<OrdersSearch value={searchValue} setValue={setSearchValue} />
+			<OrdersSearch
+				value={searchValue}
+				setValue={setSearchValue}
+				setSortByGivenOut={setSortByGivenOut}
+			/>
 
 			<table className={cls.table}>
 				<thead>

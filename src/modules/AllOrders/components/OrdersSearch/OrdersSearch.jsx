@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react/dist/iconify.js'
 import icon from './icon.svg'
 import cls from './OrdersSearch.module.css'
 
-const OrdersSearch = ({ value, setValue }) => {
+const OrdersSearch = ({ value, setValue, setSortByGivenOut }) => {
 	const inputRef = useRef(null)
 
 	const handleIconClick = () => {
@@ -30,7 +30,10 @@ const OrdersSearch = ({ value, setValue }) => {
 				</div>
 			</div>
 
-			<div className={cls.icon}>
+			<div
+				onClick={() => setSortByGivenOut((prev) => !prev)}
+				className={cls.icon}
+			>
 				<img src={icon} alt='svg' />
 			</div>
 		</div>
