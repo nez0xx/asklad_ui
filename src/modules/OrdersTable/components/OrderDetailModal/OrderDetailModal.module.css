@@ -1,23 +1,42 @@
 .deleteBtn {
-    background: var(--main-button-color);
-    color: white;
+	background: var(--main-button-color);
+	color: white;
 }
 
 .modalBody {
-    padding: 10px;
+	padding: 10px;
 }
 
 .modalBodyInfo {
-    display: grid;
-    gap: 5px;
-    margin: 10px 0;
+	display: grid;
+	gap: 5px;
+	margin: 10px 0;
 }
 
 .table {
-    border-collapse: collapse;
+	border-collapse: collapse;
 }
 
-.table td, .table th {
-    border: 1px solid black;
-    padding: 5px 10px;
+.table td,
+.table th {
+	border: 1px solid black;
+	padding: 5px 10px;
+}
+
+.buttons {
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.buttons textarea {
+	outline: none;
+	width: 100%;
+	min-height: 100px;
+	margin-left: 10px;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	resize: vertical;
 }

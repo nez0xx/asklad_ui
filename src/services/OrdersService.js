@@ -9,7 +9,11 @@ export default class OrdersService {
 		return $api.get(`/orders/${id}`)
 	}
 
-	static async giveOutOrder(id) {
+	static async giveOutOrder(id, comment = '') {
+		if (comment) {
+			return $api.post(`/orders/give_out?order_id=${id}&comment=${comment}`)
+		}
+
 		return $api.post(`/orders/give_out?order_id=${id}`)
 	}
 

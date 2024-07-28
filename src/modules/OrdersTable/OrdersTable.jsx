@@ -2,13 +2,15 @@ import React, { useRef, useState } from 'react'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import OrderDetailModal from './components/OrderDetailModal/OrderDetailModal'
 import cls from './OrdersTable.module.css'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const OrdersTable = ({ orders, delivered }) => {
 	const orderDetailModal = useRef(null)
 	const [orderDetailId, setOrderDetailId] = useState()
 	const [isExpanded, setIsExpanded] = useState(true)
 
-	function handleSetDeail(id) {
+	const handleSetDetail = (id) => {
 		orderDetailModal.current.showModal()
 		setOrderDetailId(id)
 	}
@@ -16,8 +18,6 @@ const OrdersTable = ({ orders, delivered }) => {
 	const handleToggle = () => {
 		setIsExpanded(!isExpanded)
 	}
-
-	console.log(orders)
 
 	return (
 		<>
@@ -58,7 +58,7 @@ const OrdersTable = ({ orders, delivered }) => {
 						<tbody>
 							{orders.map((order, index) => (
 								<tr
-									onClick={() => handleSetDeail(order.id)}
+									onClick={() => handleSetDetail(order.id)}
 									key={order.id}
 									className={cls.row}
 								>
@@ -89,6 +89,7 @@ const OrdersTable = ({ orders, delivered }) => {
 				id={orderDetailId}
 				setId={setOrderDetailId}
 			/>
+			<ToastContainer />
 		</>
 	)
 }

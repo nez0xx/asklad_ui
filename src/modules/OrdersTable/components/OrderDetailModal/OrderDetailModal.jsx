@@ -1,20 +1,20 @@
-import React, { forwardRef, useRef, useState } from 'react';
-import Modal from '../../../../UI/Modal/Modal';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { getOrderDetail } from '../../api/getOrderDetail';
-import Button from '../../../../UI/Button/Button';
+import React, { forwardRef, useRef, useState } from 'react'
+import Modal from '../../../../UI/Modal/Modal'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { getOrderDetail } from '../../api/getOrderDetail'
+import Button from '../../../../UI/Button/Button'
 
-import cls from './OrderDetailModal.module.css';
-import { Icon } from '@iconify/react/dist/iconify.js';
-import { giveOutOrder } from '../../api/giveOutOrder';
-import { toast, ToastContainer } from 'react-toastify';
-import ChangeProductAmountModal from '../ChangeProductAmountModal/ChangeProductAmountModal';
+import cls from './OrderDetailModal.module.css'
+import { Icon } from '@iconify/react/dist/iconify.js'
+import { giveOutOrder } from '../../api/giveOutOrder'
+import { toast, ToastContainer } from 'react-toastify'
+import ChangeProductAmountModal from '../ChangeProductAmountModal/ChangeProductAmountModal'
 
-let content;
-const containerId = 'give-out-toast-container';
-const toastId = 'give-out-toast';
+let content
+
+const toastId = 'give-out-toast'
 const OrderDetailModal = ({ id, setId }, ref) => {
-	const queryClient = useQueryClient();
+	const [textareaValue, setTextareaValue] = useState('')
 
 	const { data, isLoading, isError, error } = useQuery({
 		queryKey: ['order-detail', id],
@@ -25,61 +25,43 @@ const OrderDetailModal = ({ id, setId }, ref) => {
 				autoClose: 1000,
 				containerId,
 				toastId,
-			});
+			})
 		},
-	});
+	})
 
-	const { mutate, isLoading: giveOutLoading } = useMutation({
-		mutationFn: giveOutOrder,
-		onError: (data) => {
-			toast.update(toastId, {
-				type: 'error',
-				autoClose: 1000,
-				containerId,
-				render: data.response.data.detail,
-				isLoading: false,
-			});
-		},
+	const { mutate, isLoading: isMutating } = useMutation(giveOutOrder, {
 		onSuccess: () => {
-			toast.update(toastId, {
-				type: 'success',
-				autoClose: 1000,
-				containerId: containerId,
-				render: 'Success',
-				isLoading: false,
-			});
-			queryClient.invalidateQueries(['consolodated-order-orders']);
+			toast.success('Заказ выдан успешно')
 		},
-	});
+		onError: (error) => {
+			toast.error('Ошибка при выдаче заказа')
+			console.error(error)
+		},
+	})
 
-	async function handleGiveOutOrder(id) {
-		mutate(id);
+	const handleGiveOutOrder = () => {
+		mutate({ id, comment: textareaValue })
+		ref.current.close()
+		setId(undefined)
+		setTextareaValue('')
 	}
 
-	const productAmountModal = useRef(null);
-	const [selectedProduct, setSelectedProduct] = useState();
+	const productAmountModal = useRef(null)
+	const [selectedProduct, setSelectedProduct] = useState()
 
 	function openModal(product) {
-		setSelectedProduct(product);
-		productAmountModal.current.showModal();
-	}
-
-	if (giveOutLoading) {
-		toast('Loading', {
-			containerId,
-			toastId,
-			isLoading: true,
-		});
+		setSelectedProduct(product)
+		productAmountModal.current.showModal()
 	}
 
 	if (isLoading) {
 		content = (
 			<Icon icon='eos-icons:bubble-loading' width='25px' height='25px' />
-		);
+		)
 	}
 
 	if (isError) {
-		content = <p>{error.message}</p>;
+		content = <p>{error.message}</p>
 	}
 
 	if (data) {
@@ -109,9 +91,10 @@ const OrderDetailModal = ({ id, setId }, ref) => {
 													title: product.title,
 													amount: product.amount,
 													order_id: data.order_id,
-													product_id: product.product_id
+													product_id: product.product_id,
 												})
-											}>
+											}
+										>
 											<Icon
 												icon='solar:pen-2-linear'
 												width='30px'
@@ -124,25 +107,33 @@ const OrderDetailModal = ({ id, setId }, ref) => {
 						</tbody>
 					</tabel>
 				</div>
-				<Button
-					className={cls.deleteBtn}
-					onClick={() => handleGiveOutOrder(data.order_id)}>
-					Выдать
-				</Button>
+				<div className={cls.buttons}>
+					<Button onClick={handleGiveOutOrder} disabled={isMutating}>
+						{isMutating ? 'Processing...' : 'Выдать'}
+					</Button>
+					<textarea
+						value={textareaValue}
+						onChange={(e) => setTextareaValue(e.target.value)}
+						placeholder='Ваш комментарий'
+						className={cls.textarea}
+					/>
+				</div>
 			</div>
-		);
+		)
 	}
 
 	return (
-		<Modal ref={ref} onClose={() => setId(undefined)}>
-			{content}
-			<ToastContainer containerId={containerId} />
-			<ChangeProductAmountModal
-				ref={productAmountModal}
-				product={selectedProduct}
-			/>
-		</Modal>
-	);
-};
+		<>
+			<Modal ref={ref} onClose={() => setId(undefined)}>
+				{content}
+				<ChangeProductAmountModal
+					ref={productAmountModal}
+					product={selectedProduct}
+				/>
+			</Modal>
+			<ToastContainer />
+		</>
+	)
+}
 
-export default forwardRef(OrderDetailModal);
+export default forwardRef(OrderDetailModal)

@@ -11,7 +11,9 @@ import cls from './RegisterForm.module.css'
 const RegisterForm = () => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+	const [confirmPassword, setConfirmPassword] = useState('')
 	const [username, setUsername] = useState('')
+	const [error, setError] = useState('')
 
 	const { mutate } = useMutation({
 		mutationFn: register,
@@ -22,6 +24,11 @@ const RegisterForm = () => {
 
 	function handleRegister(e) {
 		e.preventDefault()
+		if (password !== confirmPassword) {
+			setError('Passwords do not match')
+			return
+		}
+		setError('')
 		mutate({ email, password, name: username })
 	}
 
@@ -45,8 +52,6 @@ const RegisterForm = () => {
 				<Input
 					id='email'
 					label='Введите email'
-					Введите
-					email
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 				/>
@@ -57,18 +62,21 @@ const RegisterForm = () => {
 					onChange={(e) => setUsername(e.target.value)}
 				/>
 				<Input
-					id='Password'
+					id='password'
 					label='Пароль'
+					type='password'
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 				/>
 				<Input
-					id='Password'
+					id='confirmPassword'
 					label='Подтверждение пароля'
-					value={password}
-					// onChange={(e) => setPassword(e.target.value)}
+					type='password'
+					value={confirmPassword}
+					onChange={(e) => setConfirmPassword(e.target.value)}
 				/>
-				<Button>Register</Button>
+				{error && <div className={cls.error}>{error}</div>}
+				<Button type='submit'>Register</Button>
 			</div>
 
 			<div className={cls.alreadySignedUpBlock}>
