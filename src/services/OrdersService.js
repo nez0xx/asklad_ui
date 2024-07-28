@@ -1,6 +1,12 @@
 import $api from '../http'
 
 export default class OrdersService {
+	static async getFinReport(date_min, date_max) {
+		return $api.get(
+			`/orders/fin_report?date_min=${date_min}&date_max=${date_max}`
+		)
+	}
+
 	static async uploadOrder(formData) {
 		return $api.post('/orders/upload', formData)
 	}

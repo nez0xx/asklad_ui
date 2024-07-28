@@ -1,7 +1,8 @@
 import React from 'react'
 import cls from './FinanceTable.module.css'
 
-export const FinanceTable = () => {
+export const FinanceTable = ({ orders }) => {
+	console.log(orders)
 	return (
 		<table className={cls.table}>
 			<thead>
@@ -12,15 +13,13 @@ export const FinanceTable = () => {
 				</tr>
 			</thead>
 			<tbody>
-				{[].map((order, index) => (
-					<tr key={order.id}>
+				{orders.map((order, index) => (
+					<tr className={cls.row} key={order[0]}>
 						<td onClick={() => {}}>{index + 1}</td>
-						<td onClick={() => {}}>{order.id}</td>
-						<td onClick={() => {}}>{order.amount}</td>
+						<td onClick={() => {}}>{order[0]}</td>
+						<td onClick={() => {}}>{order[1].rub} ₽</td>
 					</tr>
 				))}
-
-				{/* temporary usage of [] */}
 			</tbody>
 		</table>
 	)

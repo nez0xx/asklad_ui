@@ -28,6 +28,7 @@
 	border-radius: 10px;
 	height: 100%;
 	column-gap: 8px;
+	padding: 4px 8px; /* Added padding to keep consistency with the inputs */
 }
 
 .dates .date {
@@ -44,4 +45,17 @@
 
 .dates .icon {
 	transform: translateY(2px);
+}
+
+.input {
+	border: none;
+	outline: none;
+	background-color: transparent;
+	font-size: 14px;
+	cursor: pointer;
+	color: inherit; /* To inherit the font color */
+}
+
+.input[type='date']::-webkit-calendar-picker-indicator {
+	filter: invert(0.5);
 }
