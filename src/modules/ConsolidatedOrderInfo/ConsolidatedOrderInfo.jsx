@@ -2,8 +2,9 @@ import React from 'react'
 import OrdersTable from '../OrdersTable/OrdersTable'
 import cls from './ConsolidatedOrderInfo.module.css'
 import { useParams } from 'react-router-dom'
-import { useQuery } from 'react-query'
+import { useQuery, useMutation } from 'react-query'
 import { getConsolidatedOrderOrders } from './api/getConsolidatedOrderOrders'
+import { deliverConsolidatedOrder } from './api/deliverConsolidatedOrder'
 import Button from '../../UI/Button/Button'
 
 const ConsolidatedOrderInfo = () => {
@@ -13,6 +14,16 @@ const ConsolidatedOrderInfo = () => {
 		queryFn: () => getConsolidatedOrderOrders({ id }),
 	})
 
+	console.log(data)
+
+	const { mutate, isLoading: isMutationLoading } = useMutation({
+		mutationFn: () => deliverConsolidatedOrder({ united_order_id: id }),
+	})
+
+	const handleDeliverOrder = () => {
+		mutate()
+	}
+
 	if (isLoading) {
 		return <h1>Loading...</h1>
 	}
@@ -21,7 +32,7 @@ const ConsolidatedOrderInfo = () => {
 		<div className={cls.block}>
 			<div className={cls.container}>
 				<div className={cls.info}>
-					<p>Склад: Мой cклад #1</p>
+					<p>Склад: Мой cклад #{data.warehouse_id}</p>
 					<div className={cls.status}>
 						<p>Статус:</p>{' '}
 						<div
@@ -39,7 +50,9 @@ const ConsolidatedOrderInfo = () => {
 				</div>
 
 				<div className={cls.button}>
-					<Button>Доставить</Button>
+					<Button onClick={handleDeliverOrder} disabled={isMutationLoading}>
+						{isMutationLoading ? 'Loading...' : 'Доставить'}
+					</Button>
 				</div>
 			</div>
 

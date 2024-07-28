@@ -54,6 +54,33 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders }) => {
 		})
 	}
 
+	React.useEffect(() => {
+		console.log('Hello')
+		const rows = document.querySelectorAll(`#consolidated-table-row`)
+		rows.forEach((row) => {
+			const tds = row.querySelectorAll(`.${cls.td}`)
+			tds.forEach((td, index) => {
+				if (index < tds.length) {
+					td.addEventListener('mouseenter', () => {
+						console.log('hellow')
+						tds.forEach((innerTd, innerIndex) => {
+							if (innerIndex < tds.length) {
+								innerTd.classList.add(cls.tdHoverEffect)
+							}
+						})
+					})
+					td.addEventListener('mouseleave', () => {
+						tds.forEach((innerTd, innerIndex) => {
+							if (innerIndex < tds.length) {
+								innerTd.classList.remove(cls.tdHoverEffect)
+							}
+						})
+					})
+				}
+			})
+		})
+	}, [])
+
 	return (
 		<>
 			<table className={cls.table}>
@@ -67,25 +94,39 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders }) => {
 				</thead>
 				<tbody>
 					{consolidatedOrders?.map((order, index) => (
-						<tr
-							className={cls.row}
-							onClick={() => navigateToDetails(order.id)}
-							key={order.id}
-						>
-							<td>{index + 1}</td>
-							<td>{order.id}</td>
-							<td>
+						<tr key={order.id} id='consolidated-table-row'>
+							<td
+								className={cls.td}
+								onClick={() => navigateToDetails(order.id)}
+							>
+								{index + 1}
+							</td>
+							<td
+								className={cls.td}
+								onClick={() => navigateToDetails(order.id)}
+							>
+								{order.id}
+							</td>
+							<td
+								className={cls.td}
+								onClick={() => navigateToDetails(order.id)}
+							>
 								<div
-									className={
+									className={`${
 										order.delivered
 											? 'banner delivered mx-auto'
 											: 'banner onTheWay mx-auto'
-									}
+									} ${cls.td}`}
 								>
 									{order.delivered ? 'Доставлен' : 'В пути'}
 								</div>
 							</td>
-							<td>{order.delivery_date}</td>
+							<td
+								className={cls.td}
+								onClick={() => navigateToDetails(order.id)}
+							>
+								{order.delivery_date}
+							</td>
 							<td className={cls.deleteTd}>
 								<Button
 									className={cls.dleteButton}

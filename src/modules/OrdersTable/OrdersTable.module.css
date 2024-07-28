@@ -89,3 +89,10 @@
 .table td {
 	font-size: 14px;
 }
+
+.row {
+	cursor: pointer;
+}
+.row:hover {
+	background: var(--secondary-color);
+}

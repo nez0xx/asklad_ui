@@ -66,9 +66,10 @@
 	place-content: center;
 }
 
-.row {
-	cursor: pointer;
+.tdHoverEffect {
+	background-color: var(--secondary-color); /* Change to desired hover color */
 }
-.row:hover td:not(:last-child) {
-	background: var(--secondary-color);
+
+.td:hover {
+	cursor: pointer;
 }

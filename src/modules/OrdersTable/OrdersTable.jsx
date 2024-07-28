@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
-import cls from './OrdersTable.module.css'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import OrderDetailModal from './components/OrderDetailModal/OrderDetailModal'
+import cls from './OrdersTable.module.css'
 
 const OrdersTable = ({ orders, delivered }) => {
 	const orderDetailModal = useRef(null)
@@ -57,7 +57,11 @@ const OrdersTable = ({ orders, delivered }) => {
 						</thead>
 						<tbody>
 							{orders.map((order, index) => (
-								<tr key={order.id}>
+								<tr
+									onClick={() => handleSetDeail(order.id)}
+									key={order.id}
+									className={cls.row}
+								>
 									<td>{index + 1}</td>
 									<td>{order.id}</td>
 									<td>
