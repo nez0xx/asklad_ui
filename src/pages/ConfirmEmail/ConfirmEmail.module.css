@@ -1,0 +1,26 @@
+.block {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.title {
+	text-align: center;
+	color: var(--main-title-color);
+	font-weight: 400;
+	font-size: 35px;
+	margin-bottom: 25px;
+}
+
+.button {
+	display: flex;
+	justify-content: center;
+}
+
+.errorMessage {
+	color: red;
+	margin-top: 10px;
+	font-size: 14px;
+}
