@@ -10,6 +10,7 @@ export const FinanceTable = ({ orders }) => {
 					<th></th>
 					<th>Консолидированный заказ</th>
 					<th>Сумма</th>
+					<th>PV</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -18,6 +19,7 @@ export const FinanceTable = ({ orders }) => {
 						<td onClick={() => {}}>{index + 1}</td>
 						<td onClick={() => {}}>{order[0]}</td>
 						<td onClick={() => {}}>{order[1].rub} ₽</td>
+						<td onClick={() => {}}>{order[1].pv} PV</td>
 					</tr>
 				))}
 			</tbody>

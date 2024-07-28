@@ -37,7 +37,7 @@ const Finance = () => {
 					Общий: {isLoading ? 'Loading' : data.total_price.rub} руб.
 				</div>
 				<div className={cls.totalTurnover}>
-					Оборот PV: {isLoading ? 'Loading' : data.total_pv} руб.
+					Оборот PV: {isLoading ? 'Loading' : data.total_pv} PV.
 				</div>
 
 				<div className={cls.dates}>
@@ -64,16 +64,18 @@ const Finance = () => {
 				</div>
 			</div>
 
-			{isLoading ? (
-				<div>Loading...</div>
-			) : isError ? (
-				<div>Error: {error.message}</div>
-			) : (
-				data &&
-				Object.keys(data.orders).length > 0 && (
-					<FinanceTable orders={Object.entries(data.orders)} />
-				)
-			)}
+			<div className={cls.tableWrapper}>
+				{isLoading ? (
+					<div>Loading...</div>
+				) : isError ? (
+					<div>Error: {error.message}</div>
+				) : (
+					data &&
+					Object.keys(data.orders).length > 0 && (
+						<FinanceTable orders={Object.entries(data.orders)} />
+					)
+				)}
+			</div>
 		</section>
 	)
 }
