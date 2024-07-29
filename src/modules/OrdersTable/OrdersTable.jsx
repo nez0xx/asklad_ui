@@ -75,7 +75,11 @@ const OrdersTable = ({ orders, delivered }) => {
 											{order.is_given_out ? 'Выдан' : 'Не выдан'}
 										</div>
 									</td>
-									<td>01.01.2024</td>
+									<td>
+										{order.issue_date
+											? order.issue_date.split('-').reverse().join('.')
+											: ''}
+									</td>
 									<td>{order.customer_phone}</td>
 									<td>{order.customer_name}</td>
 								</tr>

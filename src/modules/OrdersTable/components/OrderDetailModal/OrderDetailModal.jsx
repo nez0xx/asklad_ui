@@ -35,7 +35,10 @@ const OrderDetailModal = ({ id, setId }, ref) => {
 
 	const { mutate, isLoading: isMutating } = useMutation(giveOutOrder, {
 		onSuccess: () => {
-			toast.success('Заказ выдан успешно')
+			toast.success('Заказ выдан успешно', {
+				autoClose: 1000,
+				toastId,
+			})
 		},
 		onError: (error) => {
 			if (!toast.isActive(toastId)) {
@@ -44,7 +47,6 @@ const OrderDetailModal = ({ id, setId }, ref) => {
 					toastId,
 				})
 			}
-			console.error(error)
 		},
 	})
 

@@ -11,6 +11,8 @@ import 'react-toastify/dist/ReactToastify.css'
 
 import cls from './AllOrdersDetail.module.css'
 
+const toastId = 'give-out-toast'
+
 const AllOrdersDetail = ({ id, setId }, ref) => {
 	const productAmountModal = useRef(null)
 	const [textareaValue, setTextareaValue] = useState('')
@@ -24,11 +26,18 @@ const AllOrdersDetail = ({ id, setId }, ref) => {
 
 	const { mutate, isLoading: isMutating } = useMutation(giveOutOrder, {
 		onSuccess: () => {
-			toast.success('Заказ выдан успешно')
+			toast.success('Заказ выдан успешно', {
+				autoClose: 1000,
+				toastId,
+			})
 		},
 		onError: (error) => {
-			toast.error('Ошибка при выдаче заказа')
-			console.error(error)
+			if (!toast.isActive(toastId)) {
+				toast.error(error?.response?.data?.detail || 'Неизвестная ошибка', {
+					autoClose: 1000,
+					toastId,
+				})
+			}
 		},
 	})
 

@@ -125,7 +125,9 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders }) => {
 								className={cls.td}
 								onClick={() => navigateToDetails(order.id)}
 							>
-								{order.delivery_date}
+								{order.delivery_date
+									? order.delivery_date.split('-').reverse().join('.')
+									: ''}
 							</td>
 							<td className={cls.deleteTd}>
 								<Button
