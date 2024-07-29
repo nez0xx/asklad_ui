@@ -1,20 +1,22 @@
 import React, { forwardRef, useRef, useState } from 'react'
 import Modal from '../../../../UI/Modal/Modal'
-import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { useMutation, useQuery } from 'react-query'
 import { getOrderDetail } from '../../api/getOrderDetail'
 import Button from '../../../../UI/Button/Button'
 
-import cls from './OrderDetailModal.module.css'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import { giveOutOrder } from '../../api/giveOutOrder'
 import { toast, ToastContainer } from 'react-toastify'
-import ChangeProductAmountModal from '../ChangeProductAmountModal/ChangeProductAmountModal'
+import ChangeAmountModal from '../ChangeAmountModal/ChangeAmountModal'
+import cls from './OrderDetailModal.module.css'
 
 let content
 
 const toastId = 'give-out-toast'
 const OrderDetailModal = ({ id, setId }, ref) => {
+	const productAmountModal = useRef(null)
 	const [textareaValue, setTextareaValue] = useState('')
+	const [selectedProduct, setSelectedProduct] = useState()
 
 	const { data, isLoading, isError, error } = useQuery({
 		queryKey: ['order-detail', id],
@@ -46,9 +48,6 @@ const OrderDetailModal = ({ id, setId }, ref) => {
 		setTextareaValue('')
 	}
 
-	const productAmountModal = useRef(null)
-	const [selectedProduct, setSelectedProduct] = useState()
-
 	function openModal(product) {
 		setSelectedProduct(product)
 		productAmountModal.current.showModal()
@@ -69,9 +68,11 @@ const OrderDetailModal = ({ id, setId }, ref) => {
 			<div className={cls.modalBody}>
 				<h2>{data.order_id}</h2>
 				<div className={cls.modalBodyInfo}>
-					<p>Customer phone: {data?.customer_phone}</p>
-					<p>Customer name: {data?.customer_name}</p>
-					<p>Customer id: {data?.customer_id}</p>
+					<p>Телефон пользователя: {data?.customer_phone}</p>
+					<p>Имя пользователя: {data?.customer_name}</p>
+					<p>ID пользователя: {data?.customer_id}</p>
+					{data?.given_by && <p>Сотрудник: {data?.given_by}</p>}
+					{data?.comment && <p>Комментарий: {data?.comment}</p>}
 					<tabel className={cls.table}>
 						<thead>
 							<tr>
@@ -107,17 +108,19 @@ const OrderDetailModal = ({ id, setId }, ref) => {
 						</tbody>
 					</tabel>
 				</div>
-				<div className={cls.buttons}>
-					<Button onClick={handleGiveOutOrder} disabled={isMutating}>
-						{isMutating ? 'Processing...' : 'Выдать'}
-					</Button>
-					<textarea
-						value={textareaValue}
-						onChange={(e) => setTextareaValue(e.target.value)}
-						placeholder='Ваш комментарий'
-						className={cls.textarea}
-					/>
-				</div>
+				{!data.given_by && (
+					<div className={cls.buttons}>
+						<Button onClick={handleGiveOutOrder} disabled={isMutating}>
+							{isMutating ? 'Processing...' : 'Выдать'}
+						</Button>
+						<textarea
+							value={textareaValue}
+							onChange={(e) => setTextareaValue(e.target.value)}
+							placeholder='Ваш комментарий'
+							className={cls.textarea}
+						/>
+					</div>
+				)}
 			</div>
 		)
 	}
@@ -126,10 +129,7 @@ const OrderDetailModal = ({ id, setId }, ref) => {
 		<>
 			<Modal ref={ref} onClose={() => setId(undefined)}>
 				{content}
-				<ChangeProductAmountModal
-					ref={productAmountModal}
-					product={selectedProduct}
-				/>
+				<ChangeAmountModal ref={productAmountModal} product={selectedProduct} />
 			</Modal>
 			<ToastContainer />
 		</>

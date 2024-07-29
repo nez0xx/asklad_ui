@@ -6,8 +6,13 @@ import { Icon } from '@iconify/react/dist/iconify.js'
 import cls from './Finance.module.css'
 
 const Finance = () => {
-	const [startDate, setStartDate] = useState('2024-01-01')
-	const [endDate, setEndDate] = useState('2024-01-01')
+	const today = new Date().toISOString().split('T')[0]
+	const monthAgo = new Date()
+	monthAgo.setMonth(monthAgo.getMonth() - 1)
+	const oneMonthAgo = monthAgo.toISOString().split('T')[0]
+
+	const [startDate, setStartDate] = useState(oneMonthAgo)
+	const [endDate, setEndDate] = useState(today)
 
 	const { data, isLoading, isError, error } = useQuery(
 		['fin_report', startDate, endDate],

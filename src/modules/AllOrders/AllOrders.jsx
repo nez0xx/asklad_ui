@@ -73,7 +73,7 @@ const AllOrders = () => {
 											: 'banner onTheWay mx-auto'
 									}
 								>
-									{order.is_given_out ? 'Выдан' : 'В пути'}
+									{order.is_given_out ? 'Выдан' : 'Не выдан'}
 								</div>
 							</td>
 							<td>01.01.2024</td>
