@@ -14,8 +14,6 @@ const ConsolidatedOrderInfo = () => {
 		queryFn: () => getConsolidatedOrderOrders({ id }),
 	})
 
-	console.log(data)
-
 	const { mutate, isLoading: isMutationLoading } = useMutation({
 		mutationFn: () => deliverConsolidatedOrder({ united_order_id: id }),
 	})
@@ -32,7 +30,6 @@ const ConsolidatedOrderInfo = () => {
 		<div className={cls.block}>
 			<div className={cls.container}>
 				<div className={cls.info}>
-					<p>Склад: Мой cклад #{data.warehouse_id}</p>
 					<div className={cls.status}>
 						<p>Статус:</p>{' '}
 						<div
