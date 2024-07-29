@@ -12,4 +12,12 @@ export default class AuthService {
 	static async confirmEmail(token) {
 		return $api.post(`/auth/confirm/?token=${token}`)
 	}
+
+	static createResetPasswordRequest(email) {
+		return $api.post(`/auth/reset_pass/request?user_email=${email}`)
+	}
+
+	static resetPassword(token, password) {
+		return $api.post(`/auth/reset_pass/?token=${token}&password=${password}`)
+	}
 }

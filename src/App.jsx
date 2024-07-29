@@ -13,12 +13,16 @@ import Account from './pages/Account/Account'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
 import { SuccessfulRegistration } from './pages/SuccessfulRegistration/SuccessfulRegistration'
 import 'react-toastify/dist/ReactToastify.css'
-import { ConfirmEmail } from './pages/ConfirmEmail/ConfirmEmail'
+import ConfirmEmail from './pages/ConfirmEmail/ConfirmEmail'
+import EnterEmail from './pages/EnterEmail/EnterEmail'
+import EmailSent from './pages/EmailSent/EmailSent'
 
 const router = createHashRouter([
 	{ path: '/', element: <Login /> },
 	{ path: '/register', element: <Register /> },
-	{ path: '/reset_password', element: <ResetPassword /> },
+	{ path: '/reset_password/:token', element: <ResetPassword /> },
+	{ path: '/enter_email', element: <EnterEmail /> },
+	{ path: '/email_sent', element: <EmailSent /> },
 	{ path: '/successful_registration', element: <SuccessfulRegistration /> },
 	{ path: '/confirm_email/:token', element: <ConfirmEmail /> },
 	{

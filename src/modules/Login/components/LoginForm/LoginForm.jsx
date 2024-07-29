@@ -61,7 +61,7 @@ const LoginForm = () => {
 			<div className={cls.resetLinkBlock}>
 				<div>
 					<div>Забыли пароль? </div>
-					<Link to='/reset-password'>Восстановить пароль</Link>
+					<Link to='/enter_email'>Восстановить пароль</Link>
 				</div>
 			</div>
 		</form>

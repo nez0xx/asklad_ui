@@ -1,6 +1,6 @@
 import React from 'react'
-import cls from './WareHouse.module.css'
 import WareHouseContent from '../../modules/WareHouseContent/WareHouseContent'
+import cls from './WareHouse.module.css'
 
 const WareHouse = () => {
 	return (

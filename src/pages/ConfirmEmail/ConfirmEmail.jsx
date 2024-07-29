@@ -7,7 +7,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import cls from './ConfirmEmail.module.css'
 
-export const ConfirmEmail = () => {
+const ConfirmEmail = () => {
 	const { token } = useParams()
 	const navigate = useNavigate()
 
@@ -44,3 +44,5 @@ export const ConfirmEmail = () => {
 		</div>
 	)
 }
+
+export default ConfirmEmail
