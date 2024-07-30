@@ -8,7 +8,8 @@ import cls from './AllOrders.module.css'
 const AllOrders = () => {
 	const allOrderDetailModal = useRef(null)
 	const [orderDetailId, setOrderDetailId] = useState()
-	const [searchValue, setSearchValue] = useState('')
+	const [searchNumberValue, setSearchNumberValue] = useState('')
+	const [searchNameValue, setSearchNameValue] = useState('')
 	const [selectedValue, setSelectedValue] = useState('all') // all | givenOut | notGivenOut
 
 	const handleSelectChange = (value) => {
@@ -27,8 +28,8 @@ const AllOrders = () => {
 	}
 
 	const { data } = useQuery(
-		['all-orders', searchValue, selectedValue],
-		() => getAllOrders(searchValue, selectedValue),
+		['all-orders', searchNumberValue, selectedValue, searchNameValue],
+		() => getAllOrders(searchNumberValue, selectedValue, searchNameValue),
 		{
 			keepPreviousData: true,
 		}
@@ -37,8 +38,10 @@ const AllOrders = () => {
 	return (
 		<>
 			<OrdersSearch
-				value={searchValue}
-				setValue={setSearchValue}
+				searchNumberValue={searchNumberValue}
+				setSearchNumberValue={setSearchNumberValue}
+				searchNameValue={searchNameValue}
+				setSearchNameValue={setSearchNameValue}
 				selectedValue={selectedValue}
 				setSelectedValue={setSelectedValue}
 				handleSelectChange={handleSelectChange}
