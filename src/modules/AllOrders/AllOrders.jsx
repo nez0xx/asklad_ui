@@ -34,8 +34,6 @@ const AllOrders = () => {
 		}
 	)
 
-	console.log(data)
-
 	return (
 		<>
 			<OrdersSearch

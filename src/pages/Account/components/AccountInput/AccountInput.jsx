@@ -2,13 +2,20 @@ import React from 'react'
 import Button from '../../../../UI/Button/Button'
 import cls from './AccountInput.module.css'
 
-const AccountInput = ({ type, value }) => {
-	const [isEditing, setEditing] = React.useState(false)
-	const [inputValue, setInputValue] = React.useState(value)
+const AccountInput = ({
+	type,
+	value,
+	setValue,
+	setEnterNewPassword,
+	isEditing,
+	setEditing,
+	setNewPasswordEditing,
+	setResetPressed,
+}) => {
 	const inputRef = React.useRef(null)
 
 	const typeToLabelMap = {
-		email: 'Email',
+		new_password: 'Новый пароль',
 		name: 'Имя',
 		password: 'Пароль',
 	}
@@ -21,12 +28,18 @@ const AccountInput = ({ type, value }) => {
 	}
 
 	const changeInputValue = (event) => {
-		setInputValue(event.target.value)
+		setValue(event.target.value)
 	}
 
 	const startInputChange = () => {
 		focusInput()
 		setEditing(true)
+		if (type === 'password') {
+			console.log('here')
+			setValue('')
+			setEnterNewPassword(true)
+			setResetPressed(true)
+		}
 	}
 
 	const confirmInputChange = () => {
@@ -40,9 +53,9 @@ const AccountInput = ({ type, value }) => {
 			<div className={cls.inputCont}>
 				<input
 					ref={inputRef}
-					type={type}
+					type={type === 'new_password' ? 'password' : type}
 					className={cls.input}
-					value={inputValue}
+					value={value}
 					placeholder=' '
 					onMouseDown={(e) => e.preventDefault()}
 					onChange={(e) => changeInputValue(e)}

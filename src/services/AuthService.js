@@ -1,6 +1,20 @@
 import $api from '../http'
 
 export default class AuthService {
+	static async getMe() {
+		return $api.get(`/auth/me`)
+	}
+
+	static async changeName(new_name) {
+		return $api.post(`/auth/change_name?new_name=${new_name}`)
+	}
+
+	static async changePassword(password, new_password) {
+		return $api.post(
+			`/auth/change_password?password=${password}&new_password=${new_password}`
+		)
+	}
+
 	static async login(email, password) {
 		return $api.post(`/auth/login`, { email, password })
 	}

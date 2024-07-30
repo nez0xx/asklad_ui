@@ -1,11 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Icon } from '@iconify/react/dist/iconify.js'
-import { useStore } from '../../store/index'
+import { useQuery } from 'react-query'
+import { getMe } from './api/getMe'
 import cls from './Header.module.css'
 
 const Header = () => {
-	const { user, isAuth } = useStore()
+	const { data, isLoading } = useQuery('getMe', getMe)
+	const location = useLocation()
 
 	return (
 		<header className={cls.header}>
@@ -18,11 +20,13 @@ const Header = () => {
 							width='25px'
 							height='25px'
 						/>
-						Поддержка
+						Поддержкаd
 					</a>
-					{isAuth && (
+					{location.pathname !== '/' && location.pathname !== '/register' && (
 						<Link to='/profile/account' className={cls.userName}>
-							<div className={cls.text}>User Name</div>
+							<div className={cls.text}>
+								{!isLoading ? data.name : 'Loading...'}
+							</div>
 							<div className={cls.image}></div>
 						</Link>
 					)}
