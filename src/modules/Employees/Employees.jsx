@@ -1,14 +1,26 @@
 import React, { useState } from 'react'
 import Employee from './components/Employee/Employee'
-
-import cls from './Employees.module.css'
+import EnterEmployeeEmail from './components/EnterEmployeeEmail/EnterEmployeeEmail'
+import Button from '../../UI/Button/Button'
 import { Icon } from '@iconify/react/dist/iconify.js'
+import cls from './Employees.module.css'
 
 const Employees = ({ data }) => {
 	const [isExpanded, setIsExpanded] = useState(true)
+	const [isPopupOpen, setPopupOpen] = useState(false)
+	const [email, setEmail] = useState('')
 
 	const handleToggle = () => {
 		setIsExpanded(!isExpanded)
+	}
+
+	const openPopup = () => {
+		setPopupOpen(true)
+	}
+
+	const closePopup = () => {
+		setPopupOpen(false)
+		setEmail('')
 	}
 
 	return (
@@ -36,11 +48,21 @@ const Employees = ({ data }) => {
 				className={`${cls.employeesCont} ${isExpanded ? cls.show : cls.hide}`}
 			>
 				{data?.map((employee) => (
-					<Employee key={employee.id} name={employee?.employee?.name} />
+					<Employee
+						key={employee.id}
+						name={employee?.employee_relationship?.name}
+					/>
 				))}
 
-				<button className={cls.addButton}>Добавить сотрудника</button>
+				<Button onClick={openPopup}>Добавить сотрудника</Button>
 			</div>
+
+			<EnterEmployeeEmail
+				email={email}
+				setEmail={setEmail}
+				isOpen={isPopupOpen}
+				onClose={closePopup}
+			/>
 		</div>
 	)
 }

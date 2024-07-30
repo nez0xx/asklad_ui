@@ -32,4 +32,8 @@ export default class WarehouseService {
 			`/products/change_amount?order_id=${product.order_id}&product_id=${product.product_id}&amount=${product.amount}`
 		)
 	}
+
+	static async addEmployeeToWarehouse(employee_email) {
+		return $api.post(`/warehouse/employee?employee_email=${employee_email}`)
+	}
 }

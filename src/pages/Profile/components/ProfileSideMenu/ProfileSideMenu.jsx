@@ -48,7 +48,14 @@ const ProfileSideMenu = () => {
 						</NavLink>
 					</li>
 					<li>
-						<NavLink to={'/login'}>Выйти</NavLink>
+						<NavLink
+							onClick={() => {
+								localStorage.clear()
+							}}
+							to={'/'}
+						>
+							Выйти
+						</NavLink>
 					</li>
 				</ul>
 			</nav>

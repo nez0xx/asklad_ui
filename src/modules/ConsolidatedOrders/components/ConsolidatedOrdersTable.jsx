@@ -16,7 +16,6 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders }) => {
 	const { mutate, isLoading } = useMutation({
 		mutationFn: deleteConsolidatedOrder,
 		onSuccess: (data) => {
-			console.log(data)
 			toast.update(toastId, {
 				render: 'Deleted successfully',
 				isLoading: false,
@@ -27,7 +26,6 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders }) => {
 			queryClient.invalidateQueries(['warehouse-consolidated-orders'])
 		},
 		onError: (data) => {
-			console.log(data)
 			toast.update(toastId, {
 				render: 'Failed to delete',
 				isLoading: false,
@@ -55,14 +53,13 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders }) => {
 	}
 
 	React.useEffect(() => {
-		console.log('Hello')
+		;('Hello')
 		const rows = document.querySelectorAll(`#consolidated-table-row`)
 		rows.forEach((row) => {
 			const tds = row.querySelectorAll(`.${cls.td}`)
 			tds.forEach((td, index) => {
 				if (index < tds.length) {
 					td.addEventListener('mouseenter', () => {
-						console.log('hellow')
 						tds.forEach((innerTd, innerIndex) => {
 							if (innerIndex < tds.length) {
 								innerTd.classList.add(cls.tdHoverEffect)

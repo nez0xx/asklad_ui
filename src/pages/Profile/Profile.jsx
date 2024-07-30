@@ -11,9 +11,6 @@ const Profile = () => {
 	const {} = useQuery({
 		queryKey: ['check-auth'],
 		queryFn: checkAuth,
-		onSuccess: (data) => {
-			console.log(data)
-		},
 	})
 
 	return (

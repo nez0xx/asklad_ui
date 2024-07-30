@@ -17,9 +17,7 @@ const RegisterForm = () => {
 
 	const { mutate } = useMutation({
 		mutationFn: register,
-		onSuccess: (data) => {
-			console.log(data)
-		},
+		onSuccess: (data) => {},
 	})
 
 	function handleRegister(e) {

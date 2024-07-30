@@ -7,7 +7,6 @@ import cls from './ResetPassword.module.css'
 const ResetPassword = () => {
 	const { token } = useParams()
 
-	console.log(token)
 	return (
 		<div className='wrapper'>
 			<Header />

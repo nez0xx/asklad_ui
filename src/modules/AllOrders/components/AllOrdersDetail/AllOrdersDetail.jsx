@@ -8,7 +8,6 @@ import Button from '../../../../UI/Button/Button'
 import ChangeAmountModal from '../ChangeAmountModal/ChangeAmountModal'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-
 import cls from './AllOrdersDetail.module.css'
 
 const toastId = 'give-out-toast'
@@ -52,8 +51,6 @@ const AllOrdersDetail = ({ id, setId }, ref) => {
 		setSelectedProduct(product)
 		productAmountModal.current.showModal()
 	}
-
-	console.log(data)
 
 	let content
 	if (isLoading) {

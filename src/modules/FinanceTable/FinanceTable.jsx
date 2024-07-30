@@ -2,7 +2,6 @@ import React from 'react'
 import cls from './FinanceTable.module.css'
 
 export const FinanceTable = ({ orders }) => {
-	console.log(orders)
 	return (
 		<table className={cls.table}>
 			<thead>

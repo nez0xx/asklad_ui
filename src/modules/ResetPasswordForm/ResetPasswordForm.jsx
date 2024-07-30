@@ -29,8 +29,6 @@ const ResetPasswordForm = () => {
 		},
 	})
 
-	console.log(password)
-
 	const handleFormSubmit = (e) => {
 		e.preventDefault()
 		if (password !== confirmedPassword) {

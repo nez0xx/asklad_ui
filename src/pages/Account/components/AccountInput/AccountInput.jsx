@@ -35,7 +35,6 @@ const AccountInput = ({
 		focusInput()
 		setEditing(true)
 		if (type === 'password') {
-			console.log('here')
 			setValue('')
 			setEnterNewPassword(true)
 			setResetPressed(true)

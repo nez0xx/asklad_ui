@@ -73,8 +73,6 @@ const Account = () => {
 		setPassword('--------')
 	}
 
-	console.log(isNewPasswordEditing)
-
 	return (
 		<section className={cls.section}>
 			<h1 className={cls.title}>Личный кабинет</h1>

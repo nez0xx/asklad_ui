@@ -23,7 +23,6 @@ const AddOrderForm = () => {
 			})
 		},
 		onSuccess: (data) => {
-			console.log(data)
 			toast.update(toastId, {
 				containerId,
 				autoClose: 1000,
