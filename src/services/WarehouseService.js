@@ -36,4 +36,8 @@ export default class WarehouseService {
 	static async addEmployeeToWarehouse(employee_email) {
 		return $api.post(`/warehouse/employee?employee_email=${employee_email}`)
 	}
+
+	static async deleteEmployeeFromWarehouse(employee_id) {
+		return $api.delete(`/warehouse/employee?employee_id=${employee_id}`)
+	}
 }

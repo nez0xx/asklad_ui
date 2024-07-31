@@ -50,6 +50,7 @@ const Employees = ({ data }) => {
 				{data?.map((employee) => (
 					<Employee
 						key={employee.id}
+						id={employee.id}
 						name={employee?.employee_relationship?.name}
 					/>
 				))}

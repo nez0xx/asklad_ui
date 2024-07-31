@@ -11,11 +11,12 @@ import OrdersOfConsolidatedOrder from './pages/OrdersOfConsolidatedOrder/OrdersO
 import Issuance from './pages/Issuance/Issuance'
 import Account from './pages/Account/Account'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
-import { SuccessfulRegistration } from './pages/SuccessfulRegistration/SuccessfulRegistration'
-import 'react-toastify/dist/ReactToastify.css'
+import SuccessfulRegistration from './pages/SuccessfulRegistration/SuccessfulRegistration'
 import ConfirmEmail from './pages/ConfirmEmail/ConfirmEmail'
 import EnterEmail from './pages/EnterEmail/EnterEmail'
 import EmailSent from './pages/EmailSent/EmailSent'
+import ConfirmEmployee from './pages/ConfirmEmployee/ConfirmEmployee'
+import 'react-toastify/dist/ReactToastify.css'
 
 const router = createHashRouter([
 	{ path: '/', element: <Login /> },
@@ -25,6 +26,7 @@ const router = createHashRouter([
 	{ path: '/email_sent', element: <EmailSent /> },
 	{ path: '/successful_registration', element: <SuccessfulRegistration /> },
 	{ path: '/confirm_email/:token', element: <ConfirmEmail /> },
+	{ path: '/invite/:token', element: <ConfirmEmployee /> },
 	{
 		path: '/profile',
 		element: <Profile />,

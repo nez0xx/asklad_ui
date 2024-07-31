@@ -5,7 +5,7 @@ import { Icon } from '@iconify/react/dist/iconify.js'
 import cls from './SuccessfulRegistration.module.css'
 import Header from '../../modules/Header/Header'
 
-export const SuccessfulRegistration = () => {
+const SuccessfulRegistration = () => {
 	const navigate = useNavigate()
 	return (
 		<div>
@@ -48,3 +48,5 @@ export const SuccessfulRegistration = () => {
 		</div>
 	)
 }
+
+export default SuccessfulRegistration
