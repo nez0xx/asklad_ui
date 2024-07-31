@@ -22,14 +22,15 @@ const Header = () => {
 						/>
 						Поддержкаd
 					</a>
-					{location.pathname !== '/' && location.pathname !== '/register' && (
-						<Link to='/profile/account' className={cls.userName}>
-							<div className={cls.text}>
-								{!isLoading ? data.name : 'Loading...'}
-							</div>
-							<div className={cls.image}></div>
-						</Link>
-					)}
+					{location.pathname !== '/login' &&
+						location.pathname !== '/register' && (
+							<Link to='/profile/account' className={cls.userName}>
+								<div className={cls.text}>
+									{!isLoading ? data.name : 'Loading...'}
+								</div>
+								<div className={cls.image}></div>
+							</Link>
+						)}
 				</div>
 			</div>
 		</header>

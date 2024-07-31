@@ -34,7 +34,7 @@ const RegisterForm = () => {
 		<form className={cls.form} onSubmit={handleRegister}>
 			<div className={cls.title}>
 				<div>
-					<Link to='/'>
+					<Link to='/login'>
 						<Icon
 							icon='mdi:chevron-left'
 							width='25px'
@@ -80,7 +80,7 @@ const RegisterForm = () => {
 			<div className={cls.alreadySignedUpBlock}>
 				<div>
 					<div>Уже зарегистрировались?</div>
-					<Link to='/'>Войти</Link>
+					<Link to='/login'>Войти</Link>
 				</div>
 			</div>
 		</form>

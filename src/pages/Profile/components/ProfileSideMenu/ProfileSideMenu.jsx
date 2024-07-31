@@ -52,7 +52,7 @@ const ProfileSideMenu = () => {
 							onClick={() => {
 								localStorage.clear()
 							}}
-							to={'/'}
+							to={'/login'}
 						>
 							Выйти
 						</NavLink>

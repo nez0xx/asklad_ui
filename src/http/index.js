@@ -1,15 +1,15 @@
-import axios from 'axios';
+import axios from 'axios'
 
-export const API_URL = 'http://185.119.59.5';
+export const API_URL = 'http://185.119.59.5:9998'
 
 const $api = axios.create({
 	withCredentials: true,
 	baseURL: API_URL,
-});
+})
 
 $api.interceptors.request.use((config) => {
-	config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
-	return config;
-});
+	config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
+	return config
+})
 
-export default $api;
+export default $api

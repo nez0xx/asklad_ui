@@ -17,9 +17,11 @@ import EnterEmail from './pages/EnterEmail/EnterEmail'
 import EmailSent from './pages/EmailSent/EmailSent'
 import ConfirmEmployee from './pages/ConfirmEmployee/ConfirmEmployee'
 import 'react-toastify/dist/ReactToastify.css'
+import Landing from './pages/Landing/Landing'
 
 const router = createHashRouter([
-	{ path: '/', element: <Login /> },
+	{ path: '/', element: <Landing /> },
+	{ path: '/login', element: <Login /> },
 	{ path: '/register', element: <Register /> },
 	{ path: '/reset_password/:token', element: <ResetPassword /> },
 	{ path: '/enter_email', element: <EnterEmail /> },

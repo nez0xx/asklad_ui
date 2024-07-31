@@ -19,7 +19,7 @@ const ResetPasswordForm = () => {
 		onSuccess: () => {
 			toast.success('Сброс пароля успешен!', {
 				autoClose: 500,
-				onClose: () => navigate('/'),
+				onClose: () => navigate('/login'),
 			})
 		},
 		onError: () => {
@@ -47,7 +47,7 @@ const ResetPasswordForm = () => {
 				<form className={cls.form} onSubmit={handleFormSubmit}>
 					<div className={cls.title}>
 						<div>
-							<Link to='/'>
+							<Link to='/login'>
 								<Icon
 									icon='mdi:chevron-left'
 									width='25px'

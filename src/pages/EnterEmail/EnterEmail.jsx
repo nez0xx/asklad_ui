@@ -49,7 +49,7 @@ const EnterEmail = () => {
 				<form className={cls.form} onSubmit={sentResetPasswordRequest}>
 					<div className={cls.title}>
 						<div>
-							<Link to='/'>
+							<Link to='/login'>
 								<Icon
 									icon='mdi:chevron-left'
 									width='25px'
@@ -57,7 +57,7 @@ const EnterEmail = () => {
 									color='#000464'
 								/>
 							</Link>
-							<h2>Вход в аккаунт</h2>
+							<h2>Введите email</h2>
 						</div>
 					</div>
 
