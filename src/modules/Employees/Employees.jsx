@@ -23,6 +23,8 @@ const Employees = ({ data }) => {
 		setEmail('')
 	}
 
+	console.log(data, 'employees')
+
 	return (
 		<div className={cls.Employees}>
 			<h2
@@ -49,8 +51,8 @@ const Employees = ({ data }) => {
 			>
 				{data?.map((employee) => (
 					<Employee
-						key={employee.id}
-						id={employee.id}
+						key={employee?.employee_relationship?.id}
+						id={employee?.employee_relationship?.id}
 						name={employee?.employee_relationship?.name}
 					/>
 				))}
