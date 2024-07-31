@@ -20,7 +20,7 @@ const Header = () => {
 							width='25px'
 							height='25px'
 						/>
-						Поддержкаd
+						Поддержка
 					</a>
 					{location.pathname !== '/login' &&
 						location.pathname !== '/register' && (
