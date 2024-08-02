@@ -16,8 +16,9 @@ import ConfirmEmail from './pages/ConfirmEmail/ConfirmEmail'
 import EnterEmail from './pages/EnterEmail/EnterEmail'
 import EmailSent from './pages/EmailSent/EmailSent'
 import ConfirmEmployee from './pages/ConfirmEmployee/ConfirmEmployee'
-import 'react-toastify/dist/ReactToastify.css'
+import RegistrationEmailSent from './pages/RegistrationEmailSent/RegistrationEmailSent'
 import Landing from './pages/Landing/Landing'
+import 'react-toastify/dist/ReactToastify.css'
 
 const router = createHashRouter([
 	{ path: '/', element: <Landing /> },
@@ -26,6 +27,7 @@ const router = createHashRouter([
 	{ path: '/reset_password/:token', element: <ResetPassword /> },
 	{ path: '/enter_email', element: <EnterEmail /> },
 	{ path: '/email_sent', element: <EmailSent /> },
+	{ path: '/confirm_email_sent', element: <RegistrationEmailSent /> },
 	{ path: '/successful_registration', element: <SuccessfulRegistration /> },
 	{ path: '/confirm_email/:token', element: <ConfirmEmail /> },
 	{ path: '/invite/:token', element: <ConfirmEmployee /> },

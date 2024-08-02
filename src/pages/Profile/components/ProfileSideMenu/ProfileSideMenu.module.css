@@ -30,6 +30,10 @@
 	margin-bottom: 13px;
 }
 
+.navList li img {
+	width: 25px;
+}
+
 .navList li:last-child {
 	margin-top: auto;
 	color: var(--secondary-text-color);
@@ -38,7 +42,9 @@
 .navigation a {
 	width: 100%;
 	padding: 15px;
-	display: block;
+	display: flex;
+	align-items: center;
+	column-gap: 15px;
 	text-decoration: none;
 	color: inherit;
 }

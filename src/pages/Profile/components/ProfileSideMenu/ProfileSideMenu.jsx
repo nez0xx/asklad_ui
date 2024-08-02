@@ -1,5 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import home from '../../assets/home.svg'
+import orders from '../../assets/orders.svg'
+import add_order from '../../assets/add_order.svg'
+import finance from '../../assets/finance.svg'
+import give_out from '../../assets/give_out.svg'
 import cls from './ProfileSideMenu.module.css'
 
 const ProfileSideMenu = () => {
@@ -12,7 +17,8 @@ const ProfileSideMenu = () => {
 							className={({ isActive }) => (isActive ? cls.active : '')}
 							to={'orders'}
 						>
-							Заказы
+							<img src={orders} alt='orders' />
+							<div>Заказы</div>
 						</NavLink>
 					</li>
 					<li>
@@ -20,7 +26,8 @@ const ProfileSideMenu = () => {
 							className={({ isActive }) => (isActive ? cls.active : '')}
 							to={'warehouse'}
 						>
-							Склад
+							<img src={home} alt='home' />
+							<div>Склад</div>
 						</NavLink>
 					</li>
 					<li>
@@ -28,7 +35,8 @@ const ProfileSideMenu = () => {
 							className={({ isActive }) => (isActive ? cls.active : '')}
 							to={'new_order'}
 						>
-							Добавить заказ
+							<img src={add_order} alt='add_order' />
+							<div>Добавить заказ</div>
 						</NavLink>
 					</li>
 					<li>
@@ -36,7 +44,8 @@ const ProfileSideMenu = () => {
 							className={({ isActive }) => (isActive ? cls.active : '')}
 							to={'finance'}
 						>
-							Финансы
+							<img src={finance} alt='finance' />
+							<div>Финансы</div>
 						</NavLink>
 					</li>
 					<li>
@@ -44,7 +53,8 @@ const ProfileSideMenu = () => {
 							className={({ isActive }) => (isActive ? cls.active : '')}
 							to={'issuance'}
 						>
-							Выдача
+							<img src={give_out} alt='give_out' />
+							<div>Выдача</div>
 						</NavLink>
 					</li>
 					<li>

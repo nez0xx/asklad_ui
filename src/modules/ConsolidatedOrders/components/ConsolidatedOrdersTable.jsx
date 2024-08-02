@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../../UI/Button/Button'
 import { Icon } from '@iconify/react/dist/iconify.js'
@@ -6,6 +6,7 @@ import { useMutation, useQueryClient } from 'react-query'
 import { deleteConsolidatedOrder } from '../api/deleteConsolidatedOrder'
 import { toast, ToastContainer } from 'react-toastify'
 import cls from './ConsolidatedOrdersTable.module.css'
+import Checkbox from '../../../UI/Checkbox/Checkbox'
 
 const containerId = 'consolidated-orders-table-toast-container'
 const toastId = 'consolidated-orders-table-toast'
@@ -40,7 +41,7 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders }) => {
 		navigate(`/profile/order/${id}`)
 	}
 
-	function handleDeleteConsilidatedOrder(id) {
+	function handleDeleteConsolidatedOrder(id) {
 		mutate(id)
 	}
 
@@ -52,8 +53,7 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders }) => {
 		})
 	}
 
-	React.useEffect(() => {
-		;('Hello')
+	useEffect(() => {
 		const rows = document.querySelectorAll(`#consolidated-table-row`)
 		rows.forEach((row) => {
 			const tds = row.querySelectorAll(`.${cls.td}`)
@@ -77,6 +77,18 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders }) => {
 			})
 		})
 	}, [])
+
+	const [chosenList, setChosenList] = useState([])
+
+	const handleCheckboxChange = (id, checked) => {
+		if (checked) {
+			setChosenList((prevList) => [...prevList, id])
+		} else {
+			setChosenList((prevList) => prevList.filter((itemId) => itemId !== id))
+		}
+	}
+
+	console.log(chosenList)
 
 	return (
 		<>
@@ -126,10 +138,18 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders }) => {
 									? order.delivery_date.split('-').reverse().join('.')
 									: ''}
 							</td>
+							<td className={cls.tickTd}>
+								<Checkbox
+									checked={chosenList.includes(order.id)}
+									onChange={(checked) =>
+										handleCheckboxChange(order.id, checked)
+									}
+								/>
+							</td>
 							<td className={cls.deleteTd}>
 								<Button
-									className={cls.dleteButton}
-									onClick={() => handleDeleteConsilidatedOrder(order.id)}
+									className={cls.deleteButton}
+									onClick={() => handleDeleteConsolidatedOrder(order.id)}
 								>
 									<Icon icon='mi:delete' width='25px' height='25px' />
 								</Button>
@@ -138,6 +158,9 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders }) => {
 					))}
 				</tbody>
 			</table>
+			<div>
+				<Button>Сгенерировать excel</Button>
+			</div>
 			<ToastContainer containerId={containerId} />
 		</>
 	)

@@ -3,6 +3,7 @@
 	border-spacing: 0;
 	width: 100%;
 	overflow: hidden;
+	margin-bottom: 20px;
 }
 
 .table thead {
@@ -39,7 +40,7 @@
 	border-bottom-left-radius: 15px;
 }
 
-.table tr:last-child td:nth-last-child(2) {
+.table tr:last-child td:nth-last-child(3) {
 	border-bottom-right-radius: 15px;
 }
 
@@ -48,15 +49,16 @@
 }
 
 .table td {
-	font-size: 14px;
+	font-size: 15px;
 }
 
-.table .deleteTd {
+.table .deleteTd,
+.table .tickTd {
 	border: none;
 	width: 50px;
 }
 
-.dleteButton {
+.deleteButton {
 	background: red;
 	color: white;
 	padding: 0;

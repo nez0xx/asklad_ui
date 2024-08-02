@@ -6,7 +6,7 @@ import { getOrderDetail } from '../../api/getOrderDetail'
 import { giveOutOrder } from '../../api/giveOutOrder'
 import Button from '../../../../UI/Button/Button'
 import ChangeAmountModal from '../ChangeAmountModal/ChangeAmountModal'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import cls from './AllOrdersDetail.module.css'
 
@@ -128,7 +128,6 @@ const AllOrdersDetail = ({ id, setId }, ref) => {
 				{content}
 				<ChangeAmountModal ref={productAmountModal} product={selectedProduct} />
 			</Modal>
-			<ToastContainer />
 		</>
 	)
 }

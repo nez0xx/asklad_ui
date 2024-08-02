@@ -15,6 +15,7 @@ const AccountInput = ({
 	const inputRef = React.useRef(null)
 
 	const typeToLabelMap = {
+		email: 'Email',
 		new_password: 'Новый пароль',
 		name: 'Имя',
 		password: 'Пароль',
@@ -59,14 +60,16 @@ const AccountInput = ({
 					onMouseDown={(e) => e.preventDefault()}
 					onChange={(e) => changeInputValue(e)}
 				/>
-				{isEditing ? (
+				{isEditing && type !== 'email' ? (
 					<Button onClick={confirmInputChange} className={cls.button}>
 						Подтвердить
 					</Button>
 				) : (
-					<Button onClick={startInputChange} className={cls.button}>
-						{type !== 'password' ? 'Изменить' : 'Сбросить'}
-					</Button>
+					type !== 'email' && (
+						<Button onClick={startInputChange} className={cls.button}>
+							{type !== 'password' ? 'Изменить' : 'Сбросить'}
+						</Button>
+					)
 				)}
 			</div>
 		</div>

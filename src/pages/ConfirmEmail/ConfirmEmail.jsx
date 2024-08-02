@@ -11,18 +11,15 @@ const ConfirmEmail = () => {
 	const { token } = useParams()
 	const navigate = useNavigate()
 
-	const { mutate, isLoading, isSuccess, isError, error } = useMutation(
-		() => confirmEmail(token),
-		{
-			onSuccess: () => {
-				toast.success('Email confirmed successfully!')
-				navigate('/successful_registration')
-			},
-			onError: (error) => {
-				toast.error(`Error: ${error.message}`)
-			},
-		}
-	)
+	const { mutate, isLoading } = useMutation(() => confirmEmail(token), {
+		onSuccess: () => {
+			toast.success('Email confirmed successfully!')
+			navigate('/successful_registration')
+		},
+		onError: (error) => {
+			toast.error(`Error: ${error.message}`)
+		},
+	})
 
 	const handleConfirmEmail = () => {
 		mutate()
@@ -32,9 +29,6 @@ const ConfirmEmail = () => {
 			<ToastContainer />
 			<div>
 				<h1 className={cls.title}>Спасибо за регестрацию</h1>
-				{isError && (
-					<div className={cls.errorMessage}>Error: {error.message}</div>
-				)}
 				<div className={cls.button}>
 					<Button onClick={handleConfirmEmail} disabled={isLoading}>
 						{isLoading ? 'Подтверждение...' : 'Подтвердите почту'}

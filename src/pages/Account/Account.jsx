@@ -12,6 +12,7 @@ import cls from './Account.module.css'
 const Account = () => {
 	const queryClient = useQueryClient()
 	const [name, setName] = React.useState('Loading')
+	const [email, setEmail] = React.useState('Loading')
 	const [initialName, setInitialName] = React.useState('')
 	const [password, setPassword] = React.useState('--------')
 	const [newPassword, setNewPassword] = React.useState('')
@@ -25,6 +26,7 @@ const Account = () => {
 		onSuccess: (data) => {
 			setName(data.name)
 			setInitialName(data.name)
+			setEmail(data.email)
 		},
 	})
 
@@ -78,6 +80,7 @@ const Account = () => {
 			<h1 className={cls.title}>Личный кабинет</h1>
 			<p className={cls.info}>Информация об аккаунте</p>
 			<div className={cls.inputs}>
+				<AccountInput type='email' value={email} />
 				<AccountInput
 					type='name'
 					value={name}

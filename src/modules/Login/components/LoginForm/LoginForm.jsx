@@ -2,11 +2,12 @@ import { useState } from 'react'
 import Button from '../../../../UI/Button/Button'
 import Input from '../../../../UI/Input/Input'
 import { Icon } from '@iconify/react/dist/iconify.js'
-
-import cls from './LoginForm.module.css'
 import { useMutation } from 'react-query'
 import { login } from '../../api/login'
 import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import cls from './LoginForm.module.css'
 
 const LoginForm = () => {
 	const [email, setEmail] = useState('')
@@ -17,7 +18,15 @@ const LoginForm = () => {
 		mutationFn: login,
 		onSuccess: (result) => {
 			localStorage.setItem('token', result.data.access_token)
-			navigate('/profile/orders')
+			toast.success('Вы успешно вошли в систему!', {
+				autoClose: 1000,
+				onClose: () => navigate('/profile/orders'),
+			})
+		},
+		onError: (error) => {
+			toast.error(error?.response?.data?.detail || 'Ошибка входа', {
+				autoClose: 1000,
+			})
 		},
 	})
 
@@ -50,17 +59,18 @@ const LoginForm = () => {
 					onChange={(e) => setEmail(e.target.value)}
 				/>
 				<Input
-					id='Password'
+					id='password'
+					type='password'
 					label='Пароль'
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 				/>
-				<Button>Продолжить</Button>
+				<Button>Войти</Button>
 			</div>
 
 			<div className={cls.resetLinkBlock}>
 				<div>
-					<div>Забыли пароль? </div>
+					<div>Забыли пароль? </div>
 					<Link to='/enter_email'>Восстановить пароль</Link>
 				</div>
 			</div>

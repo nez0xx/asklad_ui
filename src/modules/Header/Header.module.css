@@ -24,9 +24,17 @@
 }
 
 .logo {
-	font-size: 30px;
+	font-size: 32px;
+	font-weight: 500;
 	color: var(--main-color);
 	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.logo img {
+	width: 38px;
 }
 
 .block {
@@ -38,12 +46,12 @@
 .userName {
 	display: flex;
 	align-items: center;
-	column-gap: 8px;
+	column-gap: 15px;
 }
 
-.block .image {
+.block .image img {
 	width: 30px;
-	height: 30px;
+	object-fit: cover;
 	border-radius: 100%;
-	background: gray;
+	transform: translateY(2px);
 }

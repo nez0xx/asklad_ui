@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import { useMutation } from 'react-query'
 import { register } from '../../api/register'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Input from '../../../../UI/Input/Input'
 import Button from '../../../../UI/Button/Button'
 import { Icon } from '@iconify/react/dist/iconify.js'
-
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import cls from './RegisterForm.module.css'
 
 const RegisterForm = () => {
+	const navigate = useNavigate()
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [confirmPassword, setConfirmPassword] = useState('')
@@ -17,13 +19,23 @@ const RegisterForm = () => {
 
 	const { mutate } = useMutation({
 		mutationFn: register,
-		onSuccess: (data) => {},
+		onSuccess: (data) => {
+			toast.success('Пользователь успешно создан', {
+				autoClose: 1000,
+				onClose: navigate('/confirm_email_sent'),
+			})
+		},
+		onError: (error) => {
+			toast.error(error?.response?.data?.detail || 'Неизвестная ошибка', {
+				autoClose: 1000,
+			})
+		},
 	})
 
 	function handleRegister(e) {
 		e.preventDefault()
 		if (password !== confirmPassword) {
-			setError('Passwords do not match')
+			setError('Пароли не совпадают')
 			return
 		}
 		setError('')
@@ -74,7 +86,7 @@ const RegisterForm = () => {
 					onChange={(e) => setConfirmPassword(e.target.value)}
 				/>
 				{error && <div className={cls.error}>{error}</div>}
-				<Button type='submit'>Register</Button>
+				<Button type='submit'>Зарегистрироваться</Button>
 			</div>
 
 			<div className={cls.alreadySignedUpBlock}>

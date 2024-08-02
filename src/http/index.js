@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const API_URL = 'http://185.119.59.5:9998'
+export const API_URL = 'https://api.asklad.pro/'
 
 const $api = axios.create({
 	withCredentials: true,
