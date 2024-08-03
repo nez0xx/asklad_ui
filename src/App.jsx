@@ -1,5 +1,8 @@
+// src/App.js
+
+import React from 'react'
 import { RouterProvider, createHashRouter } from 'react-router-dom'
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import Profile from './pages/Profile/Profile'
@@ -18,6 +21,7 @@ import EmailSent from './pages/EmailSent/EmailSent'
 import ConfirmEmployee from './pages/ConfirmEmployee/ConfirmEmployee'
 import RegistrationEmailSent from './pages/RegistrationEmailSent/RegistrationEmailSent'
 import Landing from './pages/Landing/Landing'
+import ProtectedRoute from './pages/ProtectedRoute/ProtectedRoute'
 import 'react-toastify/dist/ReactToastify.css'
 
 const router = createHashRouter([
@@ -33,15 +37,68 @@ const router = createHashRouter([
 	{ path: '/invite/:token', element: <ConfirmEmployee /> },
 	{
 		path: '/profile',
-		element: <Profile />,
+		element: (
+			<ProtectedRoute>
+				<Profile />
+			</ProtectedRoute>
+		),
 		children: [
-			{ path: 'orders', element: <Orders /> },
-			{ path: 'warehouse', element: <WareHouse /> },
-			{ path: 'new_order', element: <AddOrder /> },
-			{ path: 'order/:id', element: <OrdersOfConsolidatedOrder /> },
-			{ path: 'finance', element: <Finance /> },
-			{ path: 'issuance', element: <Issuance /> },
-			{ path: 'account', element: <Account /> },
+			{
+				path: 'orders',
+				element: (
+					<ProtectedRoute>
+						<Orders />
+					</ProtectedRoute>
+				),
+			},
+			{
+				path: 'warehouse',
+				element: (
+					<ProtectedRoute>
+						<WareHouse />
+					</ProtectedRoute>
+				),
+			},
+			{
+				path: 'new_order',
+				element: (
+					<ProtectedRoute>
+						<AddOrder />
+					</ProtectedRoute>
+				),
+			},
+			{
+				path: 'order/:id',
+				element: (
+					<ProtectedRoute>
+						<OrdersOfConsolidatedOrder />
+					</ProtectedRoute>
+				),
+			},
+			{
+				path: 'finance',
+				element: (
+					<ProtectedRoute>
+						<Finance />
+					</ProtectedRoute>
+				),
+			},
+			{
+				path: 'issuance',
+				element: (
+					<ProtectedRoute>
+						<Issuance />
+					</ProtectedRoute>
+				),
+			},
+			{
+				path: 'account',
+				element: (
+					<ProtectedRoute>
+						<Account />
+					</ProtectedRoute>
+				),
+			},
 		],
 	},
 ])

@@ -23,8 +23,6 @@ const Employees = ({ data }) => {
 		setEmail('')
 	}
 
-	console.log(data, 'employees')
-
 	return (
 		<div className={cls.Employees}>
 			<h2

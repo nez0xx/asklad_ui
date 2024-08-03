@@ -15,10 +15,6 @@ export default class WarehouseService {
 		})
 	}
 
-	static async deleteWarehouse() {
-		return $api.delete('/warehouse/')
-	}
-
 	static async createWarehouse(name) {
 		return $api.post(`/warehouse/?name=${name}`)
 	}

@@ -1,8 +1,12 @@
 import cls from './Button.module.css'
 
-const Button = ({ children, className, styles, ...props }) => {
+const Button = ({ children, red, className, styles, ...props }) => {
 	return (
-		<button style={styles} className={`${cls.button} ${className}`} {...props}>
+		<button
+			style={styles}
+			className={`${cls.button} ${red ? cls.red : ''} ${className}`}
+			{...props}
+		>
 			{children}
 		</button>
 	)

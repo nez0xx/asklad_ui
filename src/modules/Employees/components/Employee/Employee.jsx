@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css'
 import cls from './Employee.module.css'
 
 const Employee = ({ name, id }) => {
-	console.log(id)
 	const queryClient = useQueryClient()
 
 	const { mutate } = useMutation(deleteEmployee, {

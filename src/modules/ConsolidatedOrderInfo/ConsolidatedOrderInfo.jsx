@@ -1,23 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import OrdersTable from '../OrdersTable/OrdersTable'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useQuery, useMutation } from 'react-query'
 import { getConsolidatedOrderOrders } from './api/getConsolidatedOrderOrders'
 import { deliverConsolidatedOrder } from './api/deliverConsolidatedOrder'
+import { deleteConsolidatedOrder } from './api/deleteConsolidatedOrder' // Make sure the path is correct
 import Button from '../../UI/Button/Button'
 import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import DeleteModal from './components/DeleteModal' // Import the modal component
 import cls from './ConsolidatedOrderInfo.module.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 const ConsolidatedOrderInfo = () => {
 	const { id } = useParams()
+	const navigate = useNavigate() // To navigate programmatically
+	const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)
 
 	const { data, isLoading } = useQuery({
 		queryKey: ['consolidated-order-orders', id],
 		queryFn: () => getConsolidatedOrderOrders({ id }),
 	})
 
-	const { mutate, isLoading: isMutationLoading } = useMutation({
+	// UseMutation for delivery
+	const { mutate: deliverOrder, isLoading: isDelivering } = useMutation({
 		mutationFn: () => deliverConsolidatedOrder({ united_order_id: id }),
 		onSuccess: () => {
 			toast.success('Заказ доставлен успешно!', {
@@ -35,16 +40,47 @@ const ConsolidatedOrderInfo = () => {
 		},
 	})
 
+	// UseMutation for delete
+	const { mutate: deleteOrder, isLoading: isDeleting } = useMutation({
+		mutationFn: () => deleteConsolidatedOrder(id),
+		onSuccess: () => {
+			toast.success('Заказ удалён успешно!', {
+				autoClose: 1000,
+				toastId: id,
+			})
+			navigate('/profile/warehouse')
+		},
+		onError: (error) => {
+			toast.error(error?.response?.data?.detail || 'Ошибка удаления заказа', {
+				autoClose: 1000,
+				toastId: id,
+			})
+		},
+	})
+
 	const convertDate = (date) => {
 		return date.split('-').reverse().join('.')
 	}
 
 	const handleDeliverOrder = () => {
-		mutate()
+		deliverOrder()
+	}
+
+	const openDeletePopup = () => {
+		setDeleteModalOpen(true)
+	}
+
+	const closeDeletePopup = () => {
+		setDeleteModalOpen(false)
+	}
+
+	const handleDeleteOrder = () => {
+		deleteOrder()
+		closeDeletePopup()
 	}
 
 	if (isLoading) {
-		return <h1>Loading...</h1>
+		return <h1>Загрузка...</h1>
 	}
 
 	if (!data) {
@@ -57,13 +93,13 @@ const ConsolidatedOrderInfo = () => {
 				<div className={cls.container}>
 					<div className={cls.info}>
 						<div className={cls.status}>
-							<p>Статус:</p>{' '}
+							<p>Статус:</p>
 							<div
-								className={
+								className={`${
 									data.delivered
 										? 'banner delivered mx-auto'
 										: 'banner onTheWay mx-auto'
-								}
+								} ${cls.statusBlock}`}
 							>
 								{data?.delivered ? 'Доставлен' : 'В пути'}
 							</div>
@@ -84,13 +120,16 @@ const ConsolidatedOrderInfo = () => {
 						)}
 					</div>
 
-					{!data?.delivered && (
-						<div className={cls.button}>
-							<Button onClick={handleDeliverOrder} disabled={isMutationLoading}>
-								{isMutationLoading ? 'Loading...' : 'Доставить'}
+					<div className={cls.button}>
+						{!data?.delivered && (
+							<Button onClick={handleDeliverOrder} disabled={isDelivering}>
+								{isDelivering ? 'Загрузка...' : 'Доставить'}
 							</Button>
-						</div>
-					)}
+						)}
+						<Button red onClick={openDeletePopup}>
+							{isDeleting ? 'Загрузка...' : 'Удалить'}
+						</Button>
+					</div>
 				</div>
 
 				<OrdersTable
@@ -98,6 +137,12 @@ const ConsolidatedOrderInfo = () => {
 					delivered={data.delivered}
 				/>
 			</div>
+
+			<DeleteModal
+				isOpen={isDeleteModalOpen}
+				onClose={closeDeletePopup}
+				onConfirm={handleDeleteOrder}
+			/>
 		</>
 	)
 }

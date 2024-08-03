@@ -7,6 +7,10 @@ export default class OrdersService {
 		)
 	}
 
+	static async generateExcel(list) {
+		return $api.post('/orders/gen_excel', JSON.stringify(list))
+	}
+
 	static async uploadOrder(formData) {
 		return $api.post('/orders/upload', formData)
 	}

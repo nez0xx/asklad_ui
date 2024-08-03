@@ -1,0 +1,85 @@
+/* DeleteModal.module.css */
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.6); /* Darker background */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+	transition: opacity 0.3s ease; /* Smooth transition */
+}
+
+.modal {
+	background-color: #ffffff; /* White background */
+	padding: 30px;
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+	width: 500px;
+	max-width: 90%;
+	text-align: center; /* Center the text */
+	animation: slideIn 0.3s ease-out; /* Slide in animation */
+}
+
+@keyframes slideIn {
+	from {
+		transform: translateY(-30px); /* Slide from above */
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+h2 {
+	margin-bottom: 16px;
+	font-size: 24px;
+	color: #333;
+}
+
+p {
+	font-size: 18px;
+	color: #555;
+	margin-bottom: 24px;
+}
+
+.buttons {
+	display: flex;
+	justify-content: center;
+	gap: 15px; /* Space between buttons */
+}
+
+.confirmButton {
+	background-color: #ff4c4c; /* Bright red */
+	color: white;
+	padding: 12px 24px;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 16px;
+	transition: background-color 0.2s ease;
+}
+
+.confirmButton:hover {
+	background-color: #e04343; /* Darker red on hover */
+}
+
+.cancelButton {
+	background-color: #e0e0e0; /* Light grey */
+	color: #333;
+	padding: 12px 24px;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 16px;
+	transition: background-color 0.2s ease;
+}
+
+.cancelButton:hover {
+	background-color: #d5d5d5; /* Darker grey on hover */
+}

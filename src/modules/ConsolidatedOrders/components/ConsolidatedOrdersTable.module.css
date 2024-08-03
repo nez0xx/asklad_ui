@@ -3,7 +3,6 @@
 	border-spacing: 0;
 	width: 100%;
 	overflow: hidden;
-	margin-bottom: 20px;
 }
 
 .table thead {
@@ -40,7 +39,7 @@
 	border-bottom-left-radius: 15px;
 }
 
-.table tr:last-child td:nth-last-child(3) {
+.table tr:last-child td:nth-last-child(2) {
 	border-bottom-right-radius: 15px;
 }
 
@@ -74,4 +73,8 @@
 
 .td:hover {
 	cursor: pointer;
+}
+
+.btnDiv {
+	margin-bottom: 20px;
 }

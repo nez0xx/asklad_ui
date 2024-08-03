@@ -17,10 +17,22 @@
 .status {
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	column-gap: 10px;
+}
+.status p {
+	margin: 0;
+}
+.statusBlock {
+	font-size: 18px;
 }
 
 .status div {
 	margin: 0;
 	padding: 5px 10px;
+}
+
+.button {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }

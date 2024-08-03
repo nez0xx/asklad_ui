@@ -9,16 +9,12 @@ import cls from './WareHouseContent.module.css'
 import { changeWarehouseName } from './api/changeWarehouseName'
 import Button from '../../UI/Button/Button'
 import Modal from '../../UI/Modal/Modal'
-import { deleteWarehouse } from './api/deleteWarrehouse'
 import NoWarehouse from './components/NoWarehouse/NoWarehouse'
 import { toast, ToastContainer } from 'react-toastify'
 import ProductsInWareHouse from '../OrdersInWareHouse/ProductsInWareHouse'
 
-const containerId = 'delete-warehouse-toast-container'
-const toastId = 'delete-warehouse-toast'
 const WareHouseContent = () => {
 	const queryClient = useQueryClient()
-	const confirmDeleteModalref = useRef(null)
 	const { data, isLoading, isError, error } = useQuery({
 		queryKey: ['warehouse'],
 		queryFn: getWarehouse,
@@ -35,21 +31,6 @@ const WareHouseContent = () => {
 		onError: () => {},
 	})
 
-	const { mutate: mutateDeleteWarehouse } = useMutation({
-		mutationFn: deleteWarehouse,
-		onSuccess: () => {
-			queryClient.invalidateQueries(['warehouse'])
-		},
-		onError: () => [
-			toast.update(toastId, {
-				render: 'Failed delete',
-				isLoading: false,
-				containerId,
-				type: 'error',
-			}),
-		],
-	})
-
 	const [nameInputValue, setNameInputValue] = useState('')
 	const [isEditName, setIsEditName] = useState(false)
 
@@ -60,19 +41,6 @@ const WareHouseContent = () => {
 
 	function handleSaveName() {
 		mutate(nameInputValue)
-	}
-
-	function handleOpenDeleteModal() {
-		confirmDeleteModalref.current.showModal()
-	}
-
-	function handleDeleteWarehouse() {
-		mutateDeleteWarehouse()
-		toast('Deleting...', {
-			isLoading: true,
-			toastId,
-			containerId,
-		})
 	}
 
 	if (isLoading) {
@@ -126,25 +94,11 @@ const WareHouseContent = () => {
 			</div>
 
 			<Employees data={data.employees_details} />
-			<ConsolidatedOrders data={data.united_orders_relationship} />
+			<ConsolidatedOrders
+				acceptedBy={data?.employees_details[0]?.employee_relationship?.name}
+				data={data.united_orders_relationship}
+			/>
 			<ProductsInWareHouse />
-			{/* <Button onClick={handleOpenDeleteModal} className={cls.deleteBtn}>
-				Delete
-			</Button> */}
-			<Modal ref={confirmDeleteModalref}>
-				<div className={cls.modalBody}>
-					Are you sure?
-					<div className={cls.modalBtns}>
-						<Button onClick={handleDeleteWarehouse} className={cls.deleteBtn}>
-							Delete
-						</Button>
-						<Button onClick={() => confirmDeleteModalref.current.close()}>
-							Cancel
-						</Button>
-					</div>
-				</div>
-				<ToastContainer containerId={containerId} />
-			</Modal>
 		</>
 	)
 }

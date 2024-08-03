@@ -5,3 +5,7 @@
 	border: none;
 	color: var(--white);
 }
+
+.button.red {
+	background: #ed0800;
+}

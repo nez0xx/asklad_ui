@@ -28,10 +28,10 @@ const ConfirmEmail = () => {
 		<div className={cls.block}>
 			<ToastContainer />
 			<div>
-				<h1 className={cls.title}>Спасибо за регестрацию</h1>
+				<h1 className={cls.title}>Подтвердите почту</h1>
 				<div className={cls.button}>
 					<Button onClick={handleConfirmEmail} disabled={isLoading}>
-						{isLoading ? 'Подтверждение...' : 'Подтвердите почту'}
+						{isLoading ? 'Подтверждение...' : 'Подтвердить'}
 					</Button>
 				</div>
 			</div>

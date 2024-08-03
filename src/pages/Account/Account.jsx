@@ -60,11 +60,7 @@ const Account = () => {
 		}
 
 		if (resetPressed) {
-			if (password !== newPassword) {
-				toast.error('Пароли не совпадают', { autoClose: 1000 })
-			} else {
-				mutatePassword({ password, new_password: newPassword })
-			}
+			mutatePassword({ password, new_password: newPassword })
 		}
 
 		setNewPasswordEditing(false)
@@ -113,7 +109,6 @@ const Account = () => {
 			<Button onClick={saveChanges} className={cls.button}>
 				Сохранить
 			</Button>
-			<ToastContainer />
 		</section>
 	)
 }

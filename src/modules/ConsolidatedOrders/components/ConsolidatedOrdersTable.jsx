@@ -2,56 +2,51 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../../UI/Button/Button'
 import { Icon } from '@iconify/react/dist/iconify.js'
-import { useMutation, useQueryClient } from 'react-query'
-import { deleteConsolidatedOrder } from '../api/deleteConsolidatedOrder'
+// import { useMutation, useQueryClient } from 'react-query'
 import { toast, ToastContainer } from 'react-toastify'
-import cls from './ConsolidatedOrdersTable.module.css'
+// import { generateExcel } from '../api/generateExcel'
 import Checkbox from '../../../UI/Checkbox/Checkbox'
+import cls from './ConsolidatedOrdersTable.module.css'
 
 const containerId = 'consolidated-orders-table-toast-container'
 const toastId = 'consolidated-orders-table-toast'
 
-const ConsolidatedOrdersTable = ({ consolidatedOrders }) => {
-	const queryClient = useQueryClient()
+const ConsolidatedOrdersTable = ({ consolidatedOrders, acceptedBy }) => {
 	const navigate = useNavigate()
-	const { mutate, isLoading } = useMutation({
-		mutationFn: deleteConsolidatedOrder,
-		onSuccess: (data) => {
-			toast.update(toastId, {
-				render: 'Deleted successfully',
-				isLoading: false,
-				type: 'success',
-				containerId,
-				autoClose: 1000,
-			})
-			queryClient.invalidateQueries(['warehouse-consolidated-orders'])
-		},
-		onError: (data) => {
-			toast.update(toastId, {
-				render: 'Failed to delete',
-				isLoading: false,
-				type: 'error',
-				containerId,
-				autoClose: 1000,
-			})
-		},
-	})
+
+	// const { mutate, isLoading } = useMutation(generateExcel, {
+	// 	onSuccess: (data) => {
+	// 		const url = window.URL.createObjectURL(new Blob([data]))
+	// 		const link = document.createElement('a')
+	// 		link.href = url
+	// 		link.setAttribute('download', 'orders.xlsx')
+	// 		document.body.appendChild(link)
+	// 		link.click()
+	// 		link.remove()
+	// 		toast.success('Excel generated successfully', {
+	// 			containerId,
+	// 			autoClose: 1000,
+	// 		})
+	// 	},
+	// 	onError: () => {
+	// 		toast.error('Failed to generate Excel', {
+	// 			containerId,
+	// 			autoClose: 1000,
+	// 		})
+	// 	},
+	// })
 
 	function navigateToDetails(id) {
 		navigate(`/profile/order/${id}`)
 	}
 
-	function handleDeleteConsolidatedOrder(id) {
-		mutate(id)
-	}
-
-	if (isLoading) {
-		toast('Deleting', {
-			isLoading: true,
-			containerId,
-			toastId,
-		})
-	}
+	// if (isLoading) {
+	// 	toast('Deleting', {
+	// 		isLoading: true,
+	// 		containerId,
+	// 		toastId,
+	// 	})
+	// }
 
 	useEffect(() => {
 		const rows = document.querySelectorAll(`#consolidated-table-row`)
@@ -88,10 +83,11 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders }) => {
 		}
 	}
 
-	console.log(chosenList)
-
 	return (
 		<>
+			<div className={cls.btnDiv}>
+				<Button onClick={() => {}}>Сгенерировать excel</Button>
+			</div>
 			<table className={cls.table}>
 				<thead>
 					<tr>
@@ -99,6 +95,7 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders }) => {
 						<th>ID</th>
 						<th>Статус</th>
 						<th>Дата доставки</th>
+						<th>Принял</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -138,6 +135,7 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders }) => {
 									? order.delivery_date.split('-').reverse().join('.')
 									: ''}
 							</td>
+							<td className={cls.td}>{acceptedBy}</td>
 							<td className={cls.tickTd}>
 								<Checkbox
 									checked={chosenList.includes(order.id)}
@@ -146,21 +144,18 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders }) => {
 									}
 								/>
 							</td>
-							<td className={cls.deleteTd}>
+							{/* <td className={cls.deleteTd}>
 								<Button
 									className={cls.deleteButton}
 									onClick={() => handleDeleteConsolidatedOrder(order.id)}
 								>
 									<Icon icon='mi:delete' width='25px' height='25px' />
 								</Button>
-							</td>
+							</td> */}
 						</tr>
 					))}
 				</tbody>
 			</table>
-			<div>
-				<Button>Сгенерировать excel</Button>
-			</div>
 			<ToastContainer containerId={containerId} />
 		</>
 	)

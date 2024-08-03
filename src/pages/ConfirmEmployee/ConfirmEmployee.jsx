@@ -32,7 +32,6 @@ const ConfirmEmployee = () => {
 		mutate()
 	}
 
-	console.log(token)
 	return (
 		<div className={cls.block}>
 			<ToastContainer />
