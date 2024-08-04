@@ -21,6 +21,11 @@
 	font-size: 22px;
 }
 
+.table thead th:last-child {
+	border: none;
+	background: var(--white);
+}
+
 .table th,
 .table td {
 	padding: 11px 15px;
@@ -31,7 +36,7 @@
 	border-top-left-radius: 15px;
 }
 
-.table thead th:last-child {
+.table thead th:nth-last-child(2) {
 	border-top-right-radius: 15px;
 }
 
@@ -75,6 +80,8 @@
 	cursor: pointer;
 }
 
-.btnDiv {
-	margin-bottom: 20px;
+.lastTh {
+	display: flex;
+	column-gap: 20px;
+	cursor: pointer;
 }

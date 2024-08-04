@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../../UI/Button/Button'
-import { Icon } from '@iconify/react/dist/iconify.js'
-// import { useMutation, useQueryClient } from 'react-query'
+import { useMutation } from 'react-query'
 import { toast, ToastContainer } from 'react-toastify'
-// import { generateExcel } from '../api/generateExcel'
+import { generateExcel } from '../api/generateExcel'
 import Checkbox from '../../../UI/Checkbox/Checkbox'
+import excel from '../assets/excel.svg'
 import cls from './ConsolidatedOrdersTable.module.css'
 
 const containerId = 'consolidated-orders-table-toast-container'
@@ -13,40 +13,35 @@ const toastId = 'consolidated-orders-table-toast'
 
 const ConsolidatedOrdersTable = ({ consolidatedOrders, acceptedBy }) => {
 	const navigate = useNavigate()
+	const [showDownloadButton, setDownloadButton] = useState(false)
+	const [downloadUrl, setDownloadUrl] = useState(null)
 
-	// const { mutate, isLoading } = useMutation(generateExcel, {
-	// 	onSuccess: (data) => {
-	// 		const url = window.URL.createObjectURL(new Blob([data]))
-	// 		const link = document.createElement('a')
-	// 		link.href = url
-	// 		link.setAttribute('download', 'orders.xlsx')
-	// 		document.body.appendChild(link)
-	// 		link.click()
-	// 		link.remove()
-	// 		toast.success('Excel generated successfully', {
-	// 			containerId,
-	// 			autoClose: 1000,
-	// 		})
-	// 	},
-	// 	onError: () => {
-	// 		toast.error('Failed to generate Excel', {
-	// 			containerId,
-	// 			autoClose: 1000,
-	// 		})
-	// 	},
-	// })
+	console.log(downloadUrl)
+
+	const { mutate, isLoading } = useMutation(generateExcel, {
+		onSuccess: (data) => {
+			setDownloadButton(true)
+			const blob = new Blob([data], {
+				type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+			})
+			const url = URL.createObjectURL(blob)
+			setDownloadUrl(url)
+			toast.success('Excel успешно сгенерирован', {
+				containerId,
+				autoClose: 1000,
+			})
+		},
+		onError: (error) => {
+			toast.error(error?.response?.data?.detail || 'Неизвестная ошибка', {
+				autoClose: 1000,
+				toastId,
+			})
+		},
+	})
 
 	function navigateToDetails(id) {
 		navigate(`/profile/order/${id}`)
 	}
-
-	// if (isLoading) {
-	// 	toast('Deleting', {
-	// 		isLoading: true,
-	// 		containerId,
-	// 		toastId,
-	// 	})
-	// }
 
 	useEffect(() => {
 		const rows = document.querySelectorAll(`#consolidated-table-row`)
@@ -71,7 +66,13 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders, acceptedBy }) => {
 				}
 			})
 		})
-	}, [])
+
+		return () => {
+			if (downloadUrl) {
+				URL.revokeObjectURL(downloadUrl)
+			}
+		}
+	}, [downloadUrl])
 
 	const [chosenList, setChosenList] = useState([])
 
@@ -85,9 +86,6 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders, acceptedBy }) => {
 
 	return (
 		<>
-			<div className={cls.btnDiv}>
-				<Button onClick={() => {}}>Сгенерировать excel</Button>
-			</div>
 			<table className={cls.table}>
 				<thead>
 					<tr>
@@ -96,6 +94,20 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders, acceptedBy }) => {
 						<th>Статус</th>
 						<th>Дата доставки</th>
 						<th>Принял</th>
+						<th className={cls.lastTh}>
+							<Button
+								styles={{ fontSize: '17px' }}
+								onClick={() => mutate(chosenList)}
+								disabled={isLoading}
+							>
+								Сгенерировать excel
+							</Button>
+							{showDownloadButton && (
+								<a href={downloadUrl} download='orders.xlsx'>
+									<img src={excel} alt='Download Excel' />
+								</a>
+							)}
+						</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -144,14 +156,6 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders, acceptedBy }) => {
 									}
 								/>
 							</td>
-							{/* <td className={cls.deleteTd}>
-								<Button
-									className={cls.deleteButton}
-									onClick={() => handleDeleteConsolidatedOrder(order.id)}
-								>
-									<Icon icon='mi:delete' width='25px' height='25px' />
-								</Button>
-							</td> */}
 						</tr>
 					))}
 				</tbody>
