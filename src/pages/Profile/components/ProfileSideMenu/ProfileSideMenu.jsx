@@ -2,7 +2,6 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import home from '../../assets/home.svg'
 import orders from '../../assets/orders.svg'
-import add_order from '../../assets/add_order.svg'
 import finance from '../../assets/finance.svg'
 import give_out from '../../assets/give_out.svg'
 import cls from './ProfileSideMenu.module.css'
@@ -33,10 +32,10 @@ const ProfileSideMenu = () => {
 					<li>
 						<NavLink
 							className={({ isActive }) => (isActive ? cls.active : '')}
-							to={'new_order'}
+							to={'files'}
 						>
-							<img src={add_order} alt='add_order' />
-							<div>Добавить заказ</div>
+							<img src={give_out} alt='give_out' />
+							<div>Файлы</div>
 						</NavLink>
 					</li>
 					<li>
@@ -46,15 +45,6 @@ const ProfileSideMenu = () => {
 						>
 							<img src={finance} alt='finance' />
 							<div>Финансы</div>
-						</NavLink>
-					</li>
-					<li>
-						<NavLink
-							className={({ isActive }) => (isActive ? cls.active : '')}
-							to={'issuance'}
-						>
-							<img src={give_out} alt='give_out' />
-							<div>Выдача</div>
 						</NavLink>
 					</li>
 					<li>

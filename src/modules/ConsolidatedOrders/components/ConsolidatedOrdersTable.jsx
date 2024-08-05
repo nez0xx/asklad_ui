@@ -6,7 +6,6 @@ import { toast, ToastContainer } from 'react-toastify'
 import { generateExcel } from '../api/generateExcel'
 import Checkbox from '../../../UI/Checkbox/Checkbox'
 import { saveAs } from 'file-saver'
-import excel from '../assets/excel.svg'
 import cls from './ConsolidatedOrdersTable.module.css'
 
 const containerId = 'consolidated-orders-table-toast-container'
@@ -15,16 +14,14 @@ const toastId = 'consolidated-orders-table-toast'
 const ConsolidatedOrdersTable = ({ consolidatedOrders, acceptedBy }) => {
 	const navigate = useNavigate()
 	const [chosenList, setChosenList] = useState([])
-	const [isDownloadIcon, setDownloadIcon] = useState(false)
-	const [blob, setBlob] = useState(null)
 
 	const { mutate, isLoading } = useMutation(generateExcel, {
 		onSuccess: (data) => {
 			const blob = new Blob([data], {
 				type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
 			})
-			setBlob(blob)
-			setDownloadIcon(true)
+			saveAs(blob, 'Лист выдачи.xlsx')
+			setChosenList([])
 			toast.success('Excel успешно сгенерирован', {
 				containerId,
 				autoClose: 1000,
@@ -93,14 +90,6 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders, acceptedBy }) => {
 							>
 								Лист выдачи
 							</Button>
-							{isDownloadIcon && (
-								<img
-									src={excel}
-									onClick={() => saveAs(blob, 'Лист выдачи.xlsx')}
-									alt='Download Excel'
-									style={{ cursor: 'pointer', marginLeft: '10px' }}
-								/>
-							)}
 						</th>
 					</tr>
 				</thead>

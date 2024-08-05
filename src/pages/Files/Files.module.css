@@ -1,7 +1,7 @@
 .section {
 	padding: 0 20px;
 	padding-bottom: 40px;
-	width: 100%;
+	width: 60%;
 }
 
 .title {
@@ -11,4 +11,8 @@
 	padding: 24px 0;
 	border-bottom: 2px solid #e1e1e1;
 	margin-bottom: 36px;
+}
+
+.addOrderCont {
+	margin-bottom: 50px;
 }

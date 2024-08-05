@@ -8,10 +8,9 @@ import Register from './pages/Register/Register'
 import Profile from './pages/Profile/Profile'
 import Orders from './pages/Orders/Orders'
 import WareHouse from './pages/WareHouse/WareHouse'
-import AddOrder from './pages/AddOrder/AddOrder'
+import Files from './pages/Files/Files'
 import Finance from './pages/Finance/Finance'
 import OrdersOfConsolidatedOrder from './pages/OrdersOfConsolidatedOrder/OrdersOfConsolidatedOrder'
-import Issuance from './pages/Issuance/Issuance'
 import Account from './pages/Account/Account'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
 import SuccessfulRegistration from './pages/SuccessfulRegistration/SuccessfulRegistration'
@@ -26,8 +25,22 @@ import 'react-toastify/dist/ReactToastify.css'
 
 const router = createHashRouter([
 	{ path: '/', element: <Landing /> },
-	{ path: '/login', element: <Login /> },
-	{ path: '/register', element: <Register /> },
+	{
+		path: '/login',
+		element: (
+			<ProtectedRoute>
+				<Login />
+			</ProtectedRoute>
+		),
+	},
+	{
+		path: '/register',
+		element: (
+			<ProtectedRoute>
+				<Register />
+			</ProtectedRoute>
+		),
+	},
 	{ path: '/reset_password/:token', element: <ResetPassword /> },
 	{ path: '/enter_email', element: <EnterEmail /> },
 	{ path: '/email_sent', element: <EmailSent /> },
@@ -60,10 +73,10 @@ const router = createHashRouter([
 				),
 			},
 			{
-				path: 'new_order',
+				path: 'files',
 				element: (
 					<ProtectedRoute>
-						<AddOrder />
+						<Files />
 					</ProtectedRoute>
 				),
 			},
@@ -84,14 +97,6 @@ const router = createHashRouter([
 				),
 			},
 			{
-				path: 'issuance',
-				element: (
-					<ProtectedRoute>
-						<Issuance />
-					</ProtectedRoute>
-				),
-			},
-			{
 				path: 'account',
 				element: (
 					<ProtectedRoute>
@@ -104,6 +109,7 @@ const router = createHashRouter([
 ])
 
 const queryClient = new QueryClient()
+
 function App() {
 	return (
 		<QueryClientProvider client={queryClient}>

@@ -44,6 +44,7 @@ const AddOrderForm = () => {
 	function handleAddNewOrder(e) {
 		e.preventDefault()
 		const formData = new FormData(e.target)
+		console.log(formData)
 		mutate(formData)
 	}
 
@@ -73,7 +74,7 @@ const AddOrderForm = () => {
 							height='35px'
 							color='#0232ae'
 						/>
-						{filename ? filename : 'Drop or select from computer'}
+						{filename ? filename : 'Перетащите или загрузите с компьютера'}
 					</div>
 					<input
 						className={cls.fileUpload}
@@ -86,7 +87,7 @@ const AddOrderForm = () => {
 				</label>
 			</div>
 
-			<Button>Добавить</Button>
+			<Button>Добавить заказ</Button>
 			<ToastContainer containerId={containerId} />
 		</form>
 	)

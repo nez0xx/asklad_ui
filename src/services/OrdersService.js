@@ -15,6 +15,10 @@ export default class OrdersService {
 		return $api.post('/orders/upload', formData)
 	}
 
+	static async parsePdf(formData) {
+		return $api.post('/orders/parse_pdf/', formData, { responseType: 'blob' })
+	}
+
 	static async orderDetail(id) {
 		return $api.get(`/orders/${id}`)
 	}

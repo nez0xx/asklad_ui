@@ -126,9 +126,6 @@ const ConsolidatedOrderInfo = () => {
 								{isDelivering ? 'Загрузка...' : 'Доставить'}
 							</Button>
 						)}
-						<Button red onClick={openDeletePopup}>
-							{isDeleting ? 'Загрузка...' : 'Удалить'}
-						</Button>
 					</div>
 				</div>
 
@@ -136,6 +133,10 @@ const ConsolidatedOrderInfo = () => {
 					orders={data.orders_relationship}
 					delivered={data.delivered}
 				/>
+
+				<Button red onClick={openDeletePopup}>
+					{isDeleting ? 'Загрузка...' : 'Удалить'}
+				</Button>
 			</div>
 
 			<DeleteModal
