@@ -5,6 +5,7 @@ import { useMutation } from 'react-query'
 import { toast, ToastContainer } from 'react-toastify'
 import { generateExcel } from '../api/generateExcel'
 import Checkbox from '../../../UI/Checkbox/Checkbox'
+import { saveAs } from 'file-saver'
 import excel from '../assets/excel.svg'
 import cls from './ConsolidatedOrdersTable.module.css'
 
@@ -13,19 +14,17 @@ const toastId = 'consolidated-orders-table-toast'
 
 const ConsolidatedOrdersTable = ({ consolidatedOrders, acceptedBy }) => {
 	const navigate = useNavigate()
-	const [showDownloadButton, setDownloadButton] = useState(false)
-	const [downloadUrl, setDownloadUrl] = useState(null)
-
-	console.log(downloadUrl)
+	const [chosenList, setChosenList] = useState([])
+	const [isDownloadIcon, setDownloadIcon] = useState(false)
+	const [blob, setBlob] = useState(null)
 
 	const { mutate, isLoading } = useMutation(generateExcel, {
 		onSuccess: (data) => {
-			setDownloadButton(true)
 			const blob = new Blob([data], {
 				type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
 			})
-			const url = URL.createObjectURL(blob)
-			setDownloadUrl(url)
+			setBlob(blob)
+			setDownloadIcon(true)
 			toast.success('Excel успешно сгенерирован', {
 				containerId,
 				autoClose: 1000,
@@ -66,15 +65,7 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders, acceptedBy }) => {
 				}
 			})
 		})
-
-		return () => {
-			if (downloadUrl) {
-				URL.revokeObjectURL(downloadUrl)
-			}
-		}
-	}, [downloadUrl])
-
-	const [chosenList, setChosenList] = useState([])
+	}, [])
 
 	const handleCheckboxChange = (id, checked) => {
 		if (checked) {
@@ -100,12 +91,15 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders, acceptedBy }) => {
 								onClick={() => mutate(chosenList)}
 								disabled={isLoading}
 							>
-								Сгенерировать excel
+								Лист выдачи
 							</Button>
-							{showDownloadButton && (
-								<a href={downloadUrl} download='orders.xlsx'>
-									<img src={excel} alt='Download Excel' />
-								</a>
+							{isDownloadIcon && (
+								<img
+									src={excel}
+									onClick={() => saveAs(blob, 'Лист выдачи.xlsx')}
+									alt='Download Excel'
+									style={{ cursor: 'pointer', marginLeft: '10px' }}
+								/>
 							)}
 						</th>
 					</tr>

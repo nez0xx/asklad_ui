@@ -78,7 +78,9 @@ const EnterEmployeeEmail = ({ isOpen, onClose, email, setEmail }) => {
 						/>
 					</div>
 					<div className={cls.buttonBox}>
-						<Button onClick={sendAddEmployeeRequest}>Продолжить</Button>
+						<Button onClick={sendAddEmployeeRequest}>
+							Отправить приглашение
+						</Button>
 					</div>
 				</div>
 			</div>

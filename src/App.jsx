@@ -34,7 +34,7 @@ const router = createHashRouter([
 	{ path: '/confirm_email_sent', element: <RegistrationEmailSent /> },
 	{ path: '/successful_registration', element: <SuccessfulRegistration /> },
 	{ path: '/confirm_email/:token', element: <ConfirmEmail /> },
-	{ path: '/invite/:token', element: <ConfirmEmployee /> },
+	{ path: '/confirm_employee/:token', element: <ConfirmEmployee /> },
 	{
 		path: '/profile',
 		element: (

@@ -18,10 +18,7 @@ const LoginForm = () => {
 		mutationFn: login,
 		onSuccess: (result) => {
 			localStorage.setItem('token', result.data.access_token)
-			toast.success('Вы успешно вошли в систему!', {
-				autoClose: 1000,
-				onClose: () => navigate('/profile/orders'),
-			})
+			navigate('/profile/orders')
 		},
 		onError: (error) => {
 			toast.error(error?.response?.data?.detail || 'Ошибка входа', {

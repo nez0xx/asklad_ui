@@ -10,14 +10,15 @@
 	position: relative;
 }
 
+.employee p {
+	margin: 0;
+}
+
 .employee .employeePhoto {
 	width: 37px;
 	height: 37px;
 	border-radius: 50px;
 	background: #d9d9d9;
-}
-
-.employee p {
 }
 
 .deleteButton {
