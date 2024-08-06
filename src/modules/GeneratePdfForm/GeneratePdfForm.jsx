@@ -10,6 +10,8 @@ import cls from './GeneratePdfForm.module.css'
 const containerId = 'parse-pdf-toast-container'
 const toastId = 'parse-pdf-toast'
 
+const generateNewName = (filename) => filename.split('.')[0] + '_new'
+
 const GeneratePdfForm = () => {
 	const [filename, setFilename] = useState('')
 
@@ -17,7 +19,7 @@ const GeneratePdfForm = () => {
 		onSuccess: (data) => {
 			console.log(data)
 			const blob = new Blob([data], { type: 'application/pdf' })
-			saveAs(blob, `${filename}_new.pdf`)
+			saveAs(blob, generateNewName(filename))
 			toast.success('PDF успешно сгенерирован', {
 				containerId,
 				autoClose: 1000,

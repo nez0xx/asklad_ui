@@ -4,9 +4,9 @@ import Input from '../../../../UI/Input/Input'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import { useMutation } from 'react-query'
 import { login } from '../../api/login'
+import { getMe } from '../../api/getMe'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 import cls from './LoginForm.module.css'
 
 const LoginForm = () => {
@@ -16,9 +16,16 @@ const LoginForm = () => {
 
 	const { mutate } = useMutation({
 		mutationFn: login,
-		onSuccess: (result) => {
-			localStorage.setItem('token', result.data.access_token)
-			navigate('/profile/orders')
+		onSuccess: (data) => {
+			localStorage.setItem('token', data.access_token)
+
+			getMe()
+				.then((res) => {
+					localStorage.setItem('user', JSON.stringify(res))
+				})
+				.then(() => {
+					navigate('/profile/orders')
+				})
 		},
 		onError: (error) => {
 			toast.error(error?.response?.data?.detail || 'Ошибка входа', {

@@ -21,7 +21,7 @@ const RegisterForm = () => {
 		mutationFn: register,
 		onSuccess: (data) => {
 			toast.success('Пользователь успешно создан', {
-				autoClose: 1000,
+				autoClose: 500,
 				onClose: navigate('/confirm_email_sent'),
 			})
 		},

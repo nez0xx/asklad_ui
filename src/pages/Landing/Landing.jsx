@@ -1,11 +1,12 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useIntersection } from 'react-use'
 import Button from '../../UI/Button/Button'
 import logo from './assets/logo.png'
 import example from './assets/example.png'
 import excel from './assets/excel.png'
 import telegram from './assets/telegram.svg'
+import pdf from './Публичная_оферта.pdf'
 import cls from './Landing.module.css'
 
 const Landing = () => {
@@ -44,6 +45,11 @@ const Landing = () => {
 		advantagesIntersection?.isIntersecting,
 		feesIntersection?.isIntersecting,
 	])
+
+	const openPdf = (e) => {
+		e.preventDefault()
+		window.open(pdf, '_blank')
+	}
 
 	return (
 		<div className={cls.wrapper}>
@@ -249,6 +255,9 @@ const Landing = () => {
 						<p>Чугайнов Иван Дмитриевич</p>
 						<p>ИНН 590317755509</p>
 						<p>E-mail: askladrf@gmail.com</p>
+						<p style={{ cursor: 'pointer' }} onClick={openPdf}>
+							Публичная оферта
+						</p>
 					</div>
 
 					<div className={cls.feedback}>
@@ -264,7 +273,7 @@ const Landing = () => {
 							</div>
 							<div>Telegram</div>
 						</a>
-						<div>© 2024, А.Склад. Все права защищены</div>
+						<a>© 2024, А.Склад. Все права защищены</a>
 					</div>
 				</div>
 			</footer>

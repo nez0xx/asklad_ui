@@ -17,11 +17,6 @@ const SuccessfulRegistration = () => {
 						<Icon icon='mdi:check' width='55px' height='55px' color='#000464' />
 					</div>
 					<h1 className={cls.title}>Успешная регистрация</h1>
-					<p>
-						На Ваш электронный ящик отправлено письмо со ссылкой для
-						подтверждения регистрации. Подтвердите регистрацию и авторизуйтесь
-						на сайте. Если Вы не видите письма, проверьте папку со спамом.
-					</p>
 					<div className={cls.navigation}>
 						<div className={cls.navigationCont}>
 							<Link className={cls.register_link} to='/register'>
@@ -36,9 +31,9 @@ const SuccessfulRegistration = () => {
 							<div className={cls.homepage_link}>
 								<Button
 									className={cls.button}
-									onClick={() => navigate('/profile/orders')}
+									onClick={() => navigate('/login')}
 								>
-									На главную
+									Войти
 								</Button>
 							</div>
 						</div>

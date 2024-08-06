@@ -7,5 +7,5 @@ export async function login({ email, password }) {
 		throw new Error('Cant login')
 	}
 
-	return response
+	return response.data
 }

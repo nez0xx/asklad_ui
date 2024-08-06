@@ -13,11 +13,16 @@ const ConfirmEmail = () => {
 
 	const { mutate, isLoading } = useMutation(() => confirmEmail(token), {
 		onSuccess: () => {
-			toast.success('Email confirmed successfully!')
+			toast.success('Email подтвержден успешно', {
+				autoClose: 1000,
+			})
 			navigate('/successful_registration')
 		},
 		onError: (error) => {
-			toast.error(`Error: ${error.message}`)
+			toast.error(error?.response?.data?.detail || 'Неизвестная ошибка', {
+				autoClose: 1000,
+				toastId,
+			})
 		},
 	})
 

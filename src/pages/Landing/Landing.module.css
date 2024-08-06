@@ -220,10 +220,15 @@ html {
 .footer h4 {
 	font-size: 20px;
 	font-weight: 400;
-	margin-bottom: 5px;
+	margin-bottom: 10px;
 }
 .footer p {
 	font-size: 15px;
+	margin: 0;
+	color: var(--white);
+}
+.footer p:not(:last-child) {
+	margin-bottom: 5px;
 }
 .footer h4 span {
 	color: var(--main-color);

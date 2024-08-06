@@ -1,15 +1,13 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Icon } from '@iconify/react/dist/iconify.js'
-import { useQuery } from 'react-query'
-import { getMe } from './api/getMe'
 import logo from './assets/logo.svg'
-import user from './assets/user.jpg'
+import userImg from './assets/user.jpg'
 import cls from './Header.module.css'
 
 const Header = () => {
-	const { data, isLoading } = useQuery('getMe', getMe)
-	const location = useLocation()
+	const user = JSON.parse(localStorage.getItem('user'))
+	const token = localStorage.getItem('token')
 
 	return (
 		<header className={cls.header}>
@@ -27,17 +25,14 @@ const Header = () => {
 						/>
 						Поддержка
 					</a>
-					{location.pathname !== '/login' &&
-						location.pathname !== '/register' && (
-							<Link to='/profile/account' className={cls.userName}>
-								<div className={cls.text}>
-									{!isLoading ? data.name : 'Loading...'}
-								</div>
-								<div className={cls.image}>
-									<img src={user} alt='user' />
-								</div>
-							</Link>
-						)}
+					{token && (
+						<Link to='/profile/account' className={cls.userName}>
+							<div className={cls.text}>{user.name}</div>
+							<div className={cls.image}>
+								<img src={userImg} alt='user' />
+							</div>
+						</Link>
+					)}
 				</div>
 			</div>
 		</header>

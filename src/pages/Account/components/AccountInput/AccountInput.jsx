@@ -1,17 +1,7 @@
 import React from 'react'
-import Button from '../../../../UI/Button/Button'
 import cls from './AccountInput.module.css'
 
-const AccountInput = ({
-	type,
-	value,
-	setValue,
-	setEnterNewPassword,
-	isEditing,
-	setEditing,
-	setNewPasswordEditing,
-	setResetPressed,
-}) => {
+const AccountInput = ({ type, value, setValue, setPasswordClicked }) => {
 	const inputRef = React.useRef(null)
 
 	const typeToLabelMap = {
@@ -21,30 +11,8 @@ const AccountInput = ({
 		password: 'Пароль',
 	}
 
-	const focusInput = () => {
-		inputRef.current.focus()
-	}
-	const blurInput = () => {
-		inputRef.current.blur()
-	}
-
 	const changeInputValue = (event) => {
 		setValue(event.target.value)
-	}
-
-	const startInputChange = () => {
-		focusInput()
-		setEditing(true)
-		if (type === 'password') {
-			setValue('')
-			setEnterNewPassword(true)
-			setResetPressed(true)
-		}
-	}
-
-	const confirmInputChange = () => {
-		blurInput()
-		setEditing(false)
 	}
 
 	return (
@@ -57,20 +25,14 @@ const AccountInput = ({
 					className={cls.input}
 					value={value}
 					placeholder=' '
-					onMouseDown={(e) => e.preventDefault()}
+					onMouseDown={() => {
+						if (type === 'password') {
+							setPasswordClicked(true)
+							setValue('')
+						}
+					}}
 					onChange={(e) => changeInputValue(e)}
 				/>
-				{isEditing && type !== 'email' ? (
-					<Button onClick={confirmInputChange} className={cls.button}>
-						Подтвердить
-					</Button>
-				) : (
-					type !== 'email' && (
-						<Button onClick={startInputChange} className={cls.button}>
-							{type !== 'password' ? 'Изменить' : 'Сбросить'}
-						</Button>
-					)
-				)}
 			</div>
 		</div>
 	)
