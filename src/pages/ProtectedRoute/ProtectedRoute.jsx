@@ -5,6 +5,7 @@ import { Navigate, useLocation } from 'react-router-dom'
 const ProtectedRoute = ({ children }) => {
 	const { pathname } = useLocation()
 	const token = localStorage.getItem('token')
+	const user = localStorage.getItem('user')
 
 	const publicPaths = [
 		'/login',
@@ -18,11 +19,11 @@ const ProtectedRoute = ({ children }) => {
 		'/confirm_employee/:token',
 	]
 
-	if (!token && !publicPaths.includes(pathname)) {
+	if ((!token || !user) && !publicPaths.includes(pathname)) {
 		return <Navigate to='/login' replace />
 	}
 
-	if (token && (pathname === '/login' || pathname === '/register')) {
+	if (token && user && (pathname === '/login' || pathname === '/register')) {
 		return <Navigate to='/profile/orders' replace />
 	}
 
