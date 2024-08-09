@@ -35,7 +35,7 @@ const Header = () => {
 						</Link>
 					)}
 				</div>
-				<HamburgerIcon />
+				{token && <HamburgerIcon />}
 			</div>
 		</header>
 	)

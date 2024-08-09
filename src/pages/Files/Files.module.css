@@ -2,6 +2,7 @@
 	padding: 0 20px;
 	padding-bottom: 40px;
 	width: 60%;
+	margin: 0 auto;
 }
 
 .title {
@@ -15,4 +16,53 @@
 
 .addOrderCont {
 	margin-bottom: 50px;
+}
+
+@media (max-width: 1024px) {
+	.section {
+		width: 80%;
+	}
+
+	.title {
+		font-size: 30px;
+		padding: 20px 0;
+		margin-bottom: 30px;
+	}
+
+	.addOrderCont {
+		margin-bottom: 40px;
+	}
+}
+
+@media (max-width: 768px) {
+	.section {
+		width: 90%;
+	}
+
+	.title {
+		font-size: 26px;
+		padding: 18px 0;
+		margin-bottom: 25px;
+	}
+
+	.addOrderCont {
+		margin-bottom: 35px;
+	}
+}
+
+@media (max-width: 480px) {
+	.section {
+		width: 100%;
+		padding: 0 15px;
+	}
+
+	.title {
+		font-size: 22px;
+		padding: 16px 0;
+		margin-bottom: 20px;
+	}
+
+	.addOrderCont {
+		margin-bottom: 30px;
+	}
 }

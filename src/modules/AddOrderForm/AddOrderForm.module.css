@@ -24,6 +24,7 @@
 	border: 3px dashed var(--main-button-color);
 	border-radius: 10px;
 	cursor: pointer;
+	transition: height 0.3s ease;
 }
 
 .uploadCont {
@@ -41,10 +42,58 @@
 }
 
 .form {
-	width: 100%; /* Make sure the form takes full width */
+	width: 100%;
 }
 
 .form button {
 	width: max-content;
 	color: white;
+}
+
+@media (max-width: 1024px) {
+	.label {
+		font-size: 20px;
+		margin-bottom: 15px;
+	}
+
+	.fileUploadCont {
+		height: 180px;
+	}
+
+	.uploadCont {
+		font-size: 13px;
+		gap: 8px;
+	}
+}
+
+@media (max-width: 768px) {
+	.label {
+		font-size: 18px;
+		margin-bottom: 13px;
+	}
+
+	.fileUploadCont {
+		height: 160px;
+	}
+
+	.uploadCont {
+		font-size: 12px;
+		gap: 6px;
+	}
+}
+
+@media (max-width: 480px) {
+	.label {
+		font-size: 16px;
+		margin-bottom: 10px;
+	}
+
+	.fileUploadCont {
+		height: 140px;
+	}
+
+	.uploadCont {
+		font-size: 11px;
+		gap: 5px;
+	}
 }

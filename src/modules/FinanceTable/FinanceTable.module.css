@@ -2,7 +2,6 @@
 	border-collapse: separate;
 	border-spacing: 0;
 	width: 100%;
-	overflow: hidden;
 }
 
 .table thead {
@@ -54,6 +53,35 @@
 .row {
 	cursor: pointer;
 }
+
 .row:hover {
 	background: var(--secondary-color);
+}
+
+@media (max-width: 768px) {
+	.table thead th {
+		font-size: 18px;
+	}
+
+	.table th,
+	.table td {
+		padding: 8px 12px;
+		font-size: 14px;
+	}
+}
+
+@media (max-width: 480px) {
+	.table {
+		min-width: 100%; /* Ensure table fits small screens */
+	}
+
+	.table thead th {
+		font-size: 16px;
+	}
+
+	.table th,
+	.table td {
+		padding: 6px 10px;
+		font-size: 13px;
+	}
 }

@@ -27,7 +27,7 @@
 	border-radius: 10px;
 	height: 100%;
 	column-gap: 8px;
-	padding: 4px 8px; /* Added padding to keep consistency with the inputs */
+	padding: 4px 8px;
 }
 
 .dates .date {
@@ -52,13 +52,89 @@
 	background-color: transparent;
 	font-size: 14px;
 	cursor: pointer;
-	color: inherit; /* To inherit the font color */
+	color: inherit;
 }
 
 .input[type='date']::-webkit-calendar-picker-indicator {
 	filter: invert(0.5);
 }
 
+@media (max-width: 1024px) {
+	.section {
+		width: 80%;
+	}
+
+	.title {
+		font-size: 30px;
+		padding: 20px 0;
+		margin-bottom: 30px;
+	}
+
+	.totalTurnover {
+		font-size: 20px;
+		margin-bottom: 15px;
+	}
+}
+
+@media (max-width: 768px) {
+	.section {
+		width: 90%;
+	}
+
+	.title {
+		font-size: 26px;
+		padding: 18px 0;
+		margin-bottom: 25px;
+	}
+
+	.totalTurnover {
+		font-size: 18px;
+		margin-bottom: 12px;
+	}
+
+	.dates {
+		column-gap: 6px;
+		padding: 6px;
+	}
+
+	.dates .date {
+		font-size: 13px;
+		padding: 6px 8px;
+	}
+
+	.dates .icon {
+		transform: translateY(1px);
+	}
+}
+
+@media (max-width: 540px) {
+	.section {
+		width: 100%;
+		padding: 0 15px;
+	}
+
+	.title {
+		font-size: 22px;
+		padding: 16px 0;
+		margin-bottom: 20px;
+	}
+
+	.totalTurnover {
+		font-size: 16px;
+		margin-bottom: 10px;
+	}
+
+	.dates {
+		column-gap: 4px;
+		padding: 4px;
+	}
+
+	.dates .date {
+		font-size: 12px;
+		padding: 4px 6px;
+	}
+}
+
 .tableWrapper {
-	width: 70%;
+	width: 100%;
 }
