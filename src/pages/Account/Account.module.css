@@ -2,6 +2,7 @@
 	padding: 0 20px;
 	padding-bottom: 40px;
 	width: 70%;
+	margin: 0 auto;
 }
 
 .title {
@@ -25,4 +26,80 @@
 
 .button {
 	margin-top: 25px;
+}
+
+@media (max-width: 1024px) {
+	.section {
+		width: 80%;
+	}
+
+	.title {
+		font-size: 30px;
+		padding: 20px 0;
+		margin-bottom: 30px;
+	}
+
+	.info {
+		font-size: 22px;
+		margin-bottom: 20px;
+	}
+
+	.inputs {
+		gap: 15px;
+	}
+
+	.button {
+		margin-top: 20px;
+	}
+}
+
+@media (max-width: 768px) {
+	.section {
+		width: 90%;
+	}
+
+	.title {
+		font-size: 26px;
+		padding: 18px 0;
+		margin-bottom: 25px;
+	}
+
+	.info {
+		font-size: 20px;
+		margin-bottom: 18px;
+	}
+
+	.inputs {
+		gap: 13px;
+	}
+
+	.button {
+		margin-top: 18px;
+	}
+}
+
+@media (max-width: 480px) {
+	.section {
+		width: 100%;
+		padding: 0 15px;
+	}
+
+	.title {
+		font-size: 22px;
+		padding: 16px 0;
+		margin-bottom: 20px;
+	}
+
+	.info {
+		font-size: 18px;
+		margin-bottom: 15px;
+	}
+
+	.inputs {
+		gap: 12px;
+	}
+
+	.button {
+		margin-top: 15px;
+	}
 }
