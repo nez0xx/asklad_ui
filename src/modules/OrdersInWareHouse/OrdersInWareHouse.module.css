@@ -31,7 +31,9 @@
 	display: grid;
 	gap: 17px;
 	transition: max-height 0.5s ease, opacity 0.5s ease;
-	overflow: hidden;
+	width: 100%;
+	overflow-x: auto;
+	max-width: 100vw;
 }
 
 .ordersCont.show {
@@ -41,4 +43,49 @@
 .ordersCont.hide {
 	max-height: 0;
 	opacity: 0;
+}
+
+@media (max-width: 1024px) {
+	.OrdersInWareHouse {
+		gap: 8px;
+		margin: 15px 0;
+	}
+
+	.secondaryTitle {
+		font-size: 26px;
+	}
+
+	.secondaryTitle.expandedTitle {
+		margin-bottom: 15px;
+	}
+}
+
+@media (max-width: 768px) {
+	.OrdersInWareHouse {
+		gap: 7px;
+		margin: 12px 0;
+	}
+
+	.secondaryTitle {
+		font-size: 22px;
+	}
+
+	.secondaryTitle.expandedTitle {
+		margin-bottom: 12px;
+	}
+}
+
+@media (max-width: 480px) {
+	.OrdersInWareHouse {
+		gap: 5px;
+		margin: 10px 0;
+	}
+
+	.secondaryTitle {
+		font-size: 20px;
+	}
+
+	.secondaryTitle.expandedTitle {
+		margin-bottom: 10px;
+	}
 }

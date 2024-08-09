@@ -41,4 +41,8 @@
 	.profile > aside {
 		width: 150px;
 	}
+
+	.profile > section {
+		padding-top: 80px;
+	}
 }

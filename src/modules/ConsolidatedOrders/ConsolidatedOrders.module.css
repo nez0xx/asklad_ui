@@ -29,13 +29,50 @@
 
 .tableCont {
 	transition: max-height 0.5s ease, opacity 0.5s ease;
+	overflow: hidden;
 }
 
 .tableCont.show {
 	opacity: 1;
+	max-height: 1000px; /* Set a large max-height to accommodate content */
 }
 
 .tableCont.hide {
 	max-height: 0;
 	opacity: 0;
+}
+
+@media (max-width: 1024px) {
+	.secondaryTitle {
+		font-size: 26px;
+	}
+
+	.secondaryTitle.expandedTitle {
+		margin-bottom: 15px;
+	}
+}
+
+@media (max-width: 768px) {
+	.secondaryTitle {
+		font-size: 22px;
+	}
+
+	.secondaryTitle.expandedTitle {
+		margin-bottom: 12px;
+	}
+}
+
+@media (max-width: 480px) {
+	.ConsolidatedOrders {
+		padding-bottom: 20px;
+		margin-bottom: 15px;
+	}
+
+	.secondaryTitle {
+		font-size: 20px;
+	}
+
+	.secondaryTitle.expandedTitle {
+		margin-bottom: 10px;
+	}
 }

@@ -73,7 +73,7 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders, acceptedBy }) => {
 	}
 
 	return (
-		<>
+		<div className={cls.container}>
 			<table className={cls.table}>
 				<thead>
 					<tr>
@@ -144,7 +144,7 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders, acceptedBy }) => {
 				</tbody>
 			</table>
 			<ToastContainer containerId={containerId} />
-		</>
+		</div>
 	)
 }
 

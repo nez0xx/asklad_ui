@@ -50,3 +50,58 @@
 	border-radius: 30px;
 	transition: opacity 0.3s ease;
 }
+
+@media (max-width: 1024px) {
+	.secondaryTitle {
+		font-size: 26px;
+	}
+
+	.secondaryTitle.expandedTitle {
+		margin-bottom: 15px;
+	}
+
+	.employeesCont {
+		gap: 15px;
+	}
+
+	.addButton {
+		padding: 11px 0;
+	}
+}
+
+@media (max-width: 768px) {
+	.secondaryTitle {
+		font-size: 22px;
+	}
+
+	.secondaryTitle.expandedTitle {
+		margin-bottom: 12px;
+	}
+
+	.employeesCont {
+		gap: 12px;
+	}
+
+	.addButton {
+		padding: 10px 0;
+	}
+}
+
+@media (max-width: 480px) {
+	.secondaryTitle {
+		font-size: 20px;
+	}
+
+	.secondaryTitle.expandedTitle {
+		margin-bottom: 10px;
+	}
+
+	.employeesCont {
+		gap: 10px;
+	}
+
+	.addButton {
+		padding: 8px 0;
+		border-radius: 25px;
+	}
+}

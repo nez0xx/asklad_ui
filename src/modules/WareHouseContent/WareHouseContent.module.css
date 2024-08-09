@@ -15,6 +15,34 @@
 	margin-bottom: 0;
 }
 
+@media (max-width: 480px) {
+	.title,
+	.warehouseNameInput {
+		font-size: 24px;
+	}
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+	.title,
+	.warehouseNameInput {
+		font-size: 28px;
+	}
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+	.title,
+	.warehouseNameInput {
+		font-size: 32px;
+	}
+}
+
+@media (min-width: 1025px) {
+	.title,
+	.warehouseNameInput {
+		font-size: 35px;
+	}
+}
+
 .titleIcon {
 	transform: translateY(3px);
 }
