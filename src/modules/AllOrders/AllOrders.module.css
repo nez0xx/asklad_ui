@@ -1,8 +1,15 @@
+.table_container {
+	width: 100%;
+	overflow-x: auto;
+	max-width: 100vw;
+}
+
 .table {
 	border-collapse: separate;
 	border-spacing: 0;
 	width: 100%;
-	overflow: hidden;
+	overflow: scroll;
+	min-width: 800px;
 }
 
 .table thead {
@@ -50,7 +57,7 @@
 	text-align: center;
 }
 
-.table .table .detailTd {
+.table .detailTd {
 	border: none;
 	text-align: center;
 }
@@ -64,6 +71,76 @@
 .row {
 	cursor: pointer;
 }
+
 .row:hover {
 	background: var(--secondary-color);
+}
+
+/* Responsive Table Styles */
+@media (max-width: 480px) {
+	.table thead th,
+	.table td {
+		font-size: 12px;
+		padding: 8px 10px;
+	}
+
+	.table thead th {
+		font-size: 16px;
+	}
+
+	.table th:first-child,
+	.table td:first-child {
+		width: 40px;
+	}
+}
+
+@media (min-width: 481px) and (max-width: 834px) {
+	.table thead th,
+	.table td {
+		font-size: 14px;
+		padding: 10px 12px;
+	}
+
+	.table thead th {
+		font-size: 18px;
+	}
+
+	.table th:first-child,
+	.table td:first-child {
+		width: 45px;
+	}
+}
+
+@media (min-width: 835px) and (max-width: 1024px) {
+	.table thead th,
+	.table td {
+		font-size: 15px;
+		padding: 11px 13px;
+	}
+
+	.table thead th {
+		font-size: 20px;
+	}
+
+	.table th:first-child,
+	.table td:first-child {
+		width: 50px;
+	}
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+	.table thead th,
+	.table td {
+		font-size: 16px;
+		padding: 12px 14px;
+	}
+
+	.table thead th {
+		font-size: 22px;
+	}
+
+	.table th:first-child,
+	.table td:first-child {
+		width: 50px;
+	}
 }

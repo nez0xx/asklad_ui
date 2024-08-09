@@ -1,0 +1,20 @@
+.hamburgerIcon {
+	display: none;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	position: relative;
+	z-index: 20;
+	transition: transform 0.3s ease;
+}
+
+.hamburgerIcon:hover {
+	transform: scale(1.1);
+}
+
+@media (max-width: 1200px) {
+	.hamburgerIcon {
+		display: block;
+	}
+}

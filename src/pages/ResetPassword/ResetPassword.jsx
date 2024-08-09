@@ -8,11 +8,11 @@ const ResetPassword = () => {
 	const { token } = useParams()
 
 	return (
-		<div className='wrapper'>
+		<div>
 			<Header />
 
 			<div className={cls.resetPasswordCont}>
-				<ResetPasswordForm />
+				<ResetPasswordForm token={token} />
 			</div>
 		</div>
 	)

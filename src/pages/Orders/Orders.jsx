@@ -7,7 +7,10 @@ const Orders = () => {
 	return (
 		<section className={cls.section}>
 			<h1 className={cls.title}>Заказы</h1>
-			<AllOrders />
+
+			<div className={cls.container}>
+				<AllOrders />
+			</div>
 		</section>
 	)
 }

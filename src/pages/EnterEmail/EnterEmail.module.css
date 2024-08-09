@@ -3,6 +3,9 @@
 	min-height: 100svh;
 	display: grid;
 	place-items: center;
+	padding: 0px 15px;
+	max-width: 70%;
+	margin: 0px auto;
 }
 
 .form {
@@ -37,4 +40,77 @@
 
 .form .title > div a {
 	transform: translateY(4px);
+}
+
+@media (max-width: 360px) {
+	.form {
+		padding: 15px;
+	}
+
+	.inputs {
+		padding: 16px 0;
+		gap: 12px;
+	}
+
+	.form .title > div h2 {
+		font-size: 22px;
+	}
+
+	.block {
+		max-width: 100%;
+	}
+}
+
+@media (min-width: 361px) and (max-width: 434px) {
+	.form {
+		padding: 18px;
+	}
+
+	.inputs {
+		padding: 18px 0;
+		gap: 14px;
+	}
+
+	.form .title > div h2 {
+		font-size: 24px;
+	}
+
+	.block {
+		max-width: 100%;
+	}
+}
+
+@media (min-width: 435px) and (max-width: 834px) {
+	.inputs {
+		padding: 20px 0;
+	}
+
+	.form .title > div h2 {
+		font-size: 26px;
+	}
+}
+
+@media (min-width: 835px) and (max-width: 1024px) {
+	.inputs {
+		padding: 22px 0;
+	}
+
+	.form .title > div h2 {
+		font-size: 28px;
+	}
+}
+
+@media (min-width: 1025px) {
+	.form {
+		padding: 20px;
+	}
+
+	.inputs {
+		padding: 24px 0;
+		gap: 17px;
+	}
+
+	.form .title > div h2 {
+		font-size: 30px;
+	}
 }

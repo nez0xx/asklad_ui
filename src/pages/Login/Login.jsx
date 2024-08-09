@@ -4,7 +4,7 @@ import cls from './Login.module.css'
 
 const Login = () => {
 	return (
-		<div className='wrapper'>
+		<div>
 			<Header />
 
 			<div className={cls.loginFormCont}>

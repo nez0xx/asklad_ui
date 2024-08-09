@@ -1,19 +1,16 @@
 @import url(https://fonts.googleapis.com/css?family=Wix+Madefor+Display:regular,500,600,700);
+
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
 
-.wrapper {
-	width: min(1100px, 100% - 60px);
-	margin: 0 auto;
-}
-
 body {
 	font-size: 18px;
 	font-family: 'Wix Madefor Display', sans-serif;
 	color: var(--main-text-color);
+	overflow-x: hidden;
 }
 
 :root {

@@ -1,12 +1,13 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import logo from './assets/logo.svg'
 import userImg from './assets/user.jpg'
 import cls from './Header.module.css'
+import HamburgerIcon from '../../UI/HamburgerIcon/HamburgerIcon'
 
 const Header = () => {
-	const user = JSON.parse(localStorage.getItem('user'))
+	const user = JSON.parse(localStorage.getItem('user') || '{}')
 	const token = localStorage.getItem('token')
 
 	return (
@@ -17,7 +18,7 @@ const Header = () => {
 					<div>А.Склад</div>
 				</div>
 				<div className={cls.block}>
-					<a href='https://t.me/askladsupbot'>
+					<a className={cls.support} href='https://t.me/askladsupbot'>
 						<Icon
 							icon='hugeicons:customer-support'
 							width='25px'
@@ -34,6 +35,7 @@ const Header = () => {
 						</Link>
 					)}
 				</div>
+				<HamburgerIcon />
 			</div>
 		</header>
 	)

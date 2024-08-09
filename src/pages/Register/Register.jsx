@@ -5,7 +5,7 @@ import Header from '../../modules/Header/Header'
 
 const Register = () => {
 	return (
-		<div className='wrapper'>
+		<div>
 			<Header />
 
 			<div className={cls.registerFormCont}>

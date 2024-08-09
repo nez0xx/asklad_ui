@@ -17,7 +17,6 @@ const GeneratePdfForm = () => {
 
 	const { mutate, isLoading } = useMutation(parsePdf, {
 		onSuccess: (data) => {
-			console.log(data)
 			const blob = new Blob([data], { type: 'application/pdf' })
 			saveAs(blob, generateNewName(filename))
 			toast.success('PDF успешно сгенерирован', {

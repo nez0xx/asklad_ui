@@ -4,8 +4,39 @@
 	border-radius: 30px;
 	border: none;
 	color: var(--white);
+	font-size: 16px;
+	cursor: pointer;
+	transition: background 0.3s;
 }
 
 .button.red {
 	background: #ed0800;
+}
+
+@media (max-width: 360px) {
+	.button {
+		padding: 10px 15px;
+		font-size: 14px;
+	}
+}
+
+@media (min-width: 361px) and (max-width: 414px) {
+	.button {
+		padding: 12px 20px;
+		font-size: 15px;
+	}
+}
+
+@media (min-width: 415px) and (max-width: 834px) {
+	.button {
+		padding: 14px 25px;
+		font-size: 15px;
+	}
+}
+
+@media (min-width: 835px) {
+	.button {
+		padding: 16px 30px;
+		font-size: 16px;
+	}
 }

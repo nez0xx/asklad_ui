@@ -44,7 +44,6 @@ const AddOrderForm = () => {
 	function handleAddNewOrder(e) {
 		e.preventDefault()
 		const formData = new FormData(e.target)
-		console.log(formData)
 		mutate(formData)
 	}
 

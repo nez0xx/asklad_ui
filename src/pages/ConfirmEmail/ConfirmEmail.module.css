@@ -4,6 +4,8 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	padding: 0 20px;
+	box-sizing: border-box;
 }
 
 .title {
@@ -23,4 +25,51 @@
 	color: red;
 	margin-top: 10px;
 	font-size: 14px;
+}
+
+@media (max-width: 360px) {
+	.title {
+		font-size: 22px;
+		margin-bottom: 20px;
+	}
+
+	.button {
+		padding: 0 10px;
+	}
+}
+
+@media (min-width: 361px) and (max-width: 414px) {
+	.title {
+		font-size: 26px;
+		margin-bottom: 22px;
+	}
+
+	.button {
+		padding: 0 15px;
+	}
+}
+
+@media (min-width: 415px) and (max-width: 834px) {
+	.title {
+		font-size: 30px;
+		margin-bottom: 24px;
+	}
+
+	.button {
+		padding: 0 20px;
+	}
+}
+
+@media (min-width: 835px) and (max-width: 1024px) {
+	.title {
+		font-size: 32px;
+		margin-bottom: 25px;
+	}
+}
+
+@media (min-width: 1025px) {
+	.title {
+		font-size: 35px;
+		margin-bottom: 25px;
+	}
 }

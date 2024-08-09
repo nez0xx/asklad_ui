@@ -3,6 +3,42 @@
 	column-gap: 50px;
 }
 
+.profile > aside {
+	width: 250px;
+	flex-shrink: 0;
+}
+
 .profile > section {
+	flex: 1;
 	padding-top: 100px;
+}
+
+@media (max-width: 1024px) {
+	.profile {
+		column-gap: 30px;
+	}
+
+	.profile > aside {
+		width: 200px;
+	}
+}
+
+@media (max-width: 768px) {
+	.profile {
+		column-gap: 20px;
+	}
+
+	.profile > aside {
+		width: 180px;
+	}
+}
+
+@media (max-width: 600px) {
+	.profile {
+		column-gap: 15px;
+	}
+
+	.profile > aside {
+		width: 150px;
+	}
 }

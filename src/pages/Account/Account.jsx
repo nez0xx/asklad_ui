@@ -9,9 +9,9 @@ import 'react-toastify/dist/ReactToastify.css'
 import cls from './Account.module.css'
 
 const Account = () => {
-	const user = JSON.parse(localStorage.getItem('user'))
+	const user = JSON.parse(localStorage.getItem('user') || '{}')
 
-	const [name, setName] = React.useState(user.name)
+	const [name, setName] = React.useState(user?.name)
 	const [password, setPassword] = React.useState('--------')
 	const [newPassword, setNewPassword] = React.useState('')
 
@@ -42,13 +42,12 @@ const Account = () => {
 	})
 
 	const saveChanges = () => {
-		if (name !== user.name) {
+		if (name !== user?.name) {
 			const newUser = { ...user, name }
 			localStorage.setItem('user', JSON.stringify(newUser))
 			mutateName(name)
 		}
 
-		console.log('Hello', passwordClicked)
 		if (passwordClicked) {
 			mutatePassword({ password, new_password: newPassword })
 		}

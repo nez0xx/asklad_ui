@@ -21,6 +21,7 @@ import ConfirmEmployee from './pages/ConfirmEmployee/ConfirmEmployee'
 import RegistrationEmailSent from './pages/RegistrationEmailSent/RegistrationEmailSent'
 import Landing from './pages/Landing/Landing'
 import ProtectedRoute from './pages/ProtectedRoute/ProtectedRoute'
+import HamburgerProvider from './modules/HamburgerProvider/HamburgerProvider'
 import 'react-toastify/dist/ReactToastify.css'
 
 const router = createHashRouter([
@@ -41,13 +42,62 @@ const router = createHashRouter([
 			</ProtectedRoute>
 		),
 	},
-	{ path: '/reset_password/:token', element: <ResetPassword /> },
-	{ path: '/enter_email', element: <EnterEmail /> },
-	{ path: '/email_sent', element: <EmailSent /> },
-	{ path: '/confirm_email_sent', element: <RegistrationEmailSent /> },
-	{ path: '/successful_registration', element: <SuccessfulRegistration /> },
-	{ path: '/confirm_email/:token', element: <ConfirmEmail /> },
-	{ path: '/confirm_employee/:token', element: <ConfirmEmployee /> },
+	{
+		path: '/reset_password/:token',
+		element: (
+			<ProtectedRoute>
+				<ResetPassword />
+			</ProtectedRoute>
+		),
+	},
+	{
+		path: '/enter_email',
+		element: (
+			<ProtectedRoute>
+				<EnterEmail />
+			</ProtectedRoute>
+		),
+	},
+	{
+		path: '/email_sent',
+		element: (
+			<ProtectedRoute>
+				<EmailSent />
+			</ProtectedRoute>
+		),
+	},
+	{
+		path: '/confirm_email_sent',
+		element: (
+			<ProtectedRoute>
+				<RegistrationEmailSent />
+			</ProtectedRoute>
+		),
+	},
+	{
+		path: '/successful_registration',
+		element: (
+			<ProtectedRoute>
+				<SuccessfulRegistration />
+			</ProtectedRoute>
+		),
+	},
+	{
+		path: '/confirm_email/:token',
+		element: (
+			<ProtectedRoute>
+				<ConfirmEmail />
+			</ProtectedRoute>
+		),
+	},
+	{
+		path: '/confirm_employee/:token',
+		element: (
+			<ProtectedRoute>
+				<ConfirmEmployee />
+			</ProtectedRoute>
+		),
+	},
 	{
 		path: '/profile',
 		element: (
@@ -113,7 +163,9 @@ const queryClient = new QueryClient()
 function App() {
 	return (
 		<QueryClientProvider client={queryClient}>
-			<RouterProvider router={router} />
+			<HamburgerProvider>
+				<RouterProvider router={router} />
+			</HamburgerProvider>
 		</QueryClientProvider>
 	)
 }

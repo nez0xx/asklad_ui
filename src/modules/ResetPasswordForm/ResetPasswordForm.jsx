@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import Input from '../../UI/Input/Input'
 import Button from '../../UI/Button/Button'
@@ -9,11 +9,10 @@ import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import cls from './ResetPasswordForm.module.css'
 
-const ResetPasswordForm = () => {
+const ResetPasswordForm = ({ token }) => {
 	const [password, setPassword] = React.useState('')
 	const [confirmedPassword, setConfirmedPassword] = React.useState('')
 	const navigate = useNavigate()
-	const { token } = useParams()
 
 	const { mutate } = useMutation(sendResetPassword, {
 		onSuccess: () => {

@@ -2,17 +2,20 @@
 	position: relative;
 	display: grid;
 	gap: 10px;
+	width: 100%;
+	max-width: 500px;
 }
 
 .input {
 	border: 1px solid #c9c9c9;
 	outline: 2px solid transparent;
-	padding: 18px 30px;
+	padding: 12px 20px;
 	border-radius: 30px;
 	width: 100%;
 	box-sizing: border-box;
-	font-size: 16px;
+	font-size: 14px;
 }
+
 .input:focus {
 	border-color: transparent;
 	outline-color: var(--main-color);
@@ -21,13 +24,14 @@
 .label {
 	position: absolute;
 	top: 50%;
-	left: 25px;
+	left: 20px;
 	transform: translateY(-50%);
 	background-color: white;
 	padding: 0 5px;
 	color: #c9c9c9;
 	pointer-events: none;
 	transition: 0.2s;
+	font-size: 14px;
 }
 
 .input:focus + .label,
@@ -37,4 +41,52 @@
 	font-size: 12px;
 	color: var(--main-color);
 	transform: translateY(-50%);
+}
+
+@media (max-width: 360px) {
+	.input {
+		padding: 10px 15px;
+		font-size: 12px;
+	}
+
+	.label {
+		font-size: 12px;
+		left: 10px;
+	}
+}
+
+@media (min-width: 361px) and (max-width: 414px) {
+	.input {
+		padding: 12px 20px;
+		font-size: 13px;
+	}
+
+	.label {
+		font-size: 13px;
+		left: 15px;
+	}
+}
+
+@media (min-width: 415px) and (max-width: 834px) {
+	.input {
+		padding: 14px 25px;
+		font-size: 14px;
+	}
+
+	.label {
+		font-size: 14px;
+		left: 20px;
+	}
+}
+
+@media (min-width: 835px) {
+	.input {
+		padding: 16px 30px;
+		font-size: 16px;
+	}
+
+	.label {
+		font-size: 16px;
+		left: 25px;
+	}
 }

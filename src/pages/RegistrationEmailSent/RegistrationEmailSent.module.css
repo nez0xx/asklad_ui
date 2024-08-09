@@ -5,6 +5,8 @@
 	justify-content: center;
 	height: 100vh;
 	background-color: #f9f9f9;
+	padding: 0 20px;
+	box-sizing: border-box;
 }
 
 .header {
@@ -12,10 +14,72 @@
 	color: var(--main-title-color);
 	font-weight: 400;
 	margin-bottom: 16px;
+	text-align: center;
 }
 
 .message {
 	font-size: 16px;
 	max-width: 400px;
 	margin-bottom: 25px;
+	text-align: center;
+}
+
+@media (max-width: 360px) {
+	.header {
+		font-size: 20px;
+	}
+
+	.message {
+		font-size: 12px;
+	}
+}
+
+@media (min-width: 361px) and (max-width: 414px) {
+	.header {
+		font-size: 24px;
+	}
+
+	.message {
+		font-size: 13px;
+	}
+}
+
+@media (min-width: 415px) and (max-width: 460px) {
+	.header {
+		font-size: 26px;
+	}
+
+	.message {
+		font-size: 14px;
+	}
+}
+
+@media (min-width: 461px) and (max-width: 834px) {
+	.header {
+		font-size: 28px;
+	}
+
+	.message {
+		font-size: 15px;
+	}
+}
+
+@media (min-width: 835px) and (max-width: 1024px) {
+	.header {
+		font-size: 30px;
+	}
+
+	.message {
+		font-size: 16px;
+	}
+}
+
+@media (min-width: 1025px) {
+	.header {
+		font-size: 32px;
+	}
+
+	.message {
+		font-size: 16px;
+	}
 }

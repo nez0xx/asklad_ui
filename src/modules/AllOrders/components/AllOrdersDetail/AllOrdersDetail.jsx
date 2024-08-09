@@ -1,5 +1,4 @@
-import React, { useState, forwardRef, useRef } from 'react'
-import Modal from '../../../../UI/Modal/Modal'
+import React, { useState, useEffect } from 'react'
 import { useQuery, useMutation } from 'react-query'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import { getOrderDetail } from '../../api/getOrderDetail'
@@ -12,10 +11,11 @@ import cls from './AllOrdersDetail.module.css'
 
 const toastId = 'give-out-toast'
 
-const AllOrdersDetail = ({ id, setId }, ref) => {
-	const productAmountModal = useRef(null)
+const AllOrdersDetail = ({ id, setId, setOpen }) => {
 	const [textareaValue, setTextareaValue] = useState('')
 	const [selectedProduct, setSelectedProduct] = useState()
+	const [isDetailsVisible, setIsDetailsVisible] = useState(true)
+	const [isChangeAmountModalOpen, setChangeAmountModalOpen] = useState(false)
 
 	const { data, isLoading } = useQuery({
 		queryKey: ['order-detail', id],
@@ -23,12 +23,26 @@ const AllOrdersDetail = ({ id, setId }, ref) => {
 		enabled: id !== undefined,
 	})
 
+	const convertFullName = (fullName) => {
+		const lowerCaseName = fullName.toLowerCase()
+		const words = lowerCaseName.split(' ')
+		const capitalizedWords = words.map((word) => {
+			if (word.length === 0) return ''
+			return word[0].toUpperCase() + word.slice(1)
+		})
+		return capitalizedWords.join(' ')
+	}
+
 	const { mutate, isLoading: isMutating } = useMutation(giveOutOrder, {
 		onSuccess: () => {
 			toast.success('Заказ выдан успешно', {
 				autoClose: 1000,
 				toastId,
 			})
+			setIsDetailsVisible(false)
+			setId(null)
+			setOpen(false)
+			setTextareaValue('')
 		},
 		onError: (error) => {
 			if (!toast.isActive(toastId)) {
@@ -42,15 +56,32 @@ const AllOrdersDetail = ({ id, setId }, ref) => {
 
 	const handleGiveOutOrder = () => {
 		mutate({ id, comment: textareaValue })
-		ref.current.close()
-		setId(undefined)
-		setTextareaValue('')
 	}
 
-	function openModal(product) {
+	const openProductAmountModal = (product) => {
 		setSelectedProduct(product)
-		productAmountModal.current.showModal()
+		setChangeAmountModalOpen(true)
 	}
+
+	const closeProductAmountModal = () => {
+		setChangeAmountModalOpen(false)
+		setSelectedProduct(null)
+	}
+
+	useEffect(() => {
+		if (id !== undefined) {
+			setIsDetailsVisible(true)
+			document.body.style.overflow = 'hidden'
+		} else {
+			setIsDetailsVisible(false)
+			document.body.style.overflow = ''
+		}
+		return () => {
+			document.body.style.overflow = ''
+		}
+	}, [id])
+
+	if (!isDetailsVisible) return null
 
 	let content
 	if (isLoading) {
@@ -62,12 +93,26 @@ const AllOrdersDetail = ({ id, setId }, ref) => {
 	if (data) {
 		content = (
 			<div className={cls.modalBody}>
-				<h2>{data.order_id}</h2>
+				<div className={cls.header}>
+					<h2>
+						<div>{data.order_id}</div>
+						<div
+							onClick={() => {
+								setOpen(false)
+								setId(null)
+							}}
+						>
+							X
+						</div>
+					</h2>
+				</div>
 				<div className={cls.modalBodyInfo}>
 					<p>Телефон пользователя: {data?.customer_phone}</p>
-					<p>Имя пользователя: {data?.customer_name}</p>
+					<p>Имя пользователя: {convertFullName(data?.customer_name)}</p>
 					<p>ID пользователя: {data?.customer_id}</p>
-					{data?.given_by && <p>Сотрудник: {data?.given_by}</p>}
+					{data?.given_by && (
+						<p>Сотрудник: {convertFullName(data?.given_by)}</p>
+					)}
 					{data?.comment && <p>Комментарий: {data?.comment}</p>}
 					<table className={cls.table}>
 						<thead>
@@ -78,13 +123,13 @@ const AllOrdersDetail = ({ id, setId }, ref) => {
 						</thead>
 						<tbody>
 							{data.products.map((product) => (
-								<tr key={product.id}>
+								<tr key={product.product_id}>
 									<td>{product.title}</td>
 									<td>{product.amount}</td>
 									<td className={cls.editTd}>
 										<button
 											onClick={() =>
-												openModal({
+												openProductAmountModal({
 													title: product.title,
 													amount: product.amount,
 													order_id: data.order_id,
@@ -94,8 +139,8 @@ const AllOrdersDetail = ({ id, setId }, ref) => {
 										>
 											<Icon
 												icon='solar:pen-2-linear'
-												width='30px'
-												height='30px'
+												width='25px'
+												height='25px'
 											/>
 										</button>
 									</td>
@@ -124,12 +169,17 @@ const AllOrdersDetail = ({ id, setId }, ref) => {
 
 	return (
 		<>
-			<Modal ref={ref} onClose={() => setId(undefined)}>
-				{content}
-				<ChangeAmountModal ref={productAmountModal} product={selectedProduct} />
-			</Modal>
+			<div className={cls.detailsContainer}>
+				<div className={cls.innerDiv}>{content}</div>
+			</div>
+			{isChangeAmountModalOpen && (
+				<ChangeAmountModal
+					product={selectedProduct}
+					onClose={closeProductAmountModal}
+				/>
+			)}
 		</>
 	)
 }
 
-export default forwardRef(AllOrdersDetail)
+export default AllOrdersDetail

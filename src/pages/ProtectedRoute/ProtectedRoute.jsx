@@ -1,11 +1,11 @@
-// src/pages/ProtectedRoute/ProtectedRoute.js
 import React from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
+import { matchPath } from 'react-router-dom'
 
 const ProtectedRoute = ({ children }) => {
 	const { pathname } = useLocation()
 	const token = localStorage.getItem('token')
-	const user = localStorage.getItem('user')
+	const user = JSON.parse(localStorage.getItem('user') || '{}')
 
 	const publicPaths = [
 		'/login',
@@ -19,7 +19,11 @@ const ProtectedRoute = ({ children }) => {
 		'/confirm_employee/:token',
 	]
 
-	if ((!token || !user) && !publicPaths.includes(pathname)) {
+	const isPublicPath = publicPaths.some((publicPath) =>
+		matchPath({ path: publicPath, end: false }, pathname)
+	)
+
+	if ((!token || !user) && !isPublicPath) {
 		return <Navigate to='/login' replace />
 	}
 
