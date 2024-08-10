@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useIntersection } from 'react-use'
 import Button from '../../UI/Button/Button'
 import logo from './assets/logo.png'
@@ -51,6 +51,21 @@ const Landing = () => {
 		window.open(pdf, '_blank')
 	}
 
+	const [menuOpen, setMenuOpen] = useState(false)
+	const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024)
+
+	const toggleMenu = () => {
+		setMenuOpen(!menuOpen)
+	}
+
+	useEffect(() => {
+		const handleResize = () => {
+			setIsMobile(window.innerWidth <= 1024)
+		}
+		window.addEventListener('resize', handleResize)
+		return () => window.removeEventListener('resize', handleResize)
+	}, [])
+
 	return (
 		<div className={cls.wrapper}>
 			<header className={cls.header}>
@@ -59,7 +74,9 @@ const Landing = () => {
 						<img src={logo} alt='logo' />
 						<div>А.Склад</div>
 					</div>
-					<nav className={cls.nav}>
+
+					{/* Navigation Links */}
+					<nav className={`${cls.nav} ${menuOpen ? cls.navOpen : ''}`}>
 						<a
 							href='#link1'
 							className={`${cls.navLink} ${
@@ -68,6 +85,7 @@ const Landing = () => {
 							onClick={(e) => {
 								e.preventDefault()
 								handleScrollTo(aboutRef)
+								setMenuOpen(false) // Close menu after click
 							}}
 						>
 							О продукте
@@ -80,6 +98,7 @@ const Landing = () => {
 							onClick={(e) => {
 								e.preventDefault()
 								handleScrollTo(advantagesRef)
+								setMenuOpen(false) // Close menu after click
 							}}
 						>
 							Преимущества
@@ -92,6 +111,7 @@ const Landing = () => {
 							onClick={(e) => {
 								e.preventDefault()
 								handleScrollTo(feesRef)
+								setMenuOpen(false) // Close menu after click
 							}}
 						>
 							Тарифы
@@ -100,18 +120,32 @@ const Landing = () => {
 							onClick={(e) => {
 								e.preventDefault()
 								navigate('/login')
+								setMenuOpen(false) // Close menu after click
 							}}
 							className={cls.navLink}
 						>
 							Войти
 						</a>
 					</nav>
+
 					<Button
 						onClick={() => navigate('/register')}
 						styles={{ padding: '16px 30px' }}
 					>
 						Попробовать
 					</Button>
+					{isMobile && (
+						<div
+							className={`${cls.hamburger} ${
+								menuOpen ? cls.hamburgerOpen : ''
+							}`}
+							onClick={toggleMenu}
+						>
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+					)}
 				</div>
 			</header>
 
