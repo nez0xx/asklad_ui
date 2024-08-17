@@ -36,7 +36,6 @@
 }
 
 .navList li:last-child {
-	margin-top: auto;
 	color: var(--secondary-text-color);
 }
 

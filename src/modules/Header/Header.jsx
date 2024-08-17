@@ -13,10 +13,10 @@ const Header = () => {
 	return (
 		<header className={cls.header}>
 			<div className={cls.headerCont}>
-				<div className={cls.logo}>
+				<Link to='/profile/orders' className={cls.logo}>
 					<img src={logo} alt='logo' />
 					<div>А.Склад</div>
-				</div>
+				</Link>
 				<div className={cls.block}>
 					<a className={cls.support} href='https://t.me/askladsupbot'>
 						<Icon
@@ -24,11 +24,11 @@ const Header = () => {
 							width='25px'
 							height='25px'
 						/>
-						Поддержка
+						<div className={cls.block_text}>Поддержка</div>
 					</a>
 					{token && (
 						<Link to='/profile/account' className={cls.userName}>
-							<div className={cls.text}>{user.name}</div>
+							<div className={`${cls.text} ${cls.block_text}`}>{user.name}</div>
 							<div className={cls.image}>
 								<img src={userImg} alt='user' />
 							</div>

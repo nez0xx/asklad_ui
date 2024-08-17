@@ -37,6 +37,12 @@ const AllOrders = () => {
 		}
 	)
 
+	const sortedOrders = data?.sort((a, b) => {
+		const dateA = a.issue_date ? new Date(a.issue_date) : new Date(0)
+		const dateB = b.issue_date ? new Date(b.issue_date) : new Date(0)
+		return dateB - dateA
+	})
+
 	return (
 		<>
 			<OrdersSearch
@@ -63,7 +69,7 @@ const AllOrders = () => {
 						</tr>
 					</thead>
 					<tbody>
-						{data?.map((order, index) => (
+						{sortedOrders?.map((order, index) => (
 							<tr
 								className={cls.row}
 								key={order.id}

@@ -1,21 +1,21 @@
-import React, { forwardRef, useRef, useState, useEffect } from 'react'
+import React, { forwardRef, useState, useEffect } from 'react'
 import Modal from '../../../../UI/Modal/Modal'
 import { useMutation, useQuery } from 'react-query'
 import { getOrderDetail } from '../../api/getOrderDetail'
 import Button from '../../../../UI/Button/Button'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import { giveOutOrder } from '../../api/giveOutOrder'
-import { toast, ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify'
 import ChangeAmountModal from '../ChangeAmountModal/ChangeAmountModal'
 import cls from './OrderDetailModal.module.css'
 
 const toastId = 'give-out-toast'
-const containerId = 'give-out-toast-container'
 
-const OrderDetailModal = ({ id, setId }, ref) => {
-	const productAmountModal = useRef(null)
+const OrderDetailModal = ({ id, setId, setOpen }) => {
 	const [textareaValue, setTextareaValue] = useState('')
 	const [selectedProduct, setSelectedProduct] = useState(null)
+	const [isDetailsVisible, setIsDetailsVisible] = useState(true)
+	const [isChangeAmountModalOpen, setChangeAmountModalOpen] = useState(false)
 	const [content, setContent] = useState(null)
 
 	const { data, isLoading, isError, error } = useQuery({
@@ -23,13 +23,10 @@ const OrderDetailModal = ({ id, setId }, ref) => {
 		queryFn: () => getOrderDetail({ id }),
 		enabled: !!id,
 		onError: (error) => {
-			if (!toast.isActive(toastId)) {
-				toast.error(error.message, {
-					autoClose: 1000,
-					containerId,
-					toastId,
-				})
-			}
+			toast.error(error.message, {
+				autoClose: 1000,
+				toastId,
+			})
 		},
 	})
 
@@ -39,27 +36,50 @@ const OrderDetailModal = ({ id, setId }, ref) => {
 				autoClose: 1000,
 				toastId,
 			})
+			setIsDetailsVisible(false)
+			setId(null)
+			setOpen(false)
+			setTextareaValue('')
 		},
 		onError: (error) => {
-			if (!toast.isActive(toastId)) {
-				toast.error(error?.response?.data?.detail || 'Неизвестная ошибка', {
-					autoClose: 1000,
-					toastId,
-				})
-			}
+			toast.error(error?.response?.data?.detail || 'Неизвестная ошибка', {
+				autoClose: 1000,
+				toastId,
+			})
 		},
 	})
 
-	const handleGiveOutOrder = () => {
-		mutate({ id, comment: textareaValue })
-		ref.current.close()
-		setId(undefined)
-		setTextareaValue('')
+	const openProductAmountModal = (product) => {
+		setSelectedProduct(product)
+		setChangeAmountModalOpen(true)
 	}
 
-	const openModal = (product) => {
-		setSelectedProduct(product)
-		productAmountModal.current.showModal()
+	const closeProductAmountModal = () => {
+		setChangeAmountModalOpen(false)
+		setSelectedProduct(null)
+	}
+
+	useEffect(() => {
+		if (id !== undefined) {
+			setIsDetailsVisible(true)
+			document.body.style.overflow = 'hidden'
+		} else {
+			setIsDetailsVisible(false)
+			document.body.style.overflow = ''
+		}
+		return () => {
+			document.body.style.overflow = ''
+		}
+	}, [id])
+
+	const convertFullName = (fullName) => {
+		const lowerCaseName = fullName.toLowerCase()
+		const words = lowerCaseName.split(' ')
+		const capitalizedWords = words.map((word) => {
+			if (word.length === 0) return ''
+			return word[0].toUpperCase() + word.slice(1)
+		})
+		return capitalizedWords.join(' ')
 	}
 
 	useEffect(() => {
@@ -72,10 +92,22 @@ const OrderDetailModal = ({ id, setId }, ref) => {
 		} else if (data) {
 			setContent(
 				<div className={cls.modalBody}>
-					<h2>{data.order_id}</h2>
+					<div className={cls.header}>
+						<h2>
+							<div>{data.order_id}</div>
+							<div
+								onClick={() => {
+									setOpen(false)
+									setId(null)
+								}}
+							>
+								X
+							</div>
+						</h2>
+					</div>
 					<div className={cls.modalBodyInfo}>
 						<p>Телефон пользователя: {data?.customer_phone}</p>
-						<p>Имя пользователя: {data?.customer_name}</p>
+						<p>Имя пользователя: {convertFullName(data?.customer_name)}</p>
 						<p>ID пользователя: {data?.customer_id}</p>
 						{data?.given_by && <p>Сотрудник: {data?.given_by}</p>}
 						{data?.comment && <p>Комментарий: {data?.comment}</p>}
@@ -95,7 +127,7 @@ const OrderDetailModal = ({ id, setId }, ref) => {
 										<td className={cls.editTd}>
 											<button
 												onClick={() =>
-													openModal({
+													openProductAmountModal({
 														title: product.title,
 														amount: product.amount,
 														order_id: data.order_id,
@@ -105,8 +137,8 @@ const OrderDetailModal = ({ id, setId }, ref) => {
 											>
 												<Icon
 													icon='solar:pen-2-linear'
-													width='30px'
-													height='30px'
+													width='25px'
+													height='25px'
 												/>
 											</button>
 										</td>
@@ -117,7 +149,10 @@ const OrderDetailModal = ({ id, setId }, ref) => {
 					</div>
 					{!data.given_by && (
 						<div className={cls.buttons}>
-							<Button onClick={handleGiveOutOrder} disabled={isMutating}>
+							<Button
+								onClick={() => mutate({ id, comment: textareaValue })}
+								disabled={isMutating}
+							>
 								{isMutating ? 'Processing...' : 'Выдать'}
 							</Button>
 							<textarea
@@ -133,15 +168,21 @@ const OrderDetailModal = ({ id, setId }, ref) => {
 		}
 	}, [data, isLoading, isError, error, isMutating, textareaValue])
 
+	if (!isDetailsVisible) return null
+
 	return (
 		<>
-			<Modal ref={ref} onClose={() => setId(undefined)}>
-				{content}
-				<ChangeAmountModal ref={productAmountModal} product={selectedProduct} />
-			</Modal>
-			<ToastContainer containerId={containerId} />
+			<div className={cls.detailsContainer}>
+				<div className={cls.innerDiv}>{content}</div>
+			</div>
+			{isChangeAmountModalOpen && (
+				<ChangeAmountModal
+					product={selectedProduct}
+					onClose={closeProductAmountModal}
+				/>
+			)}
 		</>
 	)
 }
 
-export default forwardRef(OrderDetailModal)
+export default OrderDetailModal

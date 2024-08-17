@@ -1,43 +1,166 @@
-.deleteBtn {
-	background: var(--main-button-color);
-	color: white;
+.detailsContainer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+}
+
+.innerDiv {
+	padding: 10px;
+	max-width: 90%;
+	max-height: 90%;
+	overflow-y: auto;
+	background-color: var(--white);
+}
+
+@media (max-width: 1024px) {
+	.innerDiv {
+		max-width: 80%;
+		max-height: 80%;
+		padding: 15px;
+	}
+}
+
+@media (max-width: 768px) {
+	.innerDiv {
+		max-width: 90%;
+		max-height: 90%;
+		padding: 10px;
+	}
+}
+
+@media (max-width: 480px) {
+	.innerDiv {
+		max-width: 100%;
+		max-height: 100%;
+		padding: 5px;
+	}
 }
 
 .modalBody {
+	background-color: var(--white);
 	padding: 10px;
+}
+
+.modalBody .header > h2 {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 5px;
+	font-size: 18px;
+}
+
+@media (max-width: 768px) {
+	.modalBody .header > h2 {
+		font-size: 16px;
+	}
 }
 
 .modalBodyInfo {
 	display: grid;
 	gap: 5px;
-	margin: 10px 0;
+}
+
+.table_container {
+	width: 100%;
+	overflow-x: auto;
 }
 
 .table {
 	border-collapse: collapse;
-	margin-top: 20px;
+	margin-top: 10px;
+	width: 100%;
 }
 
 .table td,
 .table th {
 	border: 1px solid black;
-	padding: 5px 10px;
+	padding: 8px 10px;
+	font-size: 16px;
+}
+
+@media (max-width: 768px) {
+	.table td,
+	.table th {
+		padding: 6px 8px;
+		font-size: 14px;
+	}
+}
+
+@media (max-width: 480px) {
+	.table td,
+	.table th {
+		padding: 4px 6px;
+		font-size: 12px;
+	}
+}
+
+.editTd {
+	text-align: center;
 }
 
 .buttons {
-	margin-top: 20px;
+	margin-top: 10px;
 	display: flex;
 	align-items: center;
-	gap: 20px;
+	gap: 10px;
+	flex-wrap: wrap;
 }
 
-.buttons textarea {
+@media (max-width: 768px) {
+	.buttons {
+		flex-direction: column;
+		gap: 5px;
+	}
+}
+
+.textarea {
 	outline: none;
 	width: 100%;
-	min-height: 100px;
-	margin-left: 10px;
-	padding: 10px;
+	min-height: 80px;
+	margin-top: 5px;
+	padding: 8px;
 	border: 1px solid #ddd;
 	border-radius: 4px;
 	resize: vertical;
+	font-size: 14px;
+}
+
+@media (max-width: 768px) {
+	.textarea {
+		min-height: 60px;
+		font-size: 12px;
+	}
+}
+
+@media (max-width: 480px) {
+	.textarea {
+		min-height: 50px;
+		font-size: 12px;
+	}
+}
+
+.modalBodyInfo p {
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+	.modalBodyInfo p {
+		font-size: 14px;
+		margin-bottom: 8px;
+	}
+}
+
+@media (max-width: 480px) {
+	.modalBodyInfo p {
+		font-size: 12px;
+		margin-bottom: 6px;
+	}
 }

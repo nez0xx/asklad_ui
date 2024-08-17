@@ -1,17 +1,16 @@
-import React, { forwardRef, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Input from '../../../../UI/Input/Input'
 import Button from '../../../../UI/Button/Button'
 import { useMutation, useQueryClient } from 'react-query'
 import { changeProductAmount } from '../../api/changeProductAmount'
 import cls from './ChangeAmountModal.module.css'
 
-const ChangeAmountModal = ({ product, onClose }, ref) => {
+const ChangeAmountModal = ({ product, onClose }) => {
 	const [productAmountModal, setProductAmountModal] = useState(0)
 	const queryClient = useQueryClient()
 	const { mutate, isLoading } = useMutation({
 		mutationFn: changeProductAmount,
 		onSuccess: () => {
-			if (ref?.current) ref.current.close()
 			queryClient.invalidateQueries(['consolidated-order-orders'])
 			if (onClose) onClose()
 		},
@@ -27,7 +26,6 @@ const ChangeAmountModal = ({ product, onClose }, ref) => {
 	}
 
 	function handleClose() {
-		if (ref?.current) ref.current.close()
 		if (onClose) onClose()
 	}
 
@@ -60,4 +58,4 @@ const ChangeAmountModal = ({ product, onClose }, ref) => {
 	)
 }
 
-export default forwardRef(ChangeAmountModal)
+export default ChangeAmountModal

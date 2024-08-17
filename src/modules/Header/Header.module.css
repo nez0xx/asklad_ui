@@ -45,6 +45,14 @@
 
 .support {
 	font-size: 18px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.support .icon {
+	width: 30px; /* Set the same size as the user image */
+	height: 30px;
 }
 
 .userName {
@@ -54,13 +62,18 @@
 }
 
 .block .image img {
-	width: 30px;
+	width: 30px; /* Set the same size as the icon */
 	object-fit: cover;
 	border-radius: 100%;
 	transform: translateY(2px);
 }
 
+/* Responsive Styles */
 @media (max-width: 480px) {
+	.block_text {
+		display: none;
+	}
+
 	.header {
 		padding: 12px 0;
 	}
@@ -79,23 +92,22 @@
 	}
 
 	.block {
-		flex-direction: column;
 		align-items: flex-start;
-		gap: 8px;
+		column-gap: 25px;
 	}
 
 	.support {
 		font-size: 14px;
-		flex-direction: row;
-		display: flex;
-		align-items: center;
+		gap: 8px;
+	}
+
+	.support .icon {
+		width: 25px; /* Ensure consistency between icon and image */
+		height: 25px;
 	}
 
 	.userName {
-		flex-direction: row;
 		font-size: 12px;
-		display: flex;
-		align-items: center;
 	}
 
 	.block .image img {
@@ -104,6 +116,10 @@
 }
 
 @media (min-width: 481px) and (max-width: 834px) {
+	.block_text {
+		display: none;
+	}
+
 	.header {
 		padding: 16px 0;
 	}
@@ -118,9 +134,12 @@
 
 	.support {
 		font-size: 15px;
-		flex-direction: row;
-		display: flex;
-		align-items: center;
+		gap: 8px;
+	}
+
+	.support .icon {
+		width: 30px;
+		height: 30px;
 	}
 
 	.logo img {
@@ -129,18 +148,14 @@
 
 	.block {
 		column-gap: 30px;
-		flex-direction: column;
 	}
 
 	.block .image img {
-		width: 35px;
+		width: 30px;
 	}
 
 	.userName {
 		font-size: 14px;
-		flex-direction: row;
-		display: flex;
-		align-items: center;
 	}
 }
 
@@ -155,9 +170,12 @@
 
 	.support {
 		font-size: 16px;
-		flex-direction: row;
-		display: flex;
-		align-items: center;
+		gap: 10px;
+	}
+
+	.support .icon {
+		width: 35px;
+		height: 35px;
 	}
 
 	.logo {
@@ -165,14 +183,11 @@
 	}
 
 	.block .image img {
-		width: 40px;
+		width: 35px;
 	}
 
 	.userName {
 		font-size: 16px;
-		flex-direction: row;
-		display: flex;
-		align-items: center;
 	}
 }
 
@@ -191,9 +206,12 @@
 
 	.support {
 		font-size: 17px;
-		flex-direction: row;
-		display: flex;
-		align-items: center;
+		gap: 10px;
+	}
+
+	.support .icon {
+		width: 40px;
+		height: 40px;
 	}
 
 	.block .image img {
@@ -202,9 +220,6 @@
 
 	.userName {
 		font-size: 17px;
-		flex-direction: row;
-		display: flex;
-		align-items: center;
 	}
 }
 
@@ -223,9 +238,12 @@
 
 	.support {
 		font-size: 18px;
-		flex-direction: row;
-		display: flex;
-		align-items: center;
+		gap: 12px;
+	}
+
+	.support .icon {
+		width: 45px;
+		height: 45px;
 	}
 
 	.block .image img {
@@ -234,8 +252,5 @@
 
 	.userName {
 		font-size: 18px;
-		flex-direction: row;
-		display: flex;
-		align-items: center;
 	}
 }

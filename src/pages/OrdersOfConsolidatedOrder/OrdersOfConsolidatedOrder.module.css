@@ -12,3 +12,35 @@
 	border-bottom: 2px solid #e1e1e1;
 	margin-bottom: 36px;
 }
+
+@media (max-width: 1024px) {
+	.title {
+		font-size: 30px;
+		padding: 20px 0;
+		margin-bottom: 30px;
+	}
+}
+
+@media (max-width: 768px) {
+	.section {
+		padding: 0 15px;
+	}
+
+	.title {
+		font-size: 26px;
+		padding: 18px 0;
+		margin-bottom: 25px;
+	}
+}
+
+@media (max-width: 480px) {
+	.section {
+		padding: 0 10px;
+	}
+
+	.title {
+		font-size: 22px;
+		padding: 16px 0;
+		margin-bottom: 20px;
+	}
+}

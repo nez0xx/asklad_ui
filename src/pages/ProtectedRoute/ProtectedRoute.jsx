@@ -1,11 +1,12 @@
 import React from 'react'
-import { Navigate, useLocation } from 'react-router-dom'
-import { matchPath } from 'react-router-dom'
+import { useLocation, useNavigate, matchPath } from 'react-router-dom'
+import { useQuery } from 'react-query'
+import { getMe } from './api/getMe'
 
 const ProtectedRoute = ({ children }) => {
 	const { pathname } = useLocation()
 	const token = localStorage.getItem('token')
-	const user = JSON.parse(localStorage.getItem('user') || '{}')
+	const navigate = useNavigate()
 
 	const publicPaths = [
 		'/login',
@@ -23,12 +24,26 @@ const ProtectedRoute = ({ children }) => {
 		matchPath({ path: publicPath, end: false }, pathname)
 	)
 
-	if ((!token || !user) && !isPublicPath) {
-		return <Navigate to='/login' replace />
+	if (!token && !isPublicPath) {
+		navigate('/login')
 	}
 
-	if (token && user && (pathname === '/login' || pathname === '/register')) {
-		return <Navigate to='/profile/orders' replace />
+	const { data: user, error } = useQuery(['getMe', token], () => getMe(), {
+		enabled: !!token,
+		retry: false,
+		onError: () => {
+			localStorage.removeItem('token')
+			localStorage.removeItem('user')
+			navigate('/login')
+		},
+	})
+
+	if (error || !user) {
+		navigate('/login')
+	}
+
+	if (user && (pathname === '/login' || pathname === '/register')) {
+		navigate('/profile/orders')
 	}
 
 	return children

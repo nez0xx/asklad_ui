@@ -19,9 +19,12 @@
 	align-items: center;
 	column-gap: 10px;
 }
-.status p {
+
+.status p,
+.info p {
 	margin: 0;
 }
+
 .statusBlock {
 	font-size: 18px;
 }
@@ -35,4 +38,59 @@
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+}
+
+@media (max-width: 1024px) {
+	.container {
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	.info {
+		font-size: 21px;
+	}
+
+	.statusBlock {
+		font-size: 16px;
+	}
+}
+
+@media (max-width: 768px) {
+	.container {
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	.info {
+		font-size: 18px;
+	}
+
+	.statusBlock {
+		font-size: 15px;
+	}
+
+	.button {
+		width: 100%;
+		align-items: center;
+	}
+}
+
+@media (max-width: 480px) {
+	.container {
+		flex-direction: column;
+		gap: 15px;
+	}
+
+	.info {
+		font-size: 16px;
+	}
+
+	.statusBlock {
+		font-size: 14px;
+	}
+
+	.button {
+		width: 100%;
+		align-items: center;
+	}
 }

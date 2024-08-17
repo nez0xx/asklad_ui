@@ -1,23 +1,31 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import OrderDetailModal from './components/OrderDetailModal/OrderDetailModal'
 import cls from './OrdersTable.module.css'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-const OrdersTable = ({ orders, delivered }) => {
-	const orderDetailModal = useRef(null)
+const OrdersTable = ({ orders }) => {
+	const [isOpen, setOpen] = useState(false)
 	const [orderDetailId, setOrderDetailId] = useState()
 	const [isExpanded, setIsExpanded] = useState(true)
 
+	console.log(isOpen)
+
 	const handleSetDetail = (id) => {
-		orderDetailModal.current.showModal()
+		setOpen(true)
 		setOrderDetailId(id)
 	}
 
 	const handleToggle = () => {
 		setIsExpanded(!isExpanded)
 	}
+
+	const sortedOrders = orders?.sort((a, b) => {
+		const dateA = a.issue_date ? new Date(a.issue_date) : new Date(0)
+		const dateB = b.issue_date ? new Date(b.issue_date) : new Date(0)
+		return dateB - dateA
+	})
 
 	return (
 		<>
@@ -56,7 +64,7 @@ const OrdersTable = ({ orders, delivered }) => {
 							</tr>
 						</thead>
 						<tbody>
-							{orders.map((order, index) => (
+							{sortedOrders.map((order, index) => (
 								<tr
 									onClick={() => handleSetDetail(order.id)}
 									key={order.id}
@@ -88,11 +96,13 @@ const OrdersTable = ({ orders, delivered }) => {
 					</table>
 				</div>
 			</div>
-			<OrderDetailModal
-				ref={orderDetailModal}
-				id={orderDetailId}
-				setId={setOrderDetailId}
-			/>
+			{isOpen && (
+				<OrderDetailModal
+					id={orderDetailId}
+					setId={setOrderDetailId}
+					setOpen={setOpen}
+				/>
+			)}
 			<ToastContainer />
 		</>
 	)
