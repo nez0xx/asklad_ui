@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useAuth } from '../../../../context/userContext'
 import home from '../../assets/home.svg'
 import orders from '../../assets/orders.svg'
 import finance from '../../assets/finance.svg'
@@ -7,6 +8,7 @@ import give_out from '../../assets/give_out.svg'
 import cls from './ProfileSideMenu.module.css'
 
 const ProfileSideMenu = () => {
+	const { logout } = useAuth()
 	return (
 		<aside className={cls.sideMenu}>
 			<nav className={cls.navigation}>
@@ -48,12 +50,7 @@ const ProfileSideMenu = () => {
 						</NavLink>
 					</li>
 					<li>
-						<NavLink
-							onClick={() => {
-								localStorage.clear()
-							}}
-							to={'/login'}
-						>
+						<NavLink onClick={() => logout()} to={'/login'}>
 							Выйти
 						</NavLink>
 					</li>

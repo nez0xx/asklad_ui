@@ -5,10 +5,10 @@ import logo from './assets/logo.svg'
 import userImg from './assets/user.jpg'
 import cls from './Header.module.css'
 import HamburgerIcon from '../../UI/HamburgerIcon/HamburgerIcon'
+import { useAuth } from '../../context/userContext'
 
 const Header = () => {
-	const user = JSON.parse(localStorage.getItem('user') || '{}')
-	const token = localStorage.getItem('token')
+	const { user, isAuth } = useAuth()
 
 	return (
 		<header className={cls.header}>
@@ -26,7 +26,7 @@ const Header = () => {
 						/>
 						<div className={cls.block_text}>Поддержка</div>
 					</a>
-					{token && (
+					{isAuth && (
 						<Link to='/profile/account' className={cls.userName}>
 							<div className={`${cls.text} ${cls.block_text}`}>{user.name}</div>
 							<div className={cls.image}>
@@ -35,7 +35,7 @@ const Header = () => {
 						</Link>
 					)}
 				</div>
-				{token && <HamburgerIcon />}
+				{isAuth && <HamburgerIcon />}
 			</div>
 		</header>
 	)

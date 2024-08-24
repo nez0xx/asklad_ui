@@ -1,42 +1,35 @@
 import { Icon } from '@iconify/react/dist/iconify.js'
 import { useState } from 'react'
 import { useMutation } from 'react-query'
-import { Link, useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import Button from '../../../../UI/Button/Button'
-import Input from '../../../../UI/Input/Input'
-import { getMe } from '../../api/getMe'
 import { login } from '../../api/login'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { useAuth } from '../../../../context/userContext'
+import { toast } from 'react-toastify'
 import cls from './LoginForm.module.css'
 
 const LoginForm = () => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const navigate = useNavigate()
+	const location = useLocation()
+	const from = location.state?.from?.pathname || '/profile/orders'
+	const { loginUser } = useAuth()
 
 	const { mutate, error } = useMutation({
 		mutationFn: login,
-		onSuccess: data => {
-			localStorage.setItem('token', data.access_token)
-
-			getMe()
-				.then(res => {
-					localStorage.setItem('user', JSON.stringify(res))
-				})
-				.then(() => {
-					navigate('/profile/orders')
-				})
+		onSuccess: (data) => {
+			const accessToken = data?.access_token
+			localStorage.setItem('token', accessToken)
+			setEmail('')
+			setPassword('')
+			loginUser()
+			navigate(from, { replace: true })
+			window.location.reload()
 		},
-		onError: error => {
-			if (error.response.status === 401) {
-				toast.error('Неправильный логин или пароль', {
-					autoClose: 1000,
-				})
-			} else {
-				toast.error(error?.response?.data?.detail || 'Ошибка входа', {
-					autoClose: 1000,
-				})
-			}
+		onError: (error) => {
+			toast.error(error?.response?.data?.detail || 'Ошибка входа', {
+				autoClose: 1000,
+			})
 		},
 	})
 
@@ -74,14 +67,14 @@ const LoginForm = () => {
 					id='email'
 					label='Введите email'
 					value={email}
-					onChange={e => setEmail(e.target.value)}
+					onChange={(e) => setEmail(e.target.value)}
 				/>
 				<Input
 					id='password'
 					type='password'
 					label='Пароль'
 					value={password}
-					onChange={e => setPassword(e.target.value)}
+					onChange={(e) => setPassword(e.target.value)}
 				/>
 				<Button>Войти</Button>
 			</div>

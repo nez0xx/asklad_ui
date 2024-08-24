@@ -1,16 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useLocation, useNavigate, matchPath } from 'react-router-dom'
-import { useQuery } from 'react-query'
-import { getMe } from './api/getMe'
 
 const ProtectedRoute = ({ children }) => {
 	const { pathname } = useLocation()
 	const token = localStorage.getItem('token')
 	const navigate = useNavigate()
 
+	// Define public paths that don't require authentication
 	const publicPaths = [
-		'/login',
-		'/register',
 		'/enter_email',
 		'/reset_password/:token',
 		'/email_sent',
@@ -24,27 +21,13 @@ const ProtectedRoute = ({ children }) => {
 		matchPath({ path: publicPath, end: false }, pathname)
 	)
 
-	if (!token && !isPublicPath) {
-		navigate('/login')
-	}
-
-	const { data: user, error } = useQuery(['getMe', token], () => getMe(), {
-		enabled: !!token,
-		retry: false,
-		onError: () => {
-			localStorage.removeItem('token')
-			localStorage.removeItem('user')
-			navigate('/login')
-		},
-	})
-
-	if (error || !user) {
-		navigate('/login')
-	}
-
-	if (user && (pathname === '/login' || pathname === '/register')) {
-		navigate('/profile/orders')
-	}
+	useEffect(() => {
+		if (!token && !isPublicPath && pathname !== '/register') {
+			navigate('/login', { replace: true })
+		} else if (token && (pathname === '/login' || pathname === '/register')) {
+			navigate('/profile/orders', { replace: true })
+		}
+	}, [token, isPublicPath, pathname, navigate])
 
 	return children
 }

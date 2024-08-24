@@ -27,8 +27,6 @@ const AllOrders = () => {
 		setOpen(true)
 	}
 
-	console.log(orderDetailId)
-
 	const { data } = useQuery(
 		['all-orders', searchNumberValue, selectedValue, searchNameValue],
 		() => getAllOrders(searchNumberValue, selectedValue, searchNameValue),
@@ -38,8 +36,8 @@ const AllOrders = () => {
 	)
 
 	const sortedOrders = data?.sort((a, b) => {
-		const dateA = a.issue_date ? new Date(a.issue_date) : new Date(0)
-		const dateB = b.issue_date ? new Date(b.issue_date) : new Date(0)
+		const dateA = a.created_at ? new Date(a.created_at) : new Date(0)
+		const dateB = b.created_at ? new Date(b.created_at) : new Date(0)
 		return dateB - dateA
 	})
 
