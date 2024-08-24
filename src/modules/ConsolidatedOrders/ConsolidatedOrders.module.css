@@ -34,7 +34,6 @@
 
 .tableCont.show {
 	opacity: 1;
-	max-height: 1000px; /* Set a large max-height to accommodate content */
 }
 
 .tableCont.hide {

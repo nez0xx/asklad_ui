@@ -1,5 +1,3 @@
-// src/App.js
-
 import React from 'react'
 import { RouterProvider, createHashRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
@@ -44,59 +42,31 @@ const router = createHashRouter([
 	},
 	{
 		path: '/reset_password/:token',
-		element: (
-			<ProtectedRoute>
-				<ResetPassword />
-			</ProtectedRoute>
-		),
+		element: <ResetPassword />,
 	},
 	{
 		path: '/enter_email',
-		element: (
-			<ProtectedRoute>
-				<EnterEmail />
-			</ProtectedRoute>
-		),
+		element: <EnterEmail />,
 	},
 	{
 		path: '/email_sent',
-		element: (
-			<ProtectedRoute>
-				<EmailSent />
-			</ProtectedRoute>
-		),
+		element: <EmailSent />,
 	},
 	{
 		path: '/confirm_email_sent',
-		element: (
-			<ProtectedRoute>
-				<RegistrationEmailSent />
-			</ProtectedRoute>
-		),
+		element: <RegistrationEmailSent />,
 	},
 	{
 		path: '/successful_registration',
-		element: (
-			<ProtectedRoute>
-				<SuccessfulRegistration />
-			</ProtectedRoute>
-		),
+		element: <SuccessfulRegistration />,
 	},
 	{
 		path: '/confirm_email/:token',
-		element: (
-			<ProtectedRoute>
-				<ConfirmEmail />
-			</ProtectedRoute>
-		),
+		element: <ConfirmEmail />,
 	},
 	{
 		path: '/confirm_employee/:token',
-		element: (
-			<ProtectedRoute>
-				<ConfirmEmployee />
-			</ProtectedRoute>
-		),
+		element: <ConfirmEmployee />,
 	},
 	{
 		path: '/profile',
@@ -108,51 +78,27 @@ const router = createHashRouter([
 		children: [
 			{
 				path: 'orders',
-				element: (
-					<ProtectedRoute>
-						<Orders />
-					</ProtectedRoute>
-				),
+				element: <Orders />,
 			},
 			{
 				path: 'warehouse',
-				element: (
-					<ProtectedRoute>
-						<WareHouse />
-					</ProtectedRoute>
-				),
+				element: <WareHouse />,
 			},
 			{
 				path: 'files',
-				element: (
-					<ProtectedRoute>
-						<Files />
-					</ProtectedRoute>
-				),
+				element: <Files />,
 			},
 			{
 				path: 'order/:id',
-				element: (
-					<ProtectedRoute>
-						<OrdersOfConsolidatedOrder />
-					</ProtectedRoute>
-				),
+				element: <OrdersOfConsolidatedOrder />,
 			},
 			{
 				path: 'finance',
-				element: (
-					<ProtectedRoute>
-						<Finance />
-					</ProtectedRoute>
-				),
+				element: <Finance />,
 			},
 			{
 				path: 'account',
-				element: (
-					<ProtectedRoute>
-						<Account />
-					</ProtectedRoute>
-				),
+				element: <Account />,
 			},
 		],
 	},

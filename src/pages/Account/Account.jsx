@@ -5,12 +5,12 @@ import { changeName } from './api/changeName'
 import { changePassword } from './api/changePassword'
 import Button from '../../UI/Button/Button'
 import { toast } from 'react-toastify'
+import { useAuth } from '../../context/userContext'
 import 'react-toastify/dist/ReactToastify.css'
 import cls from './Account.module.css'
 
 const Account = () => {
-	const user = JSON.parse(localStorage.getItem('user') || '{}')
-
+	const { user } = useAuth()
 	const [name, setName] = React.useState(user?.name)
 	const [password, setPassword] = React.useState('--------')
 	const [newPassword, setNewPassword] = React.useState('')

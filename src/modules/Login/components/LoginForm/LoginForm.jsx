@@ -4,8 +4,8 @@ import Input from '../../../../UI/Input/Input'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import { useMutation } from 'react-query'
 import { login } from '../../api/login'
-import { getMe } from '../../api/getMe'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { useAuth } from '../../../../context/userContext'
 import { toast } from 'react-toastify'
 import cls from './LoginForm.module.css'
 
@@ -13,19 +13,20 @@ const LoginForm = () => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const navigate = useNavigate()
+	const location = useLocation()
+	const from = location.state?.from?.pathname || '/profile/orders'
+	const { loginUser } = useAuth()
 
 	const { mutate } = useMutation({
 		mutationFn: login,
 		onSuccess: (data) => {
-			localStorage.setItem('token', data.access_token)
-
-			getMe()
-				.then((res) => {
-					localStorage.setItem('user', JSON.stringify(res))
-				})
-				.then(() => {
-					navigate('/profile/orders')
-				})
+			const accessToken = data?.access_token
+			localStorage.setItem('token', accessToken)
+			setEmail('')
+			setPassword('')
+			loginUser()
+			navigate(from, { replace: true })
+			window.location.reload()
 		},
 		onError: (error) => {
 			toast.error(error?.response?.data?.detail || 'Ошибка входа', {

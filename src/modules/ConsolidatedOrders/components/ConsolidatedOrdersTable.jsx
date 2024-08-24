@@ -73,8 +73,8 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders, acceptedBy }) => {
 	}
 
 	const sortedOrders = consolidatedOrders?.sort((a, b) => {
-		const dateA = a.delivery_date ? new Date(a.delivery_date) : new Date(0)
-		const dateB = b.delivery_date ? new Date(b.delivery_date) : new Date(0)
+		const dateA = a.created_at ? new Date(a.created_at) : new Date(0)
+		const dateB = b.created_at ? new Date(b.created_at) : new Date(0)
 		return dateB - dateA
 	})
 
