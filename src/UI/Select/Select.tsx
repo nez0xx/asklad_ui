@@ -18,7 +18,7 @@ export const Select = ({
 	return (
 		<div className={cls.container}>
 			<div className={cls.header} onClick={() => setIsOpen(!isOpen)}>
-				{options.find((option) => option.value === selectedValue)?.label ||
+				{options?.find((option) => option.value === selectedValue)?.label ||
 					'Select an option'}
 				<span className={`${cls.arrow} ${isOpen ? cls.open : ''}`}>
 					&#9660;
