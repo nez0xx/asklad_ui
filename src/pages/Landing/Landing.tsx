@@ -8,13 +8,16 @@ import excel from './assets/excel.png'
 import telegram from './assets/telegram.svg'
 import pdf from './Публичная_оферта.pdf'
 import cls from './Landing.module.css'
+import {Prices} from "@/components/prices/Prices";
+import {Advantages} from "@/components/advantages/Advantages";
+import {Footer} from "@/components/footer/Footer";
 
 const Landing = () => {
     const navigate = useNavigate()
 
-    const aboutRef = useRef(null)
-    const advantagesRef = useRef(null)
-    const feesRef = useRef(null)
+    const aboutRef = useRef<HTMLDivElement>(null)
+    const advantagesRef = useRef<HTMLDivElement>(null)
+    const feesRef = useRef<HTMLDivElement>(null)
 
     const [activeSection, setActiveSection] = useState('about')
 
@@ -46,10 +49,7 @@ const Landing = () => {
         feesIntersection?.isIntersecting,
     ])
 
-    const openPdf = (e) => {
-        e.preventDefault()
-        window.open(pdf, '_blank')
-    }
+
 
     const [menuOpen, setMenuOpen] = useState(false)
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024)
@@ -130,7 +130,7 @@ const Landing = () => {
 
                     <Button
                         onClick={() => navigate('/register')}
-                        styles={{padding: '8px 16px',fontSize: '18px'}}
+                        styles={{padding: '8px 16px', fontSize: '18px'}}
                     >
                         Попробовать
                     </Button>
@@ -162,155 +162,11 @@ const Landing = () => {
                         <img src={example} alt='example'/>
                     </div>
                 </div>
-
-                <div className={cls.advantages} ref={advantagesRef}>
-                    <div className={cls.container}>
-                        <h1 className={cls.title}>Решение для полного цикла торговли</h1>
-
-                        <div className={cls.gird}>
-                            <div className={`${cls.item_1} ${cls.item}`}>
-                                <h4>Скорость</h4>
-                                <p>
-                                    Загрузка информации из excel-файла в один клик. Моментальная
-                                    выдача заказа.
-                                </p>
-                                <img src={excel} alt='excel'/>
-                            </div>
-                            <div className={`${cls.item_2} ${cls.item}`}>
-                                <h4>Команда</h4>
-                                <p>
-                                    Контролируйте действия сотрудников по приёмке и выдаче товара,
-                                    если работаете не в одиночку.
-                                </p>
-                            </div>
-                            <div className={`${cls.item_3} ${cls.item} ${cls.item_white}`}>
-                                <h4>Финансы</h4>
-                                <p>
-                                    Отслеживайте, какой объем финансов и pv проходит через ваш
-                                    Центр
-                                </p>
-                            </div>
-                            <div className={`${cls.item_4} ${cls.item}`}>
-                                <h4>Поддержка</h4>
-                                <p>Служба поддержки в чате 24/7</p>
-                            </div>
-                            <div className={`${cls.item_5} ${cls.item} ${cls.item_white}`}>
-                                <h4>Клиент</h4>
-                                <p>
-                                    Автоматические уведомления о доставке заказа клиенту в
-                                    Телеграм
-                                </p>
-                            </div>
-                            <div className={`${cls.item_6} ${cls.item} ${cls.item_white}`}>
-                                <h4>Учёт</h4>
-                                <p>Программа, адаптированная под специфику бизнеса Атоми</p>
-                            </div>
-                            <div className={`${cls.item_7} ${cls.item}`}>
-                                <h4>Выдача</h4>
-                                <p>
-                                    Генерация документов для выдачи товаров клиентам экономит
-                                    время и бумагу.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className={cls.fees} ref={feesRef}>
-                    <div className={cls.container}>
-                        <h1 className={cls.fees_title}>Тарифы</h1>
-                        <p className={cls.fees_p}>
-                            Приобретите подписку и получите доступ ко всем возможностям
-                            сервиса
-                        </p>
-
-                        <div className={cls.fees_container}>
-                            <div className={cls.fees_item}>
-                                <h4>Free</h4>
-                                <p>Месяц бесплатно</p>
-                                <div>0₽/мес.</div>
-                                <Button
-                                    styles={{backgroundColor: '#0085ff', padding: '15px 23px'}}
-                                >
-                                    Выбрать
-                                </Button>
-                            </div>
-                            <div className={cls.fees_item}>
-                                <h4>Start</h4>
-                                <p>1 месяц</p>
-                                <div>999₽/мес.</div>
-                                <Button
-                                    styles={{backgroundColor: '#0085ff', padding: '15px 23px'}}
-                                >
-                                    Выбрать
-                                </Button>
-                            </div>
-                            <div className={cls.fees_item}>
-                                <h4>Medium</h4>
-                                <p>3 месяца</p>
-                                <div>899₽/мес.</div>
-                                <Button
-                                    styles={{backgroundColor: '#0085ff', padding: '15px 23px'}}
-                                >
-                                    Выбрать
-                                </Button>
-                            </div>
-                            <div className={cls.fees_item}>
-                                <h4>Large</h4>
-                                <p>6 месяцев</p>
-                                <div>749₽/мес.</div>
-                                <Button
-                                    styles={{backgroundColor: '#0085ff', padding: '15px 23px'}}
-                                >
-                                    Выбрать
-                                </Button>
-                            </div>
-                            <div className={cls.fees_item}>
-                                <h4>Pro</h4>
-                                <p>12 месяцев</p>
-                                <div>649₽/мес.</div>
-                                <Button
-                                    styles={{backgroundColor: '#0085ff', padding: '15px 23px'}}
-                                >
-                                    Выбрать
-                                </Button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <Advantages refs={advantagesRef}/>
+                <Prices refs={feesRef}/>
             </main>
 
-            <footer className={cls.footer}>
-                <div className={cls.container}>
-                    <div>
-                        <h4>
-                            А.<span>Склад</span>
-                        </h4>
-                        <p>Чугайнов Иван Дмитриевич</p>
-                        <p>ИНН 590317755509</p>
-                        <p>E-mail: askladrf@gmail.com</p>
-                        <p style={{cursor: 'pointer'}} onClick={openPdf}>
-                            Публичная оферта
-                        </p>
-                    </div>
-
-                    <div className={cls.feedback}>
-                        <div>Есть вопрос? Напишите в поддержку</div>
-                        <a
-                            href='https://t.me/askladsupbot'
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className={cls.telegram}
-                        >
-                            <div className={cls.image}>
-                                <img src={telegram} alt='telegram logo'/>
-                            </div>
-                            <div>Telegram</div>
-                        </a>
-                        <a>© 2024, А.Склад. Все права защищены</a>
-                    </div>
-                </div>
-            </footer>
+           <Footer />
         </div>
     )
 }
