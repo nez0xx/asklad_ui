@@ -1,0 +1,132 @@
+
+.footer {
+    background: #183474;
+    color: var(--white);
+    padding: 40px 0;
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 70px;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.footer h4 {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.footer p {
+    font-size: 15px;
+    margin: 0;
+    color: var(--white);
+}
+
+.footer p:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.footer h4 span {
+    color: var(--main-color);
+}
+
+.footer .feedback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+}
+
+.footer .telegram {
+    margin-top: 10px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    font-weight: 500;
+    column-gap: 10px;
+    background-color: var(--white);
+    padding: 10px 20px;
+    border-radius: 30px;
+    color: #0085ff;
+    cursor: pointer;
+}
+
+.footer .telegram .image {
+    transform: translateY(2px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .footer {
+        padding: 35px 0;
+    }
+
+    .footer .container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer .feedback {
+        margin-top: 30px;
+    }
+
+    .footer .telegram {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 30px 0;
+    }
+
+    .footer .container {
+        text-align: center;
+    }
+
+    .footer h4 {
+        font-size: 18px;
+    }
+
+    .footer p {
+        font-size: 14px;
+    }
+
+    .footer .telegram {
+        font-size: 15px;
+        padding: 7px 14px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 25px 0;
+    }
+
+    .footer h4 {
+        font-size: 16px;
+    }
+
+    .footer p {
+        font-size: 13px;
+    }
+
+    .footer .telegram {
+        font-size: 14px;
+        padding: 6px 12px;
+        margin-bottom: 15px;
+    }
+
+    .footer .container {
+        text-align: center;
+        flex-direction: column;
+    }
+}
