@@ -130,13 +130,13 @@ const Landing = () => {
 
                     <Button
                         onClick={() => navigate('/register')}
-                        styles={{padding: '16px 30px'}}
+                        styles={{padding: '8px 16px',fontSize: '18px'}}
                     >
                         Попробовать
                     </Button>
                     {isMobile && (
                         <div
-                            className={`${cls.hamburger} ${
+                            classNaheame={`${cls.hamburger} ${
                                 menuOpen ? cls.hamburgerOpen : ''
                             }`}
                             onClick={toggleMenu}
