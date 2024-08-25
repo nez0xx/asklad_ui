@@ -7,6 +7,7 @@ import { deliverConsolidatedOrder } from './api/deliverConsolidatedOrder'
 import { deleteConsolidatedOrder } from './api/deleteConsolidatedOrder' // Make sure the path is correct
 import Button from '../../UI/Button/Button'
 import { toast } from 'react-toastify'
+import Checkbox from '../../UI/Checkbox/Checkbox'
 import DeleteModal from './components/DeleteModal' // Import the modal component
 import cls from './ConsolidatedOrderInfo.module.css'
 import 'react-toastify/dist/ReactToastify.css'
@@ -15,6 +16,7 @@ const ConsolidatedOrderInfo = () => {
 	const { id } = useParams()
 	const navigate = useNavigate() // To navigate programmatically
 	const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)
+	const [isChecked, setChecked] = React.useState(false)
 
 	const { data, isLoading } = useQuery({
 		queryKey: ['consolidated-order-orders', id],
@@ -23,7 +25,8 @@ const ConsolidatedOrderInfo = () => {
 
 	// UseMutation for delivery
 	const { mutate: deliverOrder, isLoading: isDelivering } = useMutation({
-		mutationFn: () => deliverConsolidatedOrder({ united_order_id: id }),
+		mutationFn: () =>
+			deliverConsolidatedOrder({ united_order_id: id, notificate: isChecked }),
 		onSuccess: () => {
 			toast.success('Заказ доставлен успешно!', {
 				autoClose: 1000,
@@ -122,9 +125,20 @@ const ConsolidatedOrderInfo = () => {
 
 					<div className={cls.button}>
 						{!data?.delivered && (
-							<Button onClick={handleDeliverOrder} disabled={isDelivering}>
-								{isDelivering ? 'Загрузка...' : 'Доставить'}
-							</Button>
+							<>
+								<div className={cls.checkbox_block}>
+									<Checkbox checked={isChecked} onChange={setChecked} />
+									<label
+										className={cls.checkbox_label}
+										onClick={() => setChecked((prev) => !prev)}
+									>
+										Уведомить клиентов
+									</label>
+								</div>
+								<Button onClick={handleDeliverOrder} disabled={isDelivering}>
+									{isDelivering ? 'Загрузка...' : 'Доставить'}
+								</Button>
+							</>
 						)}
 					</div>
 				</div>

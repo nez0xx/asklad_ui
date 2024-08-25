@@ -31,8 +31,10 @@ export default class OrdersService {
 		return $api.post(`/orders/give_out?order_id=${id}`)
 	}
 
-	static async deliverConsolidatedOrder(united_order_id) {
-		return $api.post(`/orders/delivery?united_order_id=${united_order_id}`)
+	static async deliverConsolidatedOrder(united_order_id, notificate = false) {
+		return $api.post(
+			`/orders/delivery?united_order_id=${united_order_id}&notificate=${notificate}`
+		)
 	}
 
 	static async deleteConsolidatedOrder(id) {
