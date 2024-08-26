@@ -21,7 +21,6 @@ export const Prices: FC<PricesPropsInterface> = (({refs}) => (
                    сервиса
                </Subtitle>
            </div>
-
             <div className={cls.wrapper}>
                 {CategoriesPricesOptions.map(({id, price, title, text}) =>
                     <Price key={String(id)} title={title} text={text} price={price}/>

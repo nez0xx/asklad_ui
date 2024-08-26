@@ -16,13 +16,13 @@
 .titlePrice {
     color: var(--main-title-color);
     font-weight: 800;
-    font-size: 32px;
+    font-size: 16px;
     margin-bottom: 15px;
 }
 
 .subTitlePrice {
-    font-weight: 800;
-    font-size: 16px;
+    font-weight: 500;
+    font-size: 14px;
 }
 
 .description {
@@ -60,7 +60,7 @@
     flex: 1 1 calc(33.333% - 70px);
     max-width: calc(33.333% - 70px);
     padding: 20px 15px;
-    margin: 24px;
+    margin: 32px;
     border: 1px solid #516796;
     box-sizing: border-box;
     display: flex;
@@ -212,4 +212,6 @@
     justify-content: center;
     width: 100%;
     flex-wrap: wrap;
+
+    padding: 0 83px;
 }
