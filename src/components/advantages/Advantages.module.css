@@ -6,13 +6,13 @@
 }
 
 .subTitle {
-    font-weight: 800;
-    font-size: 32px;
+    font-weight: 700;
+    font-size: 24px;
 }
 
 .description {
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 
@@ -65,10 +65,6 @@
     margin-bottom: 15px;
 }
 
-.subTitle {
-    font-weight: 800;
-    font-size: 32px;
-}
 .advantages {
     padding: 40px 0;
 }
@@ -85,10 +81,10 @@
     gap: 40px;
 }
 
-.advantages .item_7   {
-    grid-column: 2 / 3; /* Центрирует элемент по горизонтали в последнем ряду */
-    grid-row: 3 / 4;
-}
+/*.advantages .item_7   {*/
+/*    grid-column: 2 / 3; !* Центрирует элемент по горизонтали в последнем ряду *!*/
+/*    grid-row: 3 / 4;*/
+/*}*/
 
 
 .item_5, .item_6, .item_3 {
@@ -224,4 +220,25 @@
     .advantages .item img {
         width: 90px;
     }
+}
+
+.flexWrapper {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 16px 0;
+}
+.imageWrapper {
+    display: flex;
+    justify-content: center;
+}
+.imageWrapper img {
+    border-radius: 12px;
+    display: block;
+    max-width: 55%;
+    height: auto;
+    margin: 0 auto;
+}
+.about img {
+
 }

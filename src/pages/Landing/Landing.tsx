@@ -1,16 +1,13 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {useIntersection} from 'react-use'
 import Button from '@UI/Button/Button'
 import logo from './assets/logo.png'
-import example from './assets/example.png'
-import excel from './assets/excel.png'
-import telegram from './assets/telegram.svg'
-import pdf from './Публичная_оферта.pdf'
 import cls from './Landing.module.css'
 import {Prices} from "@/components/prices/Prices";
 import {Advantages} from "@/components/advantages/Advantages";
 import {Footer} from "@/components/footer/Footer";
+import {About} from "@/components/about/About";
 
 const Landing = () => {
     const navigate = useNavigate()
@@ -48,7 +45,6 @@ const Landing = () => {
         advantagesIntersection?.isIntersecting,
         feesIntersection?.isIntersecting,
     ])
-
 
 
     const [menuOpen, setMenuOpen] = useState(false)
@@ -136,7 +132,7 @@ const Landing = () => {
                     </Button>
                     {isMobile && (
                         <div
-                            classNaheame={`${cls.hamburger} ${
+                            className={`${cls.hamburger} ${
                                 menuOpen ? cls.hamburgerOpen : ''
                             }`}
                             onClick={toggleMenu}
@@ -148,25 +144,12 @@ const Landing = () => {
                     )}
                 </div>
             </header>
-
             <main>
-                <div className={cls.about} ref={aboutRef}>
-                    <div className={cls.container}>
-                        <h1 className={cls.title}>
-                            Система учёта товара для управления образовательным центром{' '}
-                        </h1>
-                        <p>
-                            Подходит руководителям образовательных центров Атоми. Убедитесь,
-                            как удобно управлять бизнесом без бумаг и часов ручной работы.{' '}
-                        </p>
-                        <img src={example} alt='example'/>
-                    </div>
-                </div>
+                <About refs={aboutRef}/>
                 <Advantages refs={advantagesRef}/>
                 <Prices refs={feesRef}/>
             </main>
-
-           <Footer />
+            <Footer/>
         </div>
     )
 }

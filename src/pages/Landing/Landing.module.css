@@ -24,6 +24,7 @@
     margin: 0 auto; /* Center the container */
 }
 
+
 @media (max-width: 1200px) {
     .container {
         width: 80%; /* Increase width to utilize more screen space */

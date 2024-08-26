@@ -1,12 +1,16 @@
 import cls from './Advantages.module.css'
+import {Title} from "@/components/title/Title";
+import example from "@pages/Landing/assets/promo2.png";
+import React from "react";
 
 export const Advantages = ({refs}) => {
     return (
         <>
             <div className={cls.advantages} ref={refs}>
                 <div className={cls.container}>
-                    <h1 className={cls.title}>Решение для полного цикла торговли</h1>
-
+                    <div className={cls.flexWrapper}>
+                        <Title width={600}>Решение для полного цикла торговли</Title>
+                    </div>
                     <div className={cls.gird}>
                         <div className={`${cls.item_1} ${cls.item}`}>
                             <h4 className={cls.subTitle}>Скорость</h4>
@@ -35,26 +39,23 @@ export const Advantages = ({refs}) => {
 
                                     Служба поддержки в чате 24/7</span>
                         </div>
-                        <div className={`${cls.item_5} ${cls.item} ${cls.item_white}`}>
-                            <h4 className={cls.subTitle}>Клиент</h4>
-                            <span className={cls.description}>
-                                    Автоматические уведомления о доставке заказа клиенту в
-                                    Телеграм
-                                </span>
-                        </div>
+
                         <div className={`${cls.item_6} ${cls.item} ${cls.item_white}`}>
-                            <h4 className={cls.subTitle}>Учёт</h4>
+                            <h4 className={cls.subTitle}>Удобство</h4>
                             <span className={cls.description}>
-                                    Программа, адаптированная под специфику бизнеса Атоми</span>
+                                  Программа, адаптированная под  специфику бизнеса Атоми</span>
                         </div>
                         <div className={`${cls.item_7} ${cls.item}`}>
-                            <h4 className={cls.subTitle}>Выдача</h4>
+                            <h4 className={cls.subTitle}>Экономия</h4>
                             <span className={cls.description}>
-                                    Генерация документов для выдачи товаров клиентам экономит
-                                    время и бумагу.
+                                    Генерация документов для выдачи товаров клиентам экономит время и бумагу.
                                 </span>
                         </div>
+
                     </div>
+                </div>
+                <div className={cls.imageWrapper}>
+                <img src={example} alt='example'/>
                 </div>
             </div>
 
