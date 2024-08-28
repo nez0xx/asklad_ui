@@ -9,7 +9,7 @@ import {useAuth} from "@context/userContext";
 
 const Header = () => {
 	const { user, isAuth } = useAuth()
-
+	console.log(user,"USER2")
 	return (
 		<header className={cls.header}>
 			<div className={cls.headerCont}>
@@ -28,7 +28,7 @@ const Header = () => {
 					</a>
 					{isAuth && (
 						<Link to='/profile/account' className={cls.userName}>
-							<div className={`${cls.text} ${cls.block_text}`}>{user.name}</div>
+							<div className={`${cls.text} ${cls.block_text}`}>{user.data.name}</div>
 							<div className={cls.image}>
 								<img src={userImg} alt='user' />
 							</div>

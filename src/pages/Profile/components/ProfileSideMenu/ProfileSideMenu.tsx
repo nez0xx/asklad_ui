@@ -50,6 +50,15 @@ const ProfileSideMenu = () => {
 						</NavLink>
 					</li>
 					<li>
+						<NavLink
+							className={({ isActive }) => (isActive ? cls.active : '')}
+							to={'subscribes'}
+						>
+							<img src={finance} alt='subscribes' />
+							<div>Подписки</div>
+						</NavLink>
+					</li>
+					<li>
 						<NavLink onClick={() => logout()} to={'/login'}>
 							Выйти
 						</NavLink>

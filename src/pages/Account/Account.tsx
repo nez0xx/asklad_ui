@@ -62,8 +62,8 @@ const Account = () => {
 			<h1 className={cls.title}>Личный кабинет</h1>
 			<p className={cls.info}>Информация об аккаунте</p>
 			<div className={cls.inputs}>
-				<AccountInput type='email' value={user.email} />
-				<AccountInput type='name' value={name} setValue={setName} />
+				<AccountInput type='email' value={user.data.email} />
+				<AccountInput type='name' value={user.data.name} setValue={setName} />
 				<AccountInput
 					type='password'
 					value={password}

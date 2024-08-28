@@ -1,0 +1,15 @@
+.box {
+    border: 1px solid #516796;
+    border-radius: 12px;
+    padding: 48px 0;
+}
+.flex {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

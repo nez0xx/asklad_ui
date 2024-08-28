@@ -56,6 +56,16 @@ const ResponsiveMenu = () => {
 					</li>
 					<li>
 						<NavLink
+							className={({ isActive }) => (isActive ? cls.active : '')}
+							onClick={() => toggleMenu()}
+							to={'subscribes'}
+						>
+							<img src={finance} alt='subscribes' />
+							<div>Подписка</div>
+						</NavLink>
+					</li>
+					<li>
+						<NavLink
 							onClick={() => {
 								localStorage.clear()
 								toggleMenu()

@@ -2,9 +2,12 @@ import { useState } from 'react'
 import ConsolidatedOrdersTable from './components/ConsolidatedOrdersTable'
 import { Icon } from '@iconify/react/dist/iconify'
 import cls from './ConsolidatedOrders.module.css'
+import {useQuery, useQueryClient} from "react-query";
+import {getOrdersUnited} from "@modules/WareHouseContent/api/getOrdersUnited";
 
-const ConsolidatedOrders = ({ data }) => {
+const ConsolidatedOrders = () => {
 	const [isExpanded, setIsExpanded] = useState(true)
+
 
 	const handleToggle = () => {
 		setIsExpanded(!isExpanded)
@@ -32,7 +35,7 @@ const ConsolidatedOrders = ({ data }) => {
 			</h2>
 
 			<div className={`${cls.tableCont} ${isExpanded ? cls.show : cls.hide}`}>
-				<ConsolidatedOrdersTable consolidatedOrders={data} />
+				<ConsolidatedOrdersTable />
 			</div>
 		</div>
 	)

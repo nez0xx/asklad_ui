@@ -22,6 +22,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import Login from "@pages/Login/Login";
 import HamburgerProvider from "@modules/HamburgerProvider/HamburgerProvider";
 import Register from "@pages/Register/Register";
+import {Subscribes} from "@pages/Subscribes/Subscribes";
 
 const router = createHashRouter([
 	{ path: '/', element: <Landing /> },
@@ -88,6 +89,10 @@ const router = createHashRouter([
 			{
 				path: 'files',
 				element: <Files />,
+			},
+			{
+				path: 'subscribes',
+				element: <Subscribes />,
 			},
 			{
 				path: 'order/:id',

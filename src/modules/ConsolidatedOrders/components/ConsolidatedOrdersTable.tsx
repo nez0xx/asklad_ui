@@ -1,19 +1,28 @@
 import  { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '@UI/Button/Button'
-import { useMutation } from 'react-query'
+import {useMutation, useQuery} from 'react-query'
 import { toast, ToastContainer } from 'react-toastify'
 import { generateExcel } from '../api/generateExcel'
 import Checkbox from '@UI/Checkbox/Checkbox'
 import { saveAs } from 'file-saver'
 import cls from './ConsolidatedOrdersTable.module.css'
+import {getOrdersUnited} from "@modules/WareHouseContent/api/getOrdersUnited";
 
 const containerId = 'consolidated-orders-table-toast-container'
 const toastId = 'consolidated-orders-table-toast'
 
-const ConsolidatedOrdersTable = ({ consolidatedOrders, acceptedBy }) => {
+const ConsolidatedOrdersTable = ( ) => {
 	const navigate = useNavigate()
 	const [chosenList, setChosenList] = useState([])
+
+	const { data, isError, error } = useQuery({
+		queryKey: ['consolidated-order-all'],
+		queryFn: getOrdersUnited,
+		refetchOnWindowFocus: false,
+		retry: false,
+	})
+
 
 	const { mutate, isLoading } = useMutation(generateExcel, {
 		onSuccess: (data) => {
@@ -72,11 +81,12 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders, acceptedBy }) => {
 		}
 	}
 
-	const sortedOrders = consolidatedOrders?.sort((a, b) => {
+	const sortedOrders = data?.sort((a, b) => {
 		const dateA = a.delivery_date ? new Date(a.delivery_date) : new Date(0)
 		const dateB = b.delivery_date ? new Date(b.delivery_date) : new Date(0)
 		return dateB - dateA
 	})
+	console.log(sortedOrders,'SSS')
 
 	return (
 		<div className={cls.container}>
@@ -136,7 +146,7 @@ const ConsolidatedOrdersTable = ({ consolidatedOrders, acceptedBy }) => {
 									? order.delivery_date.split('-').reverse().join('.')
 									: ''}
 							</td>
-							<td className={cls.td}>{acceptedBy}</td>
+							<td className={cls.td}>{order?.employee_relationship?.name ?? null}</td>
 							<td className={cls.tickTd}>
 								<Checkbox
 									checked={chosenList.includes(order.id)}
