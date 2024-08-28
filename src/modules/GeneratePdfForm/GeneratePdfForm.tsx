@@ -45,7 +45,7 @@ const GeneratePdfForm = () => {
 	return (
 		<form className={cls.form} onSubmit={handleAddNewOrder}>
 			<div className={cls.field}>
-				<label className={cls.label}>Загрузите PDF-файл:</label>
+				<label className={cls.label}>Загрузите PDF-файл с накладными:</label>
 				<label htmlFor='pdf_file' className={cls.fileUploadCont}>
 					<div className={cls.uploadCont}>
 						<Icon

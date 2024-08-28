@@ -11,7 +11,7 @@ const Files = () => {
 				<AddOrderForm />
 			</div>
 
-			<h1 className={cls.title}>Сжатие pdf</h1>
+			<h1 className={cls.title}>Сжатие накладных</h1>
 			<div>
 				<GeneratePdfForm />
 			</div>
