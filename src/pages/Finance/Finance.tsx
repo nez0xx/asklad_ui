@@ -35,11 +35,11 @@ const Finance = () => {
 
 	return (
 		<section className={cls.section}>
-			<h1 className={cls.title}>Оборот</h1>
+			<h1 className={cls.title}>Финансы</h1>
 
 			<div>
 				<div className={cls.totalTurnover}>
-					Общий: {isLoading ? 'Loading' : data.total_price.rub} руб.
+					Оборот в рублях: {isLoading ? 'Loading' : data.total_price.rub} руб.
 				</div>
 				<div className={cls.totalTurnover}>
 					Оборот PV: {isLoading ? 'Loading' : data.total_pv} PV.
