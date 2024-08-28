@@ -64,7 +64,7 @@ const AddOrderForm = () => {
 				</select>
 			</div> */}
 			<div className={cls.field}>
-				<label className={cls.label}>Консолидированные товары:</label>
+				<label className={cls.label}>Загрузите Excel-файл "Консолидированные товары"</label>
 				<label htmlFor='file' className={cls.fileUploadCont}>
 					<div className={cls.uploadCont}>
 						<Icon
