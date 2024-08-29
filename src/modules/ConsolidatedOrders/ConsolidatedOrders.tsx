@@ -1,9 +1,7 @@
-import { useState } from 'react'
+import {useState} from 'react'
 import ConsolidatedOrdersTable from './components/ConsolidatedOrdersTable'
-import { Icon } from '@iconify/react/dist/iconify'
+import {Icon} from '@iconify/react/dist/iconify'
 import cls from './ConsolidatedOrders.module.css'
-import {useQuery, useQueryClient} from "react-query";
-import {getOrdersUnited} from "@modules/WareHouseContent/api/getOrdersUnited";
 
 const ConsolidatedOrders = () => {
 	const [isExpanded, setIsExpanded] = useState(true)
@@ -14,6 +12,7 @@ const ConsolidatedOrders = () => {
 	}
 
 	return (
+		<div className={cls.ConsolidatedOrdersWrapper}>
 		<div className={cls.ConsolidatedOrders}>
 			<h2
 				className={`${cls.secondaryTitle} ${
@@ -37,6 +36,7 @@ const ConsolidatedOrders = () => {
 			<div className={`${cls.tableCont} ${isExpanded ? cls.show : cls.hide}`}>
 				<ConsolidatedOrdersTable />
 			</div>
+		</div>
 		</div>
 	)
 }

@@ -1,3 +1,9 @@
+.ConsolidatedOrdersWrapper {
+	display: grid;
+	gap: 10px;
+	margin: 20px 0;
+}
+
 .ConsolidatedOrders {
 	padding-bottom: 24px;
 	margin-bottom: 17px;
@@ -34,7 +40,7 @@
 
 .tableCont.show {
 	opacity: 1;
-	max-height: 1000px; /* Set a large max-height to accommodate content */
+	max-height: 1200px; /* Set a large max-height to accommodate content */
 }
 
 .tableCont.hide {
