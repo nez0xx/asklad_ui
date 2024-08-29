@@ -40,6 +40,7 @@ export const Footer = () => {
                         </a>
                         <a>© 2024, А.Склад. Все права защищены</a>
                     </div>
+                    <div></div>
                 </div>
             </footer>
         </>
