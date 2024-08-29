@@ -1,18 +1,16 @@
-import {useState} from 'react'
+import React, { useState } from 'react'
 import ConsolidatedOrdersTable from './components/ConsolidatedOrdersTable'
-import {Icon} from '@iconify/react/dist/iconify'
+import { Icon } from '@iconify/react/dist/iconify.js'
 import cls from './ConsolidatedOrders.module.css'
 
-const ConsolidatedOrders = () => {
+const ConsolidatedOrders = ({ data }) => {
 	const [isExpanded, setIsExpanded] = useState(true)
-
 
 	const handleToggle = () => {
 		setIsExpanded(!isExpanded)
 	}
-
+	// console.log(data,'WWWWW')
 	return (
-		<div className={cls.ConsolidatedOrdersWrapper}>
 		<div className={cls.ConsolidatedOrders}>
 			<h2
 				className={`${cls.secondaryTitle} ${
@@ -34,9 +32,8 @@ const ConsolidatedOrders = () => {
 			</h2>
 
 			<div className={`${cls.tableCont} ${isExpanded ? cls.show : cls.hide}`}>
-				<ConsolidatedOrdersTable />
+				<ConsolidatedOrdersTable data={data} />
 			</div>
-		</div>
 		</div>
 	)
 }
