@@ -5,13 +5,14 @@ import { useMutation } from 'react-query'
 import { uploadOrder } from './api/uploadOrder.ts'
 import { toast, ToastContainer } from 'react-toastify'
 import cls from './AddOrderForm.module.css'
+import {Modal} from "@/components/modal/modal";
 
 const containerId = 'add-order-toast-container'
 const toastId = 'add-order-toast'
 const AddOrderForm = () => {
 	const [filename, setFilename] = useState('')
 
-	const { mutate, isLoading } = useMutation({
+	const { mutate, isLoading,data } = useMutation({
 		mutationFn: uploadOrder,
 		onError: (error) => {
 			toast.update(toastId, {
@@ -40,7 +41,7 @@ const AddOrderForm = () => {
 			isLoading: true,
 		})
 	}
-
+	console.log('DATTT',data?.data)
 	function handleAddNewOrder(e) {
 		e.preventDefault()
 		const formData = new FormData(e.target)
@@ -85,7 +86,7 @@ const AddOrderForm = () => {
 					/>
 				</label>
 			</div>
-
+				<Modal />
 			<Button>Добавить заказ</Button>
 			<ToastContainer containerId={containerId} />
 		</form>
