@@ -50,7 +50,7 @@ const WareHouseContent = () => {
 			}
 			return <p>Failed to load content</p>
 		}
-	console.log(data,"DDDD")
+
 		return (
 			<>
 				<div className={cls.titleBlock}>

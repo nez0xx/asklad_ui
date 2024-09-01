@@ -10,7 +10,7 @@ const OrdersTable = ({ orders }) => {
 	const [orderDetailId, setOrderDetailId] = useState()
 	const [isExpanded, setIsExpanded] = useState(true)
 
-	console.log(isOpen)
+
 
 	const handleSetDetail = (id) => {
 		setOpen(true)

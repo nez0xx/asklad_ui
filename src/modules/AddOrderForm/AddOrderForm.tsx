@@ -1,11 +1,11 @@
-import  { useState } from 'react'
-import { Icon } from '@iconify/react/dist/iconify.js'
+import {useState} from 'react'
+import {Icon} from '@iconify/react/dist/iconify.js'
 import Button from '@UI/Button/Button'
-import { useMutation } from 'react-query'
-import { uploadOrder } from './api/uploadOrder.ts'
-import { toast, ToastContainer } from 'react-toastify'
+import {useMutation} from 'react-query'
+import {uploadOrder} from './api/uploadOrder.ts'
+import {toast, ToastContainer} from 'react-toastify'
 import cls from './AddOrderForm.module.css'
-import {Modal} from "@/components/modal/modal";
+import {Modal} from "@/components/modal/Modal";
 
 const containerId = 'add-order-toast-container'
 const toastId = 'add-order-toast'
@@ -41,7 +41,7 @@ const AddOrderForm = () => {
 			isLoading: true,
 		})
 	}
-	console.log('DATTT',data?.data)
+
 	function handleAddNewOrder(e) {
 		e.preventDefault()
 		const formData = new FormData(e.target)
@@ -53,8 +53,9 @@ const AddOrderForm = () => {
 	}
 
 	return (
-		<form className={cls.form} onSubmit={handleAddNewOrder}>
-			{/* <div>
+		<>
+			<form className={cls.form} onSubmit={handleAddNewOrder}>
+				{/* <div>
 				<label className={cls.label} htmlFor=''>
 					Выберите образовательный центр:
 				</label>
@@ -64,32 +65,37 @@ const AddOrderForm = () => {
 					<option value='third'>Third</option>
 				</select>
 			</div> */}
-			<div className={cls.field}>
-				<label className={cls.label}>Загрузите Excel-файл "Консолидированные товары"</label>
-				<label htmlFor='file' className={cls.fileUploadCont}>
-					<div className={cls.uploadCont}>
-						<Icon
-							icon='ooui:upload'
-							width='35px'
-							height='35px'
-							color='#0232ae'
+				<div className={cls.field}>
+					<label className={cls.label}>Загрузите Excel-файл "Консолидированные товары"</label>
+					<label htmlFor='file' className={cls.fileUploadCont}>
+						<div className={cls.uploadCont}>
+							<Icon
+								icon='ooui:upload'
+								width='35px'
+								height='35px'
+								color='#0232ae'
+							/>
+							{filename ? filename : 'Перетащите или загрузите с компьютера'}
+						</div>
+						<input
+							className={cls.fileUpload}
+							type='file'
+							id='file'
+							accept='.xlsx'
+							name='file'
+							onChange={handleAddFile}
 						/>
-						{filename ? filename : 'Перетащите или загрузите с компьютера'}
-					</div>
-					<input
-						className={cls.fileUpload}
-						type='file'
-						id='file'
-						accept='.xlsx'
-						name='file'
-						onChange={handleAddFile}
-					/>
-				</label>
-			</div>
-				<Modal />
-			<Button>Добавить заказ</Button>
-			<ToastContainer containerId={containerId} />
-		</form>
+					</label>
+				</div>
+
+				<Button>Добавить заказ</Button>
+				<ToastContainer containerId={containerId} />
+			</form>
+			<>
+				<Modal data={data?.data} />
+				{/*{data?.data && <ModalWrapper data={data?.data}/>}*/}
+			</>
+		</>
 	)
 }
 

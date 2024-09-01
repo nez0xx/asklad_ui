@@ -86,7 +86,7 @@ const ConsolidatedOrdersTable = ( ) => {
 		const dateB = b.delivery_date ? new Date(b.delivery_date) : new Date(0)
 		return dateB - dateA
 	})
-	console.log(sortedOrders,'SSS')
+
 
 	return (
 		<div className={cls.container}>
