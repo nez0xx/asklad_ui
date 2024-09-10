@@ -9,7 +9,6 @@ import {useAuth} from "@context/userContext";
 
 const Header = () => {
 	const { user, isAuth } = useAuth()
-	console.log(user,"USER2")
 	return (
 		<header className={cls.header}>
 			<div className={cls.headerCont}>

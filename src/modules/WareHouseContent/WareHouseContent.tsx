@@ -61,7 +61,6 @@ const WareHouseContent = () => {
 			}
 			return <p>Failed to load content</p>
 		}
-	console.log(data2,"DDDD")
 		return (
 			<>
 				<div className={cls.titleBlock}>

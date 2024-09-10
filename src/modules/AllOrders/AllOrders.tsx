@@ -27,7 +27,6 @@ const AllOrders = () => {
 		setOpen(true)
 	}
 
-	console.log(orderDetailId)
 
 	const { data } = useQuery(
 		['all-orders', searchNumberValue, selectedValue, searchNameValue],

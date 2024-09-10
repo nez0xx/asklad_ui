@@ -9,7 +9,7 @@ const ConsolidatedOrders = ({ data }) => {
 	const handleToggle = () => {
 		setIsExpanded(!isExpanded)
 	}
-	// console.log(data,'WWWWW')
+
 	return (
 		<div className={cls.ConsolidatedOrders}>
 			<h2

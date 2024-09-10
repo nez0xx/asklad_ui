@@ -11,16 +11,12 @@ export const AuthProvider = ({ children }) => {
 	const fetchUser = async () => {
 		const token = localStorage.getItem('token')
 		if (token) {
-			try {
 				const userData = await getMe()
 				setUser(userData)
 				setIsAuth(true)
-			} catch (error) {
-				console.error('Error fetching user data', error)
-				logout()
-			}
 		} else {
 			setIsAuth(false)
+			logout()
 		}
 		setLoading(false)
 	}

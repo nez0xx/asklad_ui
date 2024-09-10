@@ -20,13 +20,12 @@ const LoginForm = () => {
 	const { mutate } = useMutation({
 		mutationFn: login,
 		onSuccess: (data) => {
-			const accessToken = data?.access_token
-			localStorage.setItem('token', accessToken)
 			setEmail('')
 			setPassword('')
 			loginUser()
 			navigate(from, { replace: true })
 			window.location.reload()
+
 		},
 		onError: (error) => {
 			toast.error(error?.response?.data?.detail || 'Ошибка входа', {
@@ -34,7 +33,6 @@ const LoginForm = () => {
 			})
 		},
 	})
-
 	function handleLogin(e) {
 		e.preventDefault()
 
