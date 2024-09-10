@@ -1,4 +1,4 @@
-import {Box, Button, Grid2, Modal as ModalMUI} from "@mui/material";
+import {Box, Grid2, Modal as ModalMUI, Pagination} from "@mui/material";
 import {useCallback, useEffect, useState} from "react";
 import {UserModalList} from "./user-modal-list/UserModalList";
 import {SecondaryButton} from "@UI/Button-Mui/Button-Mui";
@@ -8,18 +8,18 @@ import {style} from "@/components/user-modal/UserModal.style";
 
 
 export const UserModal = ({data}: any) => {
+    const itemsPerPage = 10;
     const [modalOpen, setModalOpen] = useState(true);
     const [users, setUsers] = useState<Array<string> | []>([]);
-    // const handleOpen = () => setModalOpen(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = Math.ceil(users.length / itemsPerPage);
+
     const handleClose = () => setModalOpen(false);
 
     useEffect(() => {
         setModalOpen(true)
         setUsers(data)
-        console.log(data, 'DATA IN MODAL')
     }, [data])
-
-
     const handleCopyClick = useCallback(() => {
         navigator.clipboard.writeText(data?.join(', '))
             .then(() => {
@@ -33,10 +33,12 @@ export const UserModal = ({data}: any) => {
                 })
             });
     }, [users.length])
-
+    const currentData = users.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+    const handlePageChange = useCallback((event, page) => {
+        setCurrentPage(page);
+    }, [event])
     return (
-        <div>
-            {/*<Button onClick={handleOpen}>Open modal</Button>*/}
+        <>
             <ModalMUI
                 open={modalOpen}
                 onClose={handleClose}
@@ -61,12 +63,21 @@ export const UserModal = ({data}: any) => {
                                     </SecondaryButton>
                                 </Grid2>
                             </Grid2>
-                            <Grid2 item><UserModalList users={users}/></Grid2>
+                            <Grid2 item><UserModalList users={currentData}/></Grid2>
+                            <Grid2 container width display={'flex'} alignItems={'center'} pt={2}>
+                                <Pagination
+                                    width
+                                    count={totalPages}
+                                    page={currentPage}
+                                    onChange={handlePageChange}
+                                    color="primary"
+                                />
+                            </Grid2>
                         </Grid2>
                     </Box>
                 </Grid2>
             </ModalMUI>
-        </div>
+        </>
     );
 }
 

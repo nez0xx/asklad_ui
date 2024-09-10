@@ -1,7 +1,6 @@
-import React from 'react';
-import {Typography} from "@mui/material";
+import {ListItemText, Typography} from "@mui/material";
 
-export const UserModalView =  ({user}: string) =>
-    <Typography id="modal-modal-title" variant="h6" component="h2">
-        <span>{user}</span>
+export const UserModalView = ({user}: string) =>
+    <Typography id="modal-modal-title" component="h6">
+        <ListItemText primary={user}/>
     </Typography>

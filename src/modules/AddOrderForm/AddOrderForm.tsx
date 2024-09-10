@@ -1,4 +1,4 @@
-import {useRef, useState} from 'react'
+import {useState} from 'react'
 import {Icon} from '@iconify/react/dist/iconify.js'
 import Button from '@UI/Button/Button'
 import {useMutation} from 'react-query'
@@ -11,7 +11,6 @@ const containerId = 'add-order-toast-container'
 const toastId = 'add-order-toast'
 const AddOrderForm = () => {
     const [filename, setFilename] = useState('')
-    const buttonRef = useRef(null);
     const {mutate, isLoading, data} = useMutation({
         mutationFn: uploadOrder,
         onError: (error) => {
@@ -91,9 +90,7 @@ const AddOrderForm = () => {
                 <Button>Добавить заказ</Button>
                 <ToastContainer containerId={containerId}/>
             </form>
-            <>
-                {data?.data && <UserModal data={data.data}/>}
-            </>
+            <>{data?.data && <UserModal data={data.data}/>}</>
         </>
     )
 }
