@@ -8,7 +8,7 @@ import { deleteConsolidatedOrder } from './api/deleteConsolidatedOrder' // Make 
 import Button from '../../UI/Button/Button'
 import { toast } from 'react-toastify'
 import Checkbox from '../../UI/Checkbox/Checkbox'
-import DeleteModal from './components/DeleteModal' // Import the modal component
+import DeleteModal from './components/DeleteModal' // Import the user-modal component
 import cls from './ConsolidatedOrderInfo.module.css'
 import 'react-toastify/dist/ReactToastify.css'
 
