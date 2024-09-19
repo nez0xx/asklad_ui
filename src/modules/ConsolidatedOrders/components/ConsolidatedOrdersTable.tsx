@@ -100,7 +100,7 @@ const ConsolidatedOrdersTable = ({data}) => {
                 </tr>
                 </thead>
                 <tbody>
-                {sortedOrders?.map((order, index) => (
+                {sortedOrders?.sort((a, b) => new Date(a.created_at) - new Date(b.created_at)).map((order, index) => (
                     <tr key={order.id} id='consolidated-table-row'>
                         <td
                             className={cls.td}

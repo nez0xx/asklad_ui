@@ -21,7 +21,7 @@ export const UserModal = ({data}: any) => {
         setUsers(data)
     }, [data])
     const handleCopyClick = useCallback(() => {
-        navigator.clipboard.writeText(data?.join(', '))
+        navigator.clipboard.writeText(data?.join(',\n'))
             .then(() => {
                 toast.success('Учасники скопированы', {
                     autoClose: 1420,

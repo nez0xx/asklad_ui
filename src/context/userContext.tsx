@@ -1,5 +1,5 @@
-import  { createContext, useState, useEffect, useContext } from 'react'
-import { getMe } from './api/getMe.js'
+import {createContext, useContext, useEffect, useState} from 'react'
+import {getMe} from './api/getMe.js'
 
 const AuthContext = createContext({})
 
@@ -11,15 +11,28 @@ export const AuthProvider = ({ children }) => {
 	const fetchUser = async () => {
 		const token = localStorage.getItem('token')
 		if (token) {
-				const userData = await getMe()
-				setUser(userData)
-				setIsAuth(true)
+			try {
+				const userData = await getMe();
+				setUser(userData);
+				setIsAuth(true);
+			} catch (error) {
+				if (error.response && error.response.status === 403 && error.response.status === 401) {
+					localStorage.removeItem('token');
+					localStorage.clear();
+					logout();
+					window.location.href = '/';
+				} else {
+					console.error("Ошибка при получении данных пользователя:", error);
+					localStorage.clear();
+					window.location.href = '/';
+				}
+			}
 		} else {
-			setIsAuth(false)
-			logout()
+			setIsAuth(false);
+			logout();
 		}
-		setLoading(false)
-	}
+		setLoading(false);
+	};
 
 	const loginUser = async () => {
 		setLoading(true)
