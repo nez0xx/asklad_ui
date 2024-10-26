@@ -1,26 +1,24 @@
-import axios from 'axios'
-import { getRefreshToken } from '@utils/getRefreshToken'
+import axios from "axios";
 
-export const API_URL = 'https://api.asklad.pro/'
+export const API_URL = "https://api.asklad.pro/";
 
 const $api = axios.create({
-	withCredentials: true,
-	baseURL: API_URL,
-})
+  withCredentials: true,
+  baseURL: API_URL,
+});
 
 $api.interceptors.request.use(
-	(config) => {
-		const accessToken = localStorage.getItem('token')
+  (config) => {
+    const accessToken = localStorage.getItem("token");
 
-		if (accessToken) {
-			config.headers.Authorization = `Bearer ${accessToken}`
-		}
-		return config
-	},
-	(error) => {
-		return Promise.reject(error)
-	}
-)
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
-
-export default $api
+export default $api;
