@@ -1,11 +1,11 @@
+import { useAuth } from "@context/userContext"
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import home from '../../assets/home.svg'
-import orders from '../../assets/orders.svg'
 import finance from '../../assets/finance.svg'
 import give_out from '../../assets/give_out.svg'
+import home from '../../assets/home.svg'
+import orders from '../../assets/orders.svg'
 import cls from './ProfileSideMenu.module.css'
-import {useAuth} from "@context/userContext";
 
 const ProfileSideMenu = () => {
 	const { logout } = useAuth()

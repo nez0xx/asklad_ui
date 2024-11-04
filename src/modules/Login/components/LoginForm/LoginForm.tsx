@@ -1,13 +1,13 @@
-import {Icon} from '@iconify/react/dist/iconify.js'
-import {useState} from 'react'
-import {useMutation} from 'react-query'
-import {Link, useLocation, useNavigate} from 'react-router-dom'
-import {toast} from 'react-toastify'
+import { useAuth } from "@context/userContext"
+import { Icon } from '@iconify/react/dist/iconify.js'
 import Button from '@UI/Button/Button'
 import Input from '@UI/Input/Input'
-import {login} from '../../api/login'
+import { useState } from 'react'
+import { useMutation } from 'react-query'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { login } from '../../api/login'
 import cls from './LoginForm.module.css'
-import {useAuth} from "@context/userContext";
 
 const LoginForm = () => {
 	const [email, setEmail] = useState('')
@@ -24,7 +24,6 @@ const LoginForm = () => {
 			setPassword('')
 			loginUser()
 			navigate(from, { replace: true })
-			window.location.reload()
 
 		},
 		onError: (error) => {

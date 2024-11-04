@@ -1,5 +1,5 @@
-import {createContext, useContext, useEffect, useState} from 'react'
-import {getMe} from './api/getMe.js'
+import { createContext, useContext, useEffect, useState } from 'react'
+import { getMe } from './api/getMe.js'
 
 const AuthContext = createContext({})
 
@@ -13,18 +13,14 @@ export const AuthProvider = ({ children }) => {
 		if (token) {
 			try {
 				const userData = await getMe();
+				console.log(userData);
+				
 				setUser(userData);
 				setIsAuth(true);
 			} catch (error) {
-				if (error.response && error.response.status === 403 && error.response.status === 401) {
-					localStorage.removeItem('token');
-					localStorage.clear();
-					logout();
-					window.location.href = '/';
-				} else {
-					console.error("Ошибка при получении данных пользователя:", error);
-					localStorage.clear();
-					window.location.href = '/';
+				console.error("Ошибка при получении данных пользователя:", error)
+				if (error.response && error.response.status !== 401 && error.response.status !== 403) {
+					logout()
 				}
 			}
 		} else {

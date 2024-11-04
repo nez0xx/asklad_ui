@@ -1,8 +1,7 @@
+import { AuthInterface } from "@/interfaces/Auth/Auth.interface";
+import { LoginInterface } from "@/interfaces/Auth/Login.interface";
+import { EmployerChangeNameInterface } from "@/interfaces/Employer/EmployerChangeName.interface";
 import $api from "../http/index.ts";
-import {EmployerChangeNameInterface} from "@/interfaces/Employer/EmployerChangeName.interface";
-import axios from "axios";
-import {AuthInterface} from "@/interfaces/Auth/Auth.interface";
-import {LoginInterface} from "@/interfaces/Auth/Login.interface";
 
 export default class AuthService {
 	static async getMe(): Promise<axios.AxiosResponse<AuthInterface>>  {
@@ -20,7 +19,10 @@ export default class AuthService {
 	}
 
 	static async login(email: string, password: string): Promise<axios.AxiosResponse<LoginInterface>> {
-		return $api.post(`/auth/login`, { email, password })
+		const response = $api.post(`/auth/login`, { email, password }) 
+		console.log(response);
+		
+		return response
 	}
 
 	static async register(email: string, password: string, name: string) {
