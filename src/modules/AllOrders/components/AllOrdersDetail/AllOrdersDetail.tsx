@@ -110,6 +110,7 @@ const AllOrdersDetail = ({ id, setId, setOpen }) => {
 					<p>Телефон пользователя: {data?.customer_phone}</p>
 					<p>Имя пользователя: {convertFullName(data?.customer_name)}</p>
 					<p>ID пользователя: {data?.customer_id}</p>
+					<p>Объединенный заказ: {data?.united_order_id}</p>
 					{data?.given_by && (
 						<p>Сотрудник: {convertFullName(data?.given_by)}</p>
 					)}
