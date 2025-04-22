@@ -24,12 +24,14 @@ const LoginForm = () => {
 			setPassword('')
 			loginUser()
 			navigate(from, { replace: true })
-
 		},
 		onError: (error) => {
-			toast.error(error?.response?.data?.detail || 'Ошибка входа', {
-				autoClose: 1000,
-			})
+			if(error.status !== 404) {
+				toast.error('Неправильный логин или пароль', {
+					autoClose: 1000,
+				})
+			}
+
 		},
 	})
 	function handleLogin(e) {
