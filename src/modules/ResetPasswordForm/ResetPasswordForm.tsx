@@ -7,6 +7,8 @@ import { useMutation } from 'react-query'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import cls from './ResetPasswordForm.module.css'
+import React from 'react';
+
 
 const ResetPasswordForm = ({ token }) => {
 	const [password, setPassword] = React.useState('')

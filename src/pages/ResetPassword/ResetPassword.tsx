@@ -3,6 +3,7 @@ import ResetPasswordForm from '@modules/ResetPasswordForm/ResetPasswordForm'
 import { useParams } from 'react-router-dom'
 import cls from './ResetPassword.module.css'
 
+
 const ResetPassword = () => {
 	const { token } = useParams()
 
