@@ -11,7 +11,7 @@ import {useAuth} from "@context/userContext";
 
 const Account = () => {
 	const { user } = useAuth()
-	const [name, setName] = React.useState(user?.name)
+	const [name, setName] = React.useState(user.data.name)
 	const [password, setPassword] = React.useState('--------')
 	const [newPassword, setNewPassword] = React.useState('')
 
@@ -63,7 +63,7 @@ const Account = () => {
 			<p className={cls.info}>Информация об аккаунте</p>
 			<div className={cls.inputs}>
 				<AccountInput type='email' value={user.data.email} />
-				<AccountInput type='name' value={user.data.name} setValue={setName} />
+				<AccountInput type='name' value={name} setValue={setName} />
 				<AccountInput
 					type='password'
 					value={password}
