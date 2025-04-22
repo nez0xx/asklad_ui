@@ -31,3 +31,11 @@
     padding: 40px 0;
     padding-top: 80px;
 }
+
+.videoWrapper {
+    display: block;
+    margin: auto;
+    border-radius: 12px;
+    padding-top: 80px;
+    box-sizing: border-box;
+}

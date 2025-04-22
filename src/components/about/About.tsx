@@ -29,6 +29,12 @@ export const About: FC<AboutInterface> = (({refs}) => (
             <div className={cls.imageWrapper}>
                 <img src={example} alt='example'/>
             </div>
+            
+            <center>
+            <div className={cls.videoWrapper}>
+                <iframe src="https://vkvideo.ru/video_ext.php?oid=-230219518&id=456239017&hd=2&autoplay=1"  width="853" height="480" allow=" encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
+            </div>
+            </center>
         </div>
     </div>
 ))
