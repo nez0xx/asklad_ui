@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-export const API_URL = 'https://api.asklad.pro/'
+// export const API_URL = 'https://api.asklad.pro/'
+export const API_URL = 'http://localhost:8000/'
 
 const $api = axios.create({
 	withCredentials: true,
@@ -50,9 +51,9 @@ $api.interceptors.response.use(
                 }
             } catch (refreshError) {
                 // // Если не удалось обновить токен - делаем logout
-                // localStorage.removeItem('token')
-                // window.location.href = '/login'
-                // return Promise.reject(refreshError)
+                localStorage.removeItem('token')
+                window.location.href = '/#'
+                return Promise.reject(refreshError)
             }
         }
         

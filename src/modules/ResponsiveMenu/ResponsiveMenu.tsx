@@ -44,6 +44,7 @@ const ResponsiveMenu = () => {
 							<div>Файлы</div>
 						</NavLink>
 					</li>
+					{/*
 					<li>
 						<NavLink
 							className={({ isActive }) => (isActive ? cls.active : '')}
@@ -53,7 +54,9 @@ const ResponsiveMenu = () => {
 							<img src={finance} alt='finance' />
 							<div>Финансы</div>
 						</NavLink>
-					</li>
+					</li> 
+					*/}
+					
 					<li>
 						<NavLink
 							className={({ isActive }) => (isActive ? cls.active : '')}
