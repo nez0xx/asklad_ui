@@ -52,7 +52,6 @@ $api.interceptors.response.use(
             } catch (refreshError) {
                 // // Если не удалось обновить токен - делаем logout
                 localStorage.removeItem('token')
-                window.location.href = '/#'
                 return Promise.reject(refreshError)
             }
         }
