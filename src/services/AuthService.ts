@@ -19,10 +19,12 @@ export default class AuthService {
 	}
 
 	static async login(email: string, password: string): Promise<axios.AxiosResponse<LoginInterface>> {
-		const response = $api.post(`/auth/login`, { email, password }) 
-		console.log(response);
-		
+		try{
+		const response = await $api.post(`/auth/login`, { email, password }) 
 		return response
+		} catch (error) {
+			new Error(error)
+		}
 	}
 
 	static async register(email: string, password: string, name: string) {

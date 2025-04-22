@@ -26,6 +26,7 @@ const LoginForm = () => {
 			navigate(from, { replace: true })
 		},
 		onError: (error) => {
+			
 			if(error.status !== 404) {
 				toast.error('Неправильный логин или пароль', {
 					autoClose: 1000,

@@ -7,7 +7,6 @@ export async function login({ email, password }) {
 	response ? localStorage.setItem('token', response.data.access_token)  : null
 	// debugger
 	// const accessToken = response?.data?.access_token
-
 	return response.data
 }
 
