@@ -2,7 +2,7 @@
     padding: 0 15px;
     gap: 30px;
     width: 70%;
-    max-width: 1200px;
+    max-width: 1400px;
     box-sizing: border-box;
     margin: 0 auto; /* Center the container */
 }
@@ -44,7 +44,7 @@
 
 .videoWrapper iframe {
     width: 80%;
-    height: 28vw;
+    height: 29vw;
 }
 
 @media (max-width: 600px) {
