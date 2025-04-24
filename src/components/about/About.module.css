@@ -22,7 +22,7 @@
 
 .about img {
     display: block;
-    max-width: 80%;
+    max-width: 100%;
     border-radius: 12px;
     height: auto;
     margin: 0 auto;
@@ -39,11 +39,12 @@
     border-radius: 12px;
     padding-top: 80px;
     box-sizing: border-box;
-    width: 100%;
+    width: 90%;
+    margin: 0 auto;
 }
 
 .videoWrapper iframe {
-    width: 80%;
+    width: 90%;
     height: 29vw;
 }
 
