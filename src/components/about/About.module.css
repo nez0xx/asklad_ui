@@ -44,7 +44,7 @@
 
 .videoWrapper iframe {
     width: 80%;
-    height: 40vw;
+    height: 28vw;
 }
 
 @media (max-width: 600px) {
