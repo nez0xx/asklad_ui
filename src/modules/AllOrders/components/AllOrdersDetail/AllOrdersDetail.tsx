@@ -8,6 +8,7 @@ import ChangeAmountModal from '../ChangeAmountModal/ChangeAmountModal'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import cls from './AllOrdersDetail.module.css'
+import { Link } from 'react-router-dom';
 
 const toastId = 'give-out-toast'
 
@@ -110,7 +111,8 @@ const AllOrdersDetail = ({ id, setId, setOpen }) => {
 					<p>Телефон пользователя: {data?.customer_phone}</p>
 					<p>Имя пользователя: {convertFullName(data?.customer_name)}</p>
 					<p>ID пользователя: {data?.customer_id}</p>
-					<p>Объединенный заказ: {data?.united_order_id}</p>
+					<p>Объединенный заказ: <Link to={`/profile/order/${data?.united_order_id}`}>{data?.united_order_id}
+												</Link></p>
 					{data?.given_by && (
 						<p>Сотрудник: {convertFullName(data?.given_by)}</p>
 					)}
