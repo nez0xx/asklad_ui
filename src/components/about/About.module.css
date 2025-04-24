@@ -33,9 +33,30 @@
 }
 
 .videoWrapper {
-    display: block;
-    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 12px;
     padding-top: 80px;
     box-sizing: border-box;
+    width: 100%;
+}
+
+.videoWrapper iframe {
+    width: 80%;
+    height: 40vw;
+}
+
+@media (max-width: 600px) {
+    .videoWrapper iframe {
+        width: 320px;
+        height: 240px;
+    }
+}
+
+@media (max-width: 300px) {
+    .videoWrapper iframe {
+        width: 213px;
+        height: 160px;
+    }
 }
