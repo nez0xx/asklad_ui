@@ -7,6 +7,9 @@ import {generateExcel} from '../api/generateExcel'
 import Checkbox from '@UI/Checkbox/Checkbox'
 import {saveAs} from 'file-saver'
 import cls from './ConsolidatedOrdersTable.module.css'
+import Pagination from '@/UI/Pagination/Pagination'
+import useConsilatedOrdersStore from '@/store/consolidatedOrdersStore'
+import { sortDataByDate } from '@/utils/sortDatabyDate'
 
 const containerId = 'consolidated-orders-table-toast-container'
 const toastId = 'consolidated-orders-table-toast'
@@ -14,7 +17,6 @@ const toastId = 'consolidated-orders-table-toast'
 const ConsolidatedOrdersTable = ({data}) => {
     const navigate = useNavigate()
     const [chosenList, setChosenList] = useState([])
-
     const {mutate, isLoading} = useMutation(generateExcel, {
         onSuccess: (data) => {
             const blob = new Blob([data], {
@@ -34,6 +36,14 @@ const ConsolidatedOrdersTable = ({data}) => {
             })
         },
     })
+    const setData = useConsilatedOrdersStore(state => state.setData)
+    const tableSize = useConsilatedOrdersStore(state => state.size)
+    const page = useConsilatedOrdersStore(state => state.page)
+    const currentPage = useConsilatedOrdersStore(state => state.currentPage)
+    const nextPage = useConsilatedOrdersStore(state => state.nextPage)
+    const previousPage = useConsilatedOrdersStore(state => state.previousPage)
+    const setPage = useConsilatedOrdersStore(state => state.setPage)
+    const totalPages = useConsilatedOrdersStore(state => state.totalPages)
 
     function navigateToDetails(id) {
         navigate(`/profile/order/${id}`)
@@ -64,6 +74,13 @@ const ConsolidatedOrdersTable = ({data}) => {
         })
     }, [])
 
+    useEffect(() => {
+        if(data) {
+            data = sortDataByDate(data.data)
+            setData(data)
+        }
+    }, [totalPages])
+
     const handleCheckboxChange = (id, checked) => {
         if (checked) {
             setChosenList((prevList) => [...prevList, id])
@@ -71,84 +88,75 @@ const ConsolidatedOrdersTable = ({data}) => {
             setChosenList((prevList) => prevList.filter((itemId) => itemId !== id))
         }
     }
-
-    const sortedOrders = data ?? [].sort((a, b) => {
-        const dateA = a.delivery_date ? new Date(a.delivery_date) : new Date(0)
-        const dateB = b.delivery_date ? new Date(b.delivery_date) : new Date(0)
-        return dateB - dateA
-    })
+    
 
     return (
         <div className={cls.container}>
-            <table className={cls.table}>
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>ID</th>
-                    <th>Статус</th>
-                    <th>Дата доставки</th>
-                    <th>Принял</th>
-                    <th className={cls.lastTh}>
-                        <Button
-                            styles={{fontSize: '17px'}}
-                            onClick={() => mutate(chosenList)}
-                            disabled={isLoading}
-                        >
-                            Лист выдачи
-                        </Button>
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                {sortedOrders?.sort((a, b) => new Date(a.created_at) - new Date(b.created_at)).map((order, index) => (
-                    <tr key={order.id} id='consolidated-table-row'>
-                        <td
-                            className={cls.td}
-                            onClick={() => navigateToDetails(order.id)}
-                        >
-                            {index + 1}
-                        </td>
-                        <td
-                            className={cls.td}
-                            onClick={() => navigateToDetails(order.id)}
-                        >
-                            {order.id}
-                        </td>
-                        <td
-                            className={cls.td}
-                            onClick={() => navigateToDetails(order.id)}
-                        >
-                            <div
-                                className={`${
-                                    order.delivered
-                                        ? 'banner delivered mx-auto'
-                                        : 'banner onTheWay mx-auto'
-                                } ${cls.td}`}
+            <div>
+                <table className={cls.table}>
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Статус</th>
+                        <th>Дата доставки</th>
+                        <th>Принял</th>
+                        <th className={cls.lastTh}>
+                            <Button
+                                styles={{fontSize: '17px'}}
+                                onClick={() => mutate(chosenList)}
+                                disabled={isLoading}
                             >
-                                {order.delivered ? 'Доставлен' : 'В пути'}
-                            </div>
-                        </td>
-                        <td
-                            className={cls.td}
-                            onClick={() => navigateToDetails(order.id)}
-                        >
-                            {order.delivery_date
-                                ? order.delivery_date.split('-').reverse().join('.')
-                                : ''}
-                        </td>
-                        <td className={cls.td}>{order?.employee_relationship?.name ?? null}</td>
-                        <td className={cls.tickTd}>
-                            <Checkbox
-                                checked={chosenList.includes(order.id)}
-                                onChange={(checked) =>
-                                    handleCheckboxChange(order.id, checked)
-                                }
-                            />
-                        </td>
+                                Лист выдачи
+                            </Button>
+                        </th>
                     </tr>
-                ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {page.map((order, index) => (
+                        <tr key={order.id} id='consolidated-table-row'>
+                            <td
+                                className={cls.td}
+                                onClick={() => navigateToDetails(order.id)}
+                            >
+                                {order.id}
+                            </td>
+                            <td
+                                className={cls.td}
+                                onClick={() => navigateToDetails(order.id)}
+                            >
+                                <div
+                                    className={`${
+                                        order.delivered
+                                            ? 'banner delivered mx-auto'
+                                            : 'banner onTheWay mx-auto'
+                                    } ${cls.td}`}
+                                >
+                                    {order.delivered ? 'Доставлен' : 'В пути'}
+                                </div>
+                            </td>
+                            <td
+                                className={cls.td}
+                                onClick={() => navigateToDetails(order.id)}
+                            >
+                                {order.delivery_date
+                                    ? order.delivery_date.split('-').reverse().join('.')
+                                    : ''}
+                            </td>
+                            <td className={cls.td}>{order?.employee_relationship?.name ?? null}</td>
+                            <td className={cls.tickTd}>
+                                <Checkbox
+                                    checked={chosenList.includes(order.id)}
+                                    onChange={(checked) =>
+                                        handleCheckboxChange(order.id, checked)
+                                    }
+                                />
+                            </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+                {page.length ? <Pagination setPage={setPage} currentPage={currentPage} nextPage={nextPage} previousPage={previousPage} totalPages={totalPages}/> : ''}
+            </div>
             <ToastContainer containerId={containerId}/>
         </div>
     )

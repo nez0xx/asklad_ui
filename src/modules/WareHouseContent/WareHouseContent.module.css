@@ -77,3 +77,23 @@
 	display: flex;
 	gap: 8px;
 }
+
+
+.tableHandler {
+	display: flex;
+	width: 100%;
+
+}
+
+.tableBtn  {
+	width: 100%;
+	text-align: center;
+	color: black;
+	padding: 20px 0;
+	cursor: pointer;
+}
+
+.active {
+	background-color: #F5F5F5;
+	border-radius: 5px;
+}

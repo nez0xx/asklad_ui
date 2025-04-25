@@ -4,7 +4,6 @@ import {getWarehouse} from './api/getWarehouse'
 import {Icon} from '@iconify/react/dist/iconify.js'
 import ConsolidatedOrders from '../ConsolidatedOrders/ConsolidatedOrders'
 import Employees from '../Employees/Employees'
-
 import cls from './WareHouseContent.module.css'
 import {changeWarehouseName} from './api/changeWarehouseName'
 import NoWarehouse from './components/NoWarehouse/NoWarehouse'
@@ -41,6 +40,7 @@ const WareHouseContent = () => {
 
 		const [nameInputValue, setNameInputValue] = useState('')
 		const [isEditName, setIsEditName] = useState(false)
+		const [table, setTable] = useState<'consolidated' | 'products'>('consolidated')
 
 		function handleStartEdit() {
 			setNameInputValue(data?.name || '')
@@ -100,11 +100,20 @@ const WareHouseContent = () => {
 					)}
 				</div>
 				<Employees data={data.employees_details} />
+				<div className={cls.tableHandler}>
+					<p onClick={() => setTable('consolidated')} className={`${cls.tableBtn} ${table === 'consolidated' && `${cls.active}`}`}>Консолидированные заказы</p>
+					<p onClick={() => setTable('products')} className={`${cls.tableBtn} ${table === 'products' && `${cls.active}`}`}>Товары на складе</p>
+				</div>
+				{table === 'consolidated' ? 				
 				<ConsolidatedOrders
 					acceptedBy={data?.employees_details[0]?.employee_relationship?.name}
 					data={data2}
-				/>
+				/> 
+				:
 				<ProductsInWareHouse />
+				}
+
+				
 			</>
 		)
 }
