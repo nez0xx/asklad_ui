@@ -8,7 +8,6 @@ import cls from './WareHouseContent.module.css'
 import {changeWarehouseName} from './api/changeWarehouseName'
 import NoWarehouse from './components/NoWarehouse/NoWarehouse'
 import ProductsInWareHouse from '../OrdersInWareHouse/ProductsInWareHouse'
-import {getOrdersUnited} from "@modules/WareHouseContent/api/getOrdersUnited";
 
 const WareHouseContent = () => {
 		const queryClient = useQueryClient()
@@ -18,16 +17,6 @@ const WareHouseContent = () => {
 			refetchOnWindowFocus: false,
 			retry: false,
 		})
-
-
-	const { data: data2 } = useQuery({
-		queryKey: ['consolidated-order-all'],
-		queryFn: getOrdersUnited,
-		refetchOnWindowFocus: false,
-		retry: false,
-	})
-
-
 
 	const { mutate, isLoading: changeNameLoading } = useMutation({
 			mutationFn: changeWarehouseName,
@@ -107,7 +96,6 @@ const WareHouseContent = () => {
 				{table === 'consolidated' ? 				
 				<ConsolidatedOrders
 					acceptedBy={data?.employees_details[0]?.employee_relationship?.name}
-					data={data2}
 				/> 
 				:
 				<ProductsInWareHouse />

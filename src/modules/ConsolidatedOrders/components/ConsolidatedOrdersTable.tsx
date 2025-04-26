@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import Button from '@UI/Button/Button'
-import {useMutation} from 'react-query'
+import {useMutation, useQuery} from 'react-query'
 import {toast, ToastContainer} from 'react-toastify'
 import {generateExcel} from '../api/generateExcel'
 import Checkbox from '@UI/Checkbox/Checkbox'
@@ -10,11 +10,12 @@ import cls from './ConsolidatedOrdersTable.module.css'
 import Pagination from '@/UI/Pagination/Pagination'
 import useConsilatedOrdersStore from '@/store/consolidatedOrdersStore'
 import { sortDataByDate } from '@/utils/sortDatabyDate'
+import { getUnitedOrdersPage } from '@/modules/WareHouseContent/api/getOrdersPage'
 
 const containerId = 'consolidated-orders-table-toast-container'
 const toastId = 'consolidated-orders-table-toast'
 
-const ConsolidatedOrdersTable = ({data}) => {
+const ConsolidatedOrdersTable = () => {
     const navigate = useNavigate()
     const [chosenList, setChosenList] = useState([])
     const {mutate, isLoading} = useMutation(generateExcel, {
@@ -38,12 +39,21 @@ const ConsolidatedOrdersTable = ({data}) => {
     })
     const setData = useConsilatedOrdersStore(state => state.setData)
     const tableSize = useConsilatedOrdersStore(state => state.size)
-    const page = useConsilatedOrdersStore(state => state.page)
+    const page = useConsilatedOrdersStore(state => state.data)
     const currentPage = useConsilatedOrdersStore(state => state.currentPage)
     const nextPage = useConsilatedOrdersStore(state => state.nextPage)
     const previousPage = useConsilatedOrdersStore(state => state.previousPage)
     const setPage = useConsilatedOrdersStore(state => state.setPage)
     const totalPages = useConsilatedOrdersStore(state => state.totalPages)
+    const size = useConsilatedOrdersStore(state => state.size)
+
+    let { data } = useQuery({
+        queryKey: ['consolidated-order-all', currentPage],
+        queryFn: () => getUnitedOrdersPage(currentPage, size),
+        refetchOnWindowFocus: false,
+        retry: false,
+    })
+
 
     function navigateToDetails(id) {
         navigate(`/profile/order/${id}`)
@@ -76,10 +86,10 @@ const ConsolidatedOrdersTable = ({data}) => {
 
     useEffect(() => {
         if(data) {
-            data = sortDataByDate(data.data)
-            setData(data)
+            const sortedData = sortDataByDate(data.united_orders)
+            setData(sortedData, data.count)
         }
-    }, [totalPages])
+    }, [data])
 
     const handleCheckboxChange = (id, checked) => {
         if (checked) {

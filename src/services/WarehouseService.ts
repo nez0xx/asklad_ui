@@ -7,6 +7,9 @@ export default class WarehouseService {
 	static async getOrdersUnited() {
 		return $api.get(`/orders/united/`)
 	}
+	static async getUnitedOrdersPage(page, limit) {
+		return $api.get(`/orders/united?page=${page}&limit=${limit}`)
+	}
 
 	static async getOrdersOfConsolidatedOrder(united_order_id) {
 		return $api.get(`/orders/united/${united_order_id}`)

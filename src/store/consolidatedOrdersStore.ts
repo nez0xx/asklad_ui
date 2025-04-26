@@ -12,7 +12,7 @@ interface IStore {
     nextPage: () => void,
     previousPage: () => void,
     setPage: (page: number) => void
-    setData: (data: []) => void
+    setData: (data: [], count: number) => void
 }
 
 const useConsilatedOrdersStore = create<IStore>()(
@@ -38,13 +38,11 @@ const useConsilatedOrdersStore = create<IStore>()(
       setPage: (page) => {
         if(page >= 1 && page <= get().totalPages) {
             set({currentPage: page})
-            set({page: getPaginationPage(get().currentPage, get().data, get().size)})
         }
       },
-      setData: (data) => {
+      setData: (data, count) => {
         set({data})
-        set({totalPages: Math.ceil(data.length / get().size)})
-        set({page: getPaginationPage(get().currentPage, get().data, get().size)})
+        set({totalPages: Math.ceil(count / get().size)})
       },
     }))
   )
