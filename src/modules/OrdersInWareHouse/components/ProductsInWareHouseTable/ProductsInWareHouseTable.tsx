@@ -25,14 +25,14 @@ const ProductsInWareHouseTable = () => {
 		})
 		useEffect(() => {
 					if(data) {
-						const sortedData = sortDataByDate(data.data)
-						debugger
+						const sortedData = sortDataByDate(data)
 						setData(sortedData as [], data.count)
 					}
 		}, [data])
 	return (
-		<>
+		<div>
 			{page.length > 0 ? (
+				<>
 				<table className={cls.table}>
 					<thead>
 						<tr>
@@ -50,13 +50,13 @@ const ProductsInWareHouseTable = () => {
 							</tr>
 						))}
 					</tbody>
-					{page.length ? <Pagination setPage={setPage} currentPage={currentPage} nextPage={nextPage} previousPage={previousPage} totalPages={totalPages}/> : ''}
-
 				</table>
+				{page.length ? <Pagination setPage={setPage} currentPage={currentPage} nextPage={nextPage} previousPage={previousPage} totalPages={totalPages}/> : ''}
+				</>
 			) : (
 				<p>Продуктов нет</p>
 			)}
-		</>
+		</div>
 	)
 }
 
