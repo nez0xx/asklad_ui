@@ -1,10 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import cls from './OrdersInWareHouseTable.module.css'
+import useProductsInWareHouse from '@/store/productsInWareHouseStore'
+import { useQuery } from 'react-query'
+import { getWarehousePage } from '@/modules/WareHouseContent/api/getWarehousePage'
+import { sortDataByDate } from '@/utils/sortDatabyDate'
+import Pagination from '@/UI/Pagination/Pagination'
 
-const ProductsInWareHouseTable = ({ data }) => {
+const ProductsInWareHouseTable = () => {
+		const size = useProductsInWareHouse(state => state.size)
+		const setData = useProductsInWareHouse(state => state.setData)
+		const tableSize = useProductsInWareHouse(state => state.size)
+		const page = useProductsInWareHouse(state => state.data)
+		const currentPage = useProductsInWareHouse(state => state.currentPage)
+		const nextPage = useProductsInWareHouse(state => state.nextPage)
+		const previousPage = useProductsInWareHouse(state => state.previousPage)
+		const setPage = useProductsInWareHouse(state => state.setPage)
+		const totalPages = useProductsInWareHouse(state => state.totalPages)
+	
+		let { data } = useQuery({
+			queryKey: ['products-all', currentPage],
+			queryFn: () => getWarehousePage(currentPage, size),
+			refetchOnWindowFocus: false,
+			retry: false,
+		})
+		useEffect(() => {
+					if(data) {
+						const sortedData = sortDataByDate(data.data)
+						debugger
+						setData(sortedData as [], data.count)
+					}
+		}, [data])
 	return (
 		<>
-			{data.length > 0 ? (
+			{page.length > 0 ? (
 				<table className={cls.table}>
 					<thead>
 						<tr>
@@ -14,7 +42,7 @@ const ProductsInWareHouseTable = ({ data }) => {
 						</tr>
 					</thead>
 					<tbody>
-						{data.map((product, index) => (
+						{page.map((product, index) => (
 							<tr key={index}>
 								<td>{index + 1}</td>
 								<td>{product.title}</td>
@@ -22,6 +50,8 @@ const ProductsInWareHouseTable = ({ data }) => {
 							</tr>
 						))}
 					</tbody>
+					{page.length ? <Pagination setPage={setPage} currentPage={currentPage} nextPage={nextPage} previousPage={previousPage} totalPages={totalPages}/> : ''}
+
 				</table>
 			) : (
 				<p>Продуктов нет</p>

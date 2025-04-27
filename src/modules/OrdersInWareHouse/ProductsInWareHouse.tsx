@@ -7,41 +7,10 @@ import ProductsInWareHouseTable from './components/ProductsInWareHouseTable/Prod
 import useProductsInWareHouse from '@/store/productsInWareHouseStore'
 import Pagination from '@/UI/Pagination/Pagination'
 import { sortDataByDate } from '@/utils/sortDatabyDate'
+import { getSwitchUtilityClass } from '@mui/material'
+import { getWarehousePage } from '../WareHouseContent/api/getWarehousePage'
 
 const ProductsInWareHouse = () => {
-	const { data, isLoading, isError } = useQuery({
-		queryKey: ['all-products'],
-		queryFn: getAllProducts,
-	})
-	const setData = useProductsInWareHouse(state => state.setData)
-    const tableSize = useProductsInWareHouse(state => state.size)
-    const page = useProductsInWareHouse(state => state.page)
-    const currentPage = useProductsInWareHouse(state => state.currentPage)
-    const nextPage = useProductsInWareHouse(state => state.nextPage)
-    const previousPage = useProductsInWareHouse(state => state.previousPage)
-    const setPage = useProductsInWareHouse(state => state.setPage)
-    const totalPages = useProductsInWareHouse(state => state.totalPages)
-	useEffect(() => {
-				if(data) {
-					const sortedData = sortDataByDate(data.data)
-					setData(sortedData as [])
-				}
-	}, [totalPages])
-	let content
-	if (isLoading) {
-		content = (
-			<Icon icon='eos-icons:bubble-loading' width='25px' height='25px' />
-		)
-	}
-
-	if (isError) {
-		content = <p>Can't load products</p>
-	}
-
-	if (data) {
-		content = <ProductsInWareHouseTable data={data} />
-	}
-
 	const [isExpanded, setIsExpanded] = useState(true)
 
 	const handleToggle = () => {
@@ -70,10 +39,8 @@ const ProductsInWareHouse = () => {
 			</h2>
 
 			<div className={`${cls.ordersCont} ${isExpanded ? cls.show : cls.hide}`}>
-				{content}
+			<ProductsInWareHouseTable />
 			</div>
-				{page.length ? <Pagination setPage={setPage} currentPage={currentPage} nextPage={nextPage} previousPage={previousPage} totalPages={totalPages}/> : ''}
-
 		</div>
 	)
 }

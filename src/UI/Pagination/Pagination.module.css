@@ -4,8 +4,9 @@
     align-items: center;
     margin: 25px auto;
     padding: 3px 5px;
-    border: 3px solid rgb(177, 177, 177);
-    width: 300px;
+    border: 1.5px solid #B0B0B0;
+    width: 223px;
+    font-size: 14px;
     border-radius: 5px;
 }
 .current {
