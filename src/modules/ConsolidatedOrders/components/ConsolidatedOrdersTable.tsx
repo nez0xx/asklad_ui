@@ -38,7 +38,6 @@ const ConsolidatedOrdersTable = () => {
         },
     })
     const setData = useConsilatedOrdersStore(state => state.setData)
-    const tableSize = useConsilatedOrdersStore(state => state.size)
     const page = useConsilatedOrdersStore(state => state.data)
     const currentPage = useConsilatedOrdersStore(state => state.currentPage)
     const nextPage = useConsilatedOrdersStore(state => state.nextPage)

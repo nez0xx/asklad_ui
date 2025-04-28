@@ -9,7 +9,6 @@ import Pagination from '@/UI/Pagination/Pagination'
 const ProductsInWareHouseTable = () => {
 		const size = useProductsInWareHouse(state => state.size)
 		const setData = useProductsInWareHouse(state => state.setData)
-		const tableSize = useProductsInWareHouse(state => state.size)
 		const page = useProductsInWareHouse(state => state.data)
 		const currentPage = useProductsInWareHouse(state => state.currentPage)
 		const nextPage = useProductsInWareHouse(state => state.nextPage)
@@ -22,7 +21,7 @@ const ProductsInWareHouseTable = () => {
 			queryFn: () => getWarehousePage(currentPage, size),
 			refetchOnWindowFocus: false,
 			retry: false,
-		})
+		  })
 		useEffect(() => {
 					if(data) {
 						const sortedData = sortDataByDate(data)

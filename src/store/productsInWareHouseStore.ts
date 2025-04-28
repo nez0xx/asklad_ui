@@ -7,7 +7,7 @@ interface IStore {
     data: [],
     currentPage: number,
     totalPages: number,
-    size: 5,
+    size: number,
     page: [],
     nextPage: () => void,
     previousPage: () => void,
