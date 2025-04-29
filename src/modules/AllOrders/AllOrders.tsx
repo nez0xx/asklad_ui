@@ -40,6 +40,12 @@ function AllOrders () {
 
 	const isSearching = searchNameValue || searchNumberValue;
 
+	useEffect(() => {
+		if(isSearching) {
+			setPage(1)
+		}
+	}, [isSearching])
+
 	const queryKey = isSearching
 	  ? ['all-orders', searchNumberValue, selectedValue, searchNameValue, currentPage]
 	  : ['all-orders', currentPage, size];
@@ -116,7 +122,7 @@ function AllOrders () {
 						))}
 					</tbody>
 				</table>
-			{page.length /*&& !searchNameValue && !searchNumberValue*/ ? <Pagination setPage={setPage} currentPage={currentPage} nextPage={nextPage} previousPage={previousPage} totalPages={totalPages}/> : ''}
+			{page.length ? <Pagination setPage={setPage} currentPage={currentPage} nextPage={nextPage} previousPage={previousPage} totalPages={totalPages}/> : ''}
 			</div>
 
 			{isOpen && (
