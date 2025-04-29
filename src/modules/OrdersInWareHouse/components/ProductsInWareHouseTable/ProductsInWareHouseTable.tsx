@@ -24,7 +24,7 @@ const ProductsInWareHouseTable = () => {
 		  })
 		useEffect(() => {
 					if(data) {
-						const sortedData = sortDataByDate(data)
+						const sortedData = sortDataByDate(data.products)
 						setData(sortedData as [], data.count)
 					}
 		}, [data])

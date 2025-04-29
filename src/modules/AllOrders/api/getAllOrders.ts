@@ -1,6 +1,6 @@
 import OrdersService from '@services/OrdersService'
 
-export async function getAllOrders(search_id, givenStatus, search_name) {
+export async function getAllOrders(search_id, givenStatus, search_name, page, size) {
 	const filterIDQuery = search_id ? `search_id=${search_id}` : ''
 	const filterIsGivenQuery =
 		givenStatus !== 'all' ? `is_given_out=${givenStatus === 'givenOut'}` : ''
@@ -13,6 +13,6 @@ export async function getAllOrders(search_id, givenStatus, search_name) {
 		.join('&')
 	const url = query ? `?${query}` : ''
 
-	const response = await OrdersService.getAllOrders(url)
+	const response = await OrdersService.getAllOrders(url, page, size)
 	return response.data
 }

@@ -40,7 +40,11 @@ export default class OrdersService {
 		return $api.delete(`/orders/delete?united_order_id=${id}`)
 	}
 
-	static async getAllOrders(query) {
-		return $api.get(`/orders/all${query}`)
+	static async getAllOrders(query, page, limit) {
+		return $api.get(`/orders/all${query}&page=${page}&limit=${limit}`)
+	}
+
+	static async getAllOrdersPage(page, limit) {
+		return $api.get(`/orders/all?page=${page}&limit=${limit}`)
 	}
 }

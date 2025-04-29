@@ -1,16 +1,27 @@
-import  { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AllOrdersDetail from './components/AllOrdersDetail/AllOrdersDetail'
 import OrdersSearch from './components/OrdersSearch/OrdersSearch'
 import { useQuery } from 'react-query'
 import { getAllOrders } from './api/getAllOrders'
 import cls from './AllOrders.module.css'
+import { getAllOrdersPage } from './api/getAllOrdersPage'
+import useAllOrdersStore from '@/store/allOrdersStore'
+import Pagination from '@/UI/Pagination/Pagination'
 
-const AllOrders = () => {
+function AllOrders () {
 	const [isOpen, setOpen] = useState(false)
 	const [orderDetailId, setOrderDetailId] = useState(null)
 	const [searchNumberValue, setSearchNumberValue] = useState('')
 	const [searchNameValue, setSearchNameValue] = useState('')
 	const [selectedValue, setSelectedValue] = useState('all') // all | givenOut | notGivenOut
+	const setData = useAllOrdersStore(state => state.setData)
+	const page = useAllOrdersStore(state => state.data)
+	const currentPage = useAllOrdersStore(state => state.currentPage)
+	const nextPage = useAllOrdersStore(state => state.nextPage)
+	const previousPage = useAllOrdersStore(state => state.previousPage)
+	const setPage = useAllOrdersStore(state => state.setPage)
+	const totalPages = useAllOrdersStore(state => state.totalPages)
+	const size = useAllOrdersStore(state => state.size)
 
 	const handleSelectChange = (value) => {
 		setSelectedValue(value)
@@ -27,20 +38,27 @@ const AllOrders = () => {
 		setOpen(true)
 	}
 
+	const isSearching = searchNameValue || searchNumberValue;
 
-	const { data } = useQuery(
-		['all-orders', searchNumberValue, selectedValue, searchNameValue],
-		() => getAllOrders(searchNumberValue, selectedValue, searchNameValue),
-		{
-			keepPreviousData: true,
-		}
-	)
-
-	const sortedOrders = data?.sort((a, b) => {
-		const dateA = a.created_at ? new Date(a.created_at) : new Date(0)
-		const dateB = b.created_at ? new Date(b.created_at) : new Date(0)
-		return dateB - dateA
-	})
+	const queryKey = isSearching
+	  ? ['all-orders', searchNumberValue, selectedValue, searchNameValue, currentPage]
+	  : ['all-orders', currentPage, size];
+	
+	const queryFn = () => isSearching
+	  ? getAllOrders(searchNumberValue, selectedValue, searchNameValue, currentPage, size)
+	  : getAllOrdersPage(currentPage, size);
+	
+	const { data } = useQuery({
+		queryKey, queryFn,
+		refetchOnWindowFocus: false,
+        retry: false
+	});
+	
+	useEffect(() => {
+	  if (data) {
+		setData(data.orders, data.count);
+	  }
+	}, [data]);
 
 	return (
 		<>
@@ -68,7 +86,7 @@ const AllOrders = () => {
 						</tr>
 					</thead>
 					<tbody>
-						{sortedOrders?.map((order, index) => (
+						{page?.map((order, index) => (
 							<tr
 								className={cls.row}
 								key={order.id}
@@ -98,6 +116,7 @@ const AllOrders = () => {
 						))}
 					</tbody>
 				</table>
+			{page.length /*&& !searchNameValue && !searchNumberValue*/ ? <Pagination setPage={setPage} currentPage={currentPage} nextPage={nextPage} previousPage={previousPage} totalPages={totalPages}/> : ''}
 			</div>
 
 			{isOpen && (
