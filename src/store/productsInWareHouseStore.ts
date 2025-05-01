@@ -21,7 +21,7 @@ const useProductsInWareHouse = create<IStore>()(
       data: [],
       currentPage: 1,
       totalPages: 1,
-      size: 5,
+      size: 15,
       page: [],
       nextPage: () => {
         if(get().currentPage < get().totalPages) {

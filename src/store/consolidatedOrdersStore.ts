@@ -7,7 +7,7 @@ interface IStore {
     data: [],
     currentPage: number,
     totalPages: number,
-    size: 5,
+    size: number,
     page: [],
     nextPage: () => void,
     previousPage: () => void,
@@ -21,7 +21,7 @@ const useConsilatedOrdersStore = create<IStore>()(
       data: [],
       currentPage: 1,
       totalPages: 1,
-      size: 5,
+      size: 10,
       page: [],
       nextPage: () => {
         if(get().currentPage < get().totalPages) {
