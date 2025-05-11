@@ -1,33 +1,48 @@
-import  { useState } from 'react'
+import  React, { useState } from 'react'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import Button from '@UI/Button/Button'
 import { useMutation } from 'react-query'
 import { parsePdf } from './api/parsePdf'
-import { toast, ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify'
 import { saveAs } from 'file-saver'
 import cls from './GeneratePdfForm.module.css'
 
-const containerId = 'parse-pdf-toast-container'
 const toastId = 'parse-pdf-toast'
 
 const generateNewName = (filename) => filename.split('.')[0] + '_new'
 
+
 const GeneratePdfForm = () => {
 	const [filename, setFilename] = useState('')
+	const [isUploading, setIsUploading] = useState(false)
 
 	const { mutate } = useMutation(parsePdf, {
+		onMutate: () => {
+			setIsUploading(true)
+			toast.loading('Обработка PDF...', {
+				toastId,
+			})
+		},
 		onSuccess: (data) => {
+			setIsUploading(false)
 			const blob = new Blob([data], { type: 'application/pdf' })
-			saveAs(blob, generateNewName(filename))
-			toast.success('PDF успешно сгенерирован', {
-				containerId,
+			const safeFilename = filename ? generateNewName(filename) : 'generated_file.pdf'
+			saveAs(blob, safeFilename)
+
+			toast.update(toastId, {
+				render: 'PDF успешно сгенерирован',
+				type: 'success',
+				isLoading: false,
 				autoClose: 1000,
 			})
 		},
 		onError: (error) => {
-			toast.error(error?.response?.data?.detail || 'Неизвестная ошибка', {
+			setIsUploading(false)
+			toast.update(toastId, {
+				render: error?.response?.data?.detail || 'Неизвестная ошибка',
+				type: 'error',
+				isLoading: false,
 				autoClose: 1000,
-				toastId,
 			})
 		},
 	})
@@ -68,7 +83,6 @@ const GeneratePdfForm = () => {
 			</div>
 
 			<Button>Получить PDF</Button>
-			<ToastContainer containerId={containerId} />
 		</form>
 	)
 }
