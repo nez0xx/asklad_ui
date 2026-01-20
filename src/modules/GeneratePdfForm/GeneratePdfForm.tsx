@@ -25,8 +25,10 @@ const GeneratePdfForm = () => {
 		},
 		onSuccess: (data) => {
 			setIsUploading(false)
-			const blob = new Blob([data], { type: 'application/pdf' })
-			const safeFilename = filename ? generateNewName(filename) : 'generated_file.pdf'
+			//const blob = new Blob([data], { type: 'application/pdf' })
+			// const safeFilename = filename ? generateNewName(filename) : 'generated_file.pdf'
+			const blob = new Blob([data], { type: 'text/html' })
+			const safeFilename = 'Накладные.html'
 			saveAs(blob, safeFilename)
 
 			toast.update(toastId, {
